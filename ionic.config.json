@@ -1,0 +1,7 @@
+{
+  "name": "GreenCare",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

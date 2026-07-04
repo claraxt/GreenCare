@@ -4,35 +4,58 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-segment value="vorgeschlagen">
-      <ion-segment-button value="vorgeschlagen">
-        <ion-label>Vorgeschlagen</ion-label>
-      </ion-segment-button>
+    <ion-segment [(ngModel)]="selectedSegment">
 
-      <ion-segment-button value="naehe">
-        <ion-label>In deiner Nähe</ion-label>
-      </ion-segment-button>
+  <ion-segment-button value="vorgeschlagen">
+    <ion-label>Vorgeschlagen</ion-label>
+  </ion-segment-button>
 
-      <ion-segment-button value="neu">
-        <ion-label>Neu</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+  <ion-segment-button value="naehe">
+    <ion-label>In deiner Nähe</ion-label>
+  </ion-segment-button>
+
+  <ion-segment-button value="neu">
+    <ion-label>Neu</ion-label>
+  </ion-segment-button>
+
+</ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-card>
+  <ion-card *ngFor="let plant of plants">
 
     <ion-card-content>
 
-      <h2>Park am See</h2>
+      <div class="card">
 
-      <p>Blumenbeet am Weg</p>
+        <div class="image">
+          Foto
+        </div>
 
-      <p>Benötigt noch 2 Personen</p>
+        <div class="info">
 
-      <p>Gießen</p>
+          <h2>{{plant.name}}</h2>
+
+          <p>{{plant.description}}</p>
+
+          <p>Benötigt noch {{plant.peopleNeeded}} Personen</p>
+
+          <p class="green">{{plant.task}}</p>
+
+          <div class="persons">
+            <ion-icon name="person"></ion-icon>
+            <ion-icon name="person"></ion-icon>
+          </div>
+
+        </div>
+
+        <div class="distance">
+          {{plant.distance}}
+        </div>
+
+      </div>
 
     </ion-card-content>
 

@@ -16,45 +16,48 @@
 
                         <ion-label>
                             <h1>Name</h1>
-                            <p>Beschreibung</p>
-                            <p>Beigetreten am</p>
+                            <h2>Beschreibung</h2>
+                            <p>Beigetreten am xx.xx.xx</p>
                         </ion-label>
                     </ion-item>
 
-                    <ion-item>
-                        <ion-card-content>
-                            <h1>Zahl</h1>
-                            <p>Einsätze</p>
-                        </ion-card-content>
+                    <ion-grid>
+                        <ion-row>
 
-                        <ion-card-content>
-                            <h1>Zahl</h1>
-                            <p>Standorte</p>
-                        </ion-card-content>
+                            <ion-col size="4" class="ion-text-center">
+                                <h2>12</h2>
+                                <p>Einsätze</p>
+                            </ion-col>
 
-                        <ion-card-content>
-                            <h1>Zahl</h1>
-                            <p>Beiträge</p>
-                        </ion-card-content>
+                            <ion-col size="4" class="ion-text-center">
+                                <h2>8</h2>
+                                <p>Standorte</p>
+                            </ion-col>
 
-                    </ion-item>
+                            <ion-col size="4" class="ion-text-center">
+                                <h2>24</h2>
+                                <p>Beiträge</p>
+                            </ion-col>
+
+                        </ion-row>
+                    </ion-grid>
 
 
                     <ion-item>
                         <ion-icon name="calendar"></ion-icon>
-                        Meine Einsätze
+                        <ion-text> Meine Einsätze</ion-text>
                     </ion-item>
                     <ion-item>
                         <ion-icon name="location"></ion-icon>
-                        Meine Standorte
+                        <ion-text> Meine Standorte</ion-text>
                     </ion-item>
                     <ion-item>
-                        <ion-icon name="heart"></ion-icon>
-                        Gemerkte Standorte
+                        <ion-icon name="heart" color="success"></ion-icon>
+                        <ion-text> Gemerkte Standorte</ion-text>
                     </ion-item>
                     <ion-item>
                         <ion-icon name="settings"></ion-icon>
-                        Einstellungen
+                        <ion-text> Einstellungen</ion-text>
                     </ion-item>
 
                 </ion-card>

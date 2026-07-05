@@ -44,23 +44,29 @@ export class MapPage implements OnInit, AfterViewInit {
     this.marker = L.marker([lat, lng]).addTo(this.map);
     this.circle = L.circle([lat, lng], {
       radius: pos.coords.accuracy
+
     }).addTo(this.map);
 
     navigator.geolocation.watchPosition(
-      (p) => this.updatePosition(p),
-      (e) => console.log(e)
+      (pos) => this.updatePosition(pos),
+      (err) => console.log(err)
     );
   }
   updatePosition(pos: GeolocationPosition) {
+
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
+    const accuracy = pos.coords.accuracy;
 
-    this.marker?.setLatLng([lat, lng]);
-    this.circle?.setLatLng([lat, lng]);
-    this.circle?.setRadius(pos.coords.accuracy);
+    if (this.marker) {
+      this.marker.setLatLng([lat, lng]);
+    }
+
+    if (this.circle) {
+      this.circle.setLatLng([lat, lng]);
+      this.circle.setRadius(accuracy);
+    }
 
     this.map.panTo([lat, lng]);
   }
 }
-
-

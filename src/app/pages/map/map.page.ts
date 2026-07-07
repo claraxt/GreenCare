@@ -41,6 +41,8 @@ export class MapPage implements OnInit, AfterViewInit {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
 
+    this.newMarker();
+
     this.marker = L.marker([lat, lng]).addTo(this.map);
     this.circle = L.circle([lat, lng], {
       radius: pos.coords.accuracy
@@ -51,7 +53,9 @@ export class MapPage implements OnInit, AfterViewInit {
       (pos) => this.updatePosition(pos),
       (err) => console.log(err)
     );
+
   }
+
   updatePosition(pos: GeolocationPosition) {
 
     const lat = pos.coords.latitude;
@@ -68,5 +72,13 @@ export class MapPage implements OnInit, AfterViewInit {
     }
 
     this.map.panTo([lat, lng]);
+  }
+
+  newMarker() {
+    this.map.on('click', (click: L.LeafletMouseEvent) => {
+      const lat = click.latlng.lat;
+      const lng = click.latlng.lng;
+      L.marker([lat, lng]).addTo(this.map);
+    });
   }
 }

@@ -93,6 +93,10 @@
             </ion-header>
 
             <ion-content class="ion-padding">
+                @if(image) {
+                <img [src]="image" alt="StreetArt" style="width: 100%;" />
+                }
+                <ion-button fill="clear" (click)="takePicture()">Foto hinzufügen</ion-button>
                 <ion-item>
                     <ion-input label="Name" labelPlacement="stacked" type="text" placeholder="Dein Name"
                         [(ngModel)]="name"></ion-input>

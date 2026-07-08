@@ -17,6 +17,7 @@ export class Saving {
         name: 'Name',
         description: 'Beschreibung',
         date: new Date().toISOString(),
+        image: '',
     },
     )
 
@@ -24,11 +25,15 @@ export class Saving {
         localStorage.setItem('greenCare', JSON.stringify(this.greenCare()));
     }
 
-    updateProfile(name: string, description: string, date: string) {
+    async updateProfile(name: string = '', description: string = '', date: string, image: string = '') {
+        console.log('Image:', image);
         this.greenCare.set({
-            name,
-            description,
-            date: new Date().toISOString(),
+            name: name,
+            description: description,
+            date, // new Date().toISOString(),
+            image: image,
         });
+        this.persist();
+        console.log(this.greenCare());
     }
 }

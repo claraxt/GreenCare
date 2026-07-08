@@ -5,7 +5,7 @@ import { AlertController, IonContent, IonHeader, IonList, IonTitle, IonToolbar, 
 import { RouterLink } from '@angular/router';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { Saving } from 'src/app/services/saving';
-import { Camera } from '@capacitor/camera';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-profile',
@@ -18,38 +18,63 @@ export class ProfilePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   private greenCareService = inject(Saving);
-  private alertController = inject(AlertController);
+  //private alertController = inject(AlertController);
 
-  placeholderImage = 'https://ionicframework.com/docs/img/demos/card-media.png';
-  image: string = this.placeholderImage;
+  //placeholderImage = 'https://ionicframework.com/docs/img/demos/avatar.svg';
+
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  name!: string;
-  description!: string;
-  date!: string;
+  name: string = '';
+  description: string = '';
+  date: string = '';
+  image: string = '';
 
   cancel() {
+    this.name = '';
+    this.description = '';
+    this.image = '';
     this.modal.dismiss(null, 'cancel');
   }
 
+  /*confirm() {
+    if (this.name === '') {
+      return;
+    } else {
+      this.greenCareService.updateProfile(this.name, this.description, this.date, this.image);
+
+      this.modal.dismiss(null, 'confirm');
+    }
+  }*/
   confirm() {
     if (this.name === '') {
       return;
     } else {
-      this.greenCareService.updateProfile(this.name, this.description, this.date);
+      this.modal.dismiss({
+        name: this.name,
+        description: this.description,
+        image: this.image,
 
-      this.modal.dismiss(null, 'confirm');
+      }, 'confirm');
     }
   }
 
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
     if (event.detail.role === 'confirm') {
+      const data = event.detail.data;
+      this.greenCareService.updateProfile(
+        data.name,
+        data.description,
+        this.greenCare().date,
+        data.image,
+      )
       this.name = '';
       this.description = '';
+      this.image = '';
+      console.log(event.detail.data);
     }
   }
 
@@ -57,63 +82,15 @@ export class ProfilePage implements OnInit {
     return this.greenCareService.greenCare();
   }
 
-  async chooseImage() {
-    const alert = await this.alertController.create({
-      header: 'Bild auswählen',
-      buttons: [
-        {
-          text: 'Kamera',
-          handler: () => this.takePicture(),
-        },
-        {
-          text: 'Galerie',
-          handler: () => this.pickFromGallery(),
-        },
-        {
-          text: 'Abbrechen',
-          role: 'cancel',
-        },
-      ],
+  async takePicture() {
+
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl
     });
 
-    await alert.present();
-  }
-
-  async takePicture() {
-    try {
-      const result = await Camera.takePhoto({
-        quality: 90,
-        includeMetadata: true,
-      });
-
-      if (result.webPath) //nur wenn result.webPath vorliegt, soll image = result.webPath sein, da result.webPath undefined sein kann und image als string definiert ist
-      {
-        this.image = result.webPath;
-      }
-      console.log('Image:', this.image);
-
-    }
-    catch (e) {
-      console.error('Error:', e);
-    }
-  }
-  async pickFromGallery() {
-    try {
-      const result = await Camera.pickImages({
-        limit: 1
-      });
-
-      if (result.photos.length > 0) {
-        this.image =
-          result.photos[0].webPath ?? this.placeholderImage;
-
-      }
-
-      console.log('Image:', this.image);
-
-
-    } catch (e) {
-      console.error('Gallery Error:', e);
-    }
+    this.image = image.dataUrl!;
+    console.log(this.image);
   }
 }

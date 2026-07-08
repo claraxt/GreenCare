@@ -11,7 +11,12 @@
                 <ion-card>
                     <ion-item>
                         <ion-avatar aria-hidden="true" slot="start">
-                            <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+
+                            @if (greenCare().image) {
+                            <img alt="GreenCare" [src]="greenCare().image" />
+                            } @else {
+                            <img alt="avatar" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                            }
                         </ion-avatar>
 
                         <ion-label>

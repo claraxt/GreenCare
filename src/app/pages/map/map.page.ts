@@ -41,6 +41,16 @@ export class MapPage implements OnInit, AfterViewInit {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
 
+    const mapContainer = document.getElementById('map');
+
+    if (mapContainer) {
+      const resizeObserver = new ResizeObserver(() => {
+        this.map.invalidateSize();
+      });
+
+      resizeObserver.observe(mapContainer);
+    }
+
     this.newMarker();
 
     this.marker = L.marker([lat, lng]).addTo(this.map);
@@ -81,4 +91,6 @@ export class MapPage implements OnInit, AfterViewInit {
       L.marker([lat, lng]).addTo(this.map);
     });
   }
+
+
 }

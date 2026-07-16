@@ -1,4 +1,7 @@
+
+
 export interface Plant {
+
 
   id: number;
 
@@ -23,6 +26,7 @@ export interface Plant {
 
     toxicity: string;
 
-  }
-
+  };
 }
+
+

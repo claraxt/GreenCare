@@ -4,5 +4,15 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-card *ngFor="let plant of plants">
 
+        <img [src]="plant.image_url">
+
+        <ion-card-content>
+            <h2>{{ plant.common_name }}</h2>
+            <p>{{ plant.scientific_name }}</p>
+            <p>{{ plant.family }}</p>
+        </ion-card-content>
+
+    </ion-card>
 </ion-content>

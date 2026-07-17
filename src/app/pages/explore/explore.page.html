@@ -1,39 +1,55 @@
 <ion-header>
+
   <ion-toolbar>
+
     <ion-title>Entdecken</ion-title>
+
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-segment [(ngModel)]="selectedSegment">
 
-  <ion-segment-button value="vorgeschlagen">
-    <ion-label>Vorgeschlagen</ion-label>
-  </ion-segment-button>
+    <ion-segment
+      [(ngModel)]="selectedSegment"
+      (ionChange)="segmentChanged($event)">
 
-  <ion-segment-button value="naehe">
-    <ion-label>In deiner Nähe</ion-label>
-  </ion-segment-button>
+      <ion-segment-button value="vorgeschlagen">
 
-  <ion-segment-button value="neu">
-    <ion-label>Neu</ion-label>
-  </ion-segment-button>
+        <ion-label>Vorgeschlagen</ion-label>
 
-</ion-segment>
+      </ion-segment-button>
+
+      <ion-segment-button value="naehe">
+
+        <ion-label>In deiner Nähe</ion-label>
+
+      </ion-segment-button>
+
+      <ion-segment-button value="neu">
+
+        <ion-label>Neu</ion-label>
+
+      </ion-segment-button>
+
+    </ion-segment>
+
   </ion-toolbar>
+
 </ion-header>
+
 
 <ion-content>
 
-  <ion-card *ngFor="let plant of plants">
+  <ion-card
+    *ngFor="let plant of plants"
+    (click)="openPlant(plant)">
 
     <ion-card-content>
 
       <div class="card">
 
-        <div class="image">
-          Foto
-        </div>
-
+       <div class="image">
+        <img [src]="plant.image" alt="Pflanze">
+       </div>
         <div class="info">
 
           <h2>{{plant.name}}</h2>
@@ -45,14 +61,18 @@
           <p class="green">{{plant.task}}</p>
 
           <div class="persons">
+
             <ion-icon name="person"></ion-icon>
             <ion-icon name="person"></ion-icon>
+
           </div>
 
         </div>
 
         <div class="distance">
+
           {{plant.distance}}
+
         </div>
 
       </div>

@@ -54,18 +54,16 @@ ion-card {
 
   width: 110px;
   height: 110px;
-  border-radius: 18px;
-  background: #C8D4B0;
-  color: #415A3A;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Poppins";
-  font-size: 20px;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
   margin-right: 20px;
 
-}
+  flex-shrink: 0;
 
+}
 .info {
 
   flex: 1;

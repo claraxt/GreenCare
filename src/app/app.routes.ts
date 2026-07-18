@@ -14,6 +14,16 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./tabs/tabs.routes')
         .then((m) => m.routes)
-  }
+  },
+  {
+    path: 'plant-detail',
+    loadComponent: () => import('./pages/plant-detail/plant-detail.page').then( m => m.PlantDetailPage)
+  },
 
+  {
+    path: 'plant/:id', 
+    loadComponent: () =>
+      import('./pages/plant-detail/plant-detail.page')
+        .then(m => m.PlantDetailPage)
+  }
 ];

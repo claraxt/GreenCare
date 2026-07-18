@@ -64,6 +64,19 @@ ion-card {
   flex-shrink: 0;
 
 }
+
+.image img {
+
+  width: 110px;
+
+  height: 110px;
+
+  object-fit: cover;
+
+  border-radius: 15px;
+
+}
+
 .info {
 
   flex: 1;

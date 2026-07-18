@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

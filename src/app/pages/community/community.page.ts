@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent } from '@ionic/angular/standalone';
 import { Plant } from 'src/app/models/plant';
-import { PlantService } from 'src/app/services/plant';
+import { PlantService } from 'src/app/services/plant.service';
 
 
 @Component({

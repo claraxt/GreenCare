@@ -9,7 +9,7 @@ ion-header ion-toolbar {
 
 ion-title {
   font-family: "Cormorant Garamond", serif;
-  font-size: 34px;
+  font-size: clamp(24px, 5vw, 34px);
   font-weight: 700;
   color: #2F4B33;
   text-align: center;
@@ -20,75 +20,71 @@ ion-segment {
 }
 
 ion-segment-button {
-
   --color: #777777;
   --color-checked: #415A3A;
   --indicator-color: #7D9A63;
 
   font-family: "Poppins", sans-serif;
-  font-size: 17px;
+  font-size: clamp(14px, 2vw, 17px);
   font-weight: 500;
 
   text-transform: none;
 }
 
 ion-card {
-
   background: #ECE6D8;
   border-radius: 22px;
-  margin: 18px;
+  margin: 16px;
   padding: 8px;
   box-shadow: none;
-
+  cursor: pointer;
 }
 
 .card {
-
   display: flex;
   align-items: center;
   position: relative;
-
+  gap: 16px;
 }
 
 .image {
 
-  width: 110px;
-  height: 110px;
+  width: 28vw;
+  height: 28vw;
 
-  border-radius: 15px;
+  min-width: 95px;
+  min-height: 95px;
 
-  overflow: hidden;
-
-  margin-right: 20px;
+  max-width: 120px;
+  max-height: 120px;
 
   flex-shrink: 0;
-
 }
 
 .image img {
 
-  width: 110px;
-
-  height: 110px;
+  width: 100%;
+  height: 100%;
 
   object-fit: cover;
 
   border-radius: 15px;
 
+  display: block;
+
 }
 
 .info {
-
   flex: 1;
-
 }
 
 .info h2 {
 
   font-family: "Cormorant Garamond", serif;
-  font-size: 30px;
+  font-size: clamp(24px, 4vw, 30px);
   font-weight: 700;
   color: #2F4B33;
+
   margin-bottom: 8px;
 
 }
@@ -96,8 +92,10 @@ ion-card {
 .info p {
 
   font-family: "Poppins", sans-serif;
-  font-size: 17px;
+  font-size: clamp(14px, 2vw, 17px);
+
   color: #5B564F;
+
   margin: 4px 0;
 
 }
@@ -105,7 +103,9 @@ ion-card {
 .green {
 
   color: #6D8B57;
-  font-size: 21px;
+
+  font-size: clamp(16px, 2.5vw, 20px);
+
   font-weight: 600;
 
 }
@@ -113,11 +113,16 @@ ion-card {
 .distance {
 
   position: absolute;
+
   top: 6px;
   right: 10px;
+
   font-family: "Poppins";
-  font-size: 18px;
+
+  font-size: clamp(13px, 2vw, 17px);
+
   font-weight: 600;
+
   color: #6B6B6B;
 
 }
@@ -125,19 +130,23 @@ ion-card {
 .persons {
 
   margin-top: 10px;
-  font-size: 24px;
+
+  font-size: 22px;
+
   color: #415A3A;
 
 }
 
 .persons ion-icon {
+
   margin-right: 6px;
 
 }
 
 ion-card:hover {
 
-  transform: scale(1.01);
+  transform: scale(1.02);
+
   transition: 0.2s;
 
 }
@@ -145,6 +154,7 @@ ion-card:hover {
 ion-tab-bar {
 
   --background: #ECE6D8;
+
   border: none;
 
 }
@@ -152,6 +162,7 @@ ion-tab-bar {
 ion-tab-button {
 
   --color: #7A7A7A;
+
   --color-selected: #415A3A;
 
 }
@@ -159,10 +170,40 @@ ion-tab-button {
 .join-button {
 
   --background: #6D8B57;
+
   --border-radius: 18px;
+
   height: 48px;
+
   font-family: "Poppins";
+
   font-size: 18px;
+
   font-weight: 600;
+
+}
+
+/* Handy */
+
+@media (max-width: 600px) {
+
+  ion-card {
+
+    margin: 12px;
+
+  }
+
+  .card {
+
+    gap: 12px;
+
+  }
+
+  .image {
+
+    width: 95px;
+    height: 95px;
+
+  }
 
 }

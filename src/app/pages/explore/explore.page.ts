@@ -41,7 +41,6 @@ import { ExploreService } from '../../services/explore';
     FormsModule
   ]
 })
-
 export class ExplorePage implements OnInit {
 
   selectedSegment = 'vorgeschlagen';
@@ -70,26 +69,20 @@ export class ExplorePage implements OnInit {
     this.selectedSegment = event.detail.value;
 
     if (this.selectedSegment === 'vorgeschlagen') {
-
       this.plants = this.exploreService.plantsSuggested;
-
     }
 
     if (this.selectedSegment === 'naehe') {
-
       this.plants = this.exploreService.plantsNearby;
-
     }
 
     if (this.selectedSegment === 'neu') {
-
       this.plants = this.exploreService.plantsNew;
-
     }
 
   }
 
-  openPlant(plant: any) {
+  openPlantDetail(plant: any) {
 
     this.router.navigate(['/plant', plant.id]);
 

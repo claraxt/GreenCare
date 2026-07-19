@@ -7,7 +7,9 @@ ion-content {
 .plant-image {
 
   width: 100%;
-  height: 320px;
+  height: 45vh;
+  min-height: 280px;
+  max-height: 420px;
 
   overflow: hidden;
 

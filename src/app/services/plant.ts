@@ -1,11 +1,11 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlantService {
-  //plant: Plant[] = [];
+  plant: Plant[] = [];
   ngOnInit() {
 
   }
@@ -26,11 +26,8 @@ export class PlantService {
 
     return data.data;
   }
-
-
-}*/
-
-import { Injectable } from '@angular/core';
+}
+/*import { Injectable } from '@angular/core';
 import { CapacitorHttp } from '@capacitor/core';
 
 @Injectable({
@@ -49,7 +46,7 @@ export class PlantService {
     return response.data.data;
   }
 
-}
+}*/
 /*import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

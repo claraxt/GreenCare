@@ -11,16 +11,17 @@ import * as L from 'leaflet';
   styleUrls: ['./map.page.scss'],
   standalone: true,
   imports: [
-    IonContent,IonHeader,IonTitle,IonToolbar,CommonModule,FormsModule
+    IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule
   ]
 })
 export class MapPage implements OnInit, AfterViewInit {
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
   map: any;
 
-  marker: L.Marker | null = null;
+  userMarker: L.Marker | null = null;
+  plantMarker: L.Marker | null = null;
   circle: L.Circle | null = null;
 
   targetLat = 0;
@@ -30,12 +31,16 @@ export class MapPage implements OnInit, AfterViewInit {
 
     this.route.queryParams.subscribe(params => {
 
-      if (params['lat']) {
+      if (params['lat'] && params['lng']) {
 
         this.targetLat = Number(params['lat']);
         this.targetLng = Number(params['lng']);
 
-        console.log("Ziel:", this.targetLat, this.targetLng);
+        console.log("Neues Ziel:", this.targetLat, this.targetLng);
+
+        if (this.map) {
+          this.showPlantMarker();
+        }
 
       }
 
@@ -48,7 +53,13 @@ export class MapPage implements OnInit, AfterViewInit {
     navigator.geolocation.getCurrentPosition(
 
       (pos) => this.showMap(pos),
-      () => alert("GPS nicht erlaubt")
+      () => alert("GPS nicht erlaubt"),
+      {
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 60000
+      }
+
 
     );
 
@@ -80,25 +91,15 @@ export class MapPage implements OnInit, AfterViewInit {
     this.newMarker();
 
     // Eigener Standort
-    this.marker = L.marker([lat, lng]).addTo(this.map);
+    this.userMarker = L.marker([lat, lng]).addTo(this.map);
 
     this.circle = L.circle([lat, lng], {
       radius: pos.coords.accuracy
     }).addTo(this.map);
 
-    // Pflegeort anzeigen
-    if (this.targetLat !== 0) {
-      L.marker([this.targetLat, this.targetLng])
-        .addTo(this.map)
-        .bindPopup("Pflegeort")
-        .openPopup();
-
-      this.map.flyTo(
-        [this.targetLat, this.targetLng],
-        17
-      );
-
-    }
+    setTimeout(() => {
+      this.showPlantMarker();
+    }, 100);
 
     navigator.geolocation.watchPosition(
 
@@ -115,9 +116,9 @@ export class MapPage implements OnInit, AfterViewInit {
     const lng = pos.coords.longitude;
     const accuracy = pos.coords.accuracy;
 
-    if (this.marker) {
+    if (this.userMarker) {
 
-      this.marker.setLatLng([lat, lng]);
+      this.userMarker.setLatLng([lat, lng]);
 
     }
 
@@ -128,12 +129,46 @@ export class MapPage implements OnInit, AfterViewInit {
 
     }
 
-  
+
     if (this.targetLat === 0) {
 
       this.map.panTo([lat, lng]);
 
     }
+
+  }
+
+  showPlantMarker() {
+
+    if (!this.map || this.targetLat === 0) {
+      return;
+    }
+
+
+    /* // alten Pflanzenmarker entfernen idk ob wir sammeln wollen oder nah?? bräuchten vermutlcih iene netfern option
+     if (this.plantMarker) {
+       this.map.removeLayer(this.plantMarker);
+     }*/
+
+
+    // neue makrierung
+    this.plantMarker = L.marker([
+      this.targetLat,
+      this.targetLng
+    ])
+      .addTo(this.map)
+      .bindPopup("Pflegeort")
+      .openPopup();
+
+
+    // navigieren zu pflwgenort
+    this.map.flyTo(
+      [
+        this.targetLat,
+        this.targetLng
+      ],
+      17
+    );
 
   }
 

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PlantService {
-  plant: Plant[] = [];
+  //plant: Plant[] = [];
   ngOnInit() {
 
   }

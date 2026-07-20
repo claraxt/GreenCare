@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 
 @Component({
@@ -16,7 +16,9 @@ export class PlantDetailPage implements OnInit {
 
     plant: any; 
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     public exploreService: ExploreService) { }
 
  ngOnInit() {
@@ -37,4 +39,25 @@ export class PlantDetailPage implements OnInit {
 
 }
 
+ showOnMap() {
+
+  this.router.navigate(
+    ['/tabs/map'],
+    {
+      queryParams: {
+
+        lat: this.plant.latitude,
+
+        lng: this.plant.longitude
+
+      }
+
+    }
+
+  );
+
 }
+
+}
+
+

@@ -20,7 +20,10 @@ export class ExploreService {
       sunlight: 'Sonne bis Halbschatten',
       flowers: 'Rosen, Lavendel, Ringelblumen, Wildblumen',
       text: 'Dieses Beet befindet sich am Hauptweg des Parks und benötigt regelmäßige Pflege.',
-      difficulty: 'Einfach'
+      difficulty: 'Einfach',
+
+      latitude: 52.304399, 
+      longitude: 8.051612, 
     },
 
 
@@ -37,7 +40,10 @@ export class ExploreService {
       sunlight: 'Sonne bis Halbschatten',
       flowers: 'Rosen',
       text: 'Dieses Beet befindet sich am Grab der Familie Müller. Der Pfleger des Grabes kann aufgrund zumehmenden Alters keine Pflege mehr gewährleisten. Die Rosen benötigen an heißen Tagen täglich Wasser. Unkraut sollte regelmäßig entfernt werden, und die Rosen sollten nach zunehmendem Wachstum geschnitten werden.',
-      difficulty: 'mittel bis schwer'
+      difficulty: 'mittel bis schwer',
+
+      latitude: 52.314970,
+      longitude: 8.055299,
     },
 
      {
@@ -53,7 +59,10 @@ export class ExploreService {
       sunlight: 'Sonne',
       flowers: 'Löwenmäulchen, Prachtkerzen, Silberblatt, Männertreu, Schmuckkörbchen',
       text: 'Die zahlreichen Beete im Stadtpark sind für die Öffentlichkeit zugänglich und benötigen regelmäßige Pflege. Die Beete sind mit verschiedenen Blumenarten bepflanzt, darunter Löwenmäulchen, Prachtkerzen, Silberblatt, Männertreu und Schmuckkörbchen. Es ist wichtig, das Unkraut regelmäßig zu entfernen und die Pflanzen ausreichend zu gießen, um Parkbesuchern eine schöne Umgebung zu bieten.',
-      difficulty: 'mittel'
+      difficulty: 'mittel',
+
+      latitude: 52.28666,
+      longitude: 8.047542, 
     },
 
     {
@@ -69,7 +78,10 @@ export class ExploreService {
       sunlight: 'Sonne bis Halbschatten',
       flowers: 'Zinnien, Studentenblumen, großes Löwenmäulchen',
       text: 'Dieses Blumenbeet befindet sich neben Schwimmbecken auf der Rasenfläche. Wichtig ist, regelmäßiges Unkraut entfernen, um Besuchern weiteren eine schöne Umgebung zu bieten.',
-      difficulty: 'Einfach'
+      difficulty: 'Einfach',
+
+      latitude: 52.303293,
+      longitude: 8.052641,
     },
 
   ];
@@ -89,7 +101,10 @@ export class ExploreService {
       sunlight: 'Vollsonnig',
       flowers: 'Eibisch-Baum, Petunien, Süßkartoffel-Ackerwinden',
       text: 'Diese Kübel schmücken den Marktplatz und benötigen intensive Pflege. Wöchentliches Düngen und tägliches Gießen ist wichtig, damit die Blumen den gesamten Sommer blühen. ',
-      difficulty: 'mittel'
+      difficulty: 'mittel',
+
+      latitude: 52.277709,
+      longitude: 8.041655,
     },
 
     {
@@ -105,7 +120,10 @@ export class ExploreService {
       sunlight: 'Sonnig',
       flowers: 'Wildblumen',
       text: 'Die Wildblumen auf dem Schuhof sind sehr pflegeleicht und bieten Insekten und Bienen einen Lebensraum. Wichtig ist, dass das Unkraut regelmäßig entfernt wird, damit die Wildblumen ungestört wachsen können. Da die Wildblumen schon gut angewachsen sind, benötigen sie kein zusätzliches Bewässern oder Düngen.',
-      difficulty: 'Einfach'
+      difficulty: 'Einfach',
+
+      latitude: 52.293255,
+      longitude: 8.058585,
     },
 
     {
@@ -121,7 +139,10 @@ export class ExploreService {
       sunlight: 'Vollsonnig',
       flowers: 'Bodendeckerrosen, Weiße Beetrosen, Lavendel',
       text: 'Dieses Beet befindet sich am Eingang des Krankenhauses und benötigt regelmäßige Pflege. Die Bodendeckerrosen, weißen Beetrosen und Lavendel benötigen an heißen Tagen zusätzliches Wasser. Das Beet ist für Besucher und Patienten des Krankenhauses sichtbar, daher ist es wichtig, dass es gepflegt aussieht.',
-      difficulty: 'Einfach'
+      difficulty: 'Einfach',
+
+      latitude: 52.288366,
+      longitude: 8.052233,
     },
 
   ];
@@ -141,7 +162,10 @@ export class ExploreService {
       sunlight: 'Vollonne und Wärme',
       flowers: 'Rote Spornblumen',
       text: 'Die Rote Spornblume schmückt den Bahnhof und ist eine äußerst robuste ud unkomplizierte Staude. Gießen ist nur in der Anwachsphase oder bei extrem langanhaltenden Hitzepärioden nötig',
-      difficulty: 'Einfach'
+      difficulty: 'Einfach',
+
+      latitude: 52.281652,
+      longitude: 8.043603,
     },
 
     {
@@ -157,7 +181,10 @@ export class ExploreService {
       sunlight: 'Vollsonnig',
       flowers: 'Gelber Sonnenhut, Steppen-Salbei, Dunkellaubige Zier-Süßkartoffel, Prachtkerzen, Blattschmuckplanzen',
       text: 'Die Beete auf dem Kirchplatz sind für die Öffentlichkeit zugänglich und benötigen regelmäßige Pflege. Die Beete sind mit verschiedenen Blumenarten bepflanzt, darunter Gelber Sonnenhut, Steppen-Salbei, Dunkellaubige Zier-Süßkartoffel, Prachtkerzen und Blattschmuckplanzen. Es ist wichtig, das Unkraut regelmäßig zu entfernen und die Pflanzen ausreichend zu gießen, um Besuchern eine schöne Umgebung zu bieten. Der Steppen-Salbei benötigt nach der ersten Hauptblüte im Sommer einen Rückschnitt, um eine zweite Blüte im Spätsommer zu fördern. Die vertrockneten Samenstände des Gelben Sonnenhuts sollten im Winter als Vogelfutter stehen gelassen werden, Verblühte Stängel können in der Blühtezeit zum Blattansatz zurückgeschnitten werden, um neue Knospenbildung anzuregen.',
-      difficulty: 'mittel bis schwierig'
+      difficulty: 'mittel bis schwierig',
+
+      latitude: 52.277832,
+      longitude: 8.041496,
     },
 
   ];

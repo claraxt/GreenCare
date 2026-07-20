@@ -18,9 +18,6 @@ export class ProfilePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   private greenCareService = inject(Saving);
-  //private alertController = inject(AlertController);
-
-  //placeholderImage = 'https://ionicframework.com/docs/img/demos/avatar.svg';
 
 
   constructor() { }
@@ -40,15 +37,7 @@ export class ProfilePage implements OnInit {
     this.modal.dismiss(null, 'cancel');
   }
 
-  /*confirm() {
-    if (this.name === '') {
-      return;
-    } else {
-      this.greenCareService.updateProfile(this.name, this.description, this.date, this.image);
 
-      this.modal.dismiss(null, 'confirm');
-    }
-  }*/
   confirm() {
     if (this.name === '') {
       return;

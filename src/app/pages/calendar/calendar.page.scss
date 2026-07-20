@@ -1,0 +1,54 @@
+ion-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-card {
+    --background: transparent;
+    box-shadow: none;
+}
+
+
+ion-datetime {
+
+    max-width: 80%;
+    min-width: 450px;
+
+    border-radius: 16px;
+}
+
+ion-datetime {
+    --background: #ECE6D8;
+    --background-rgb: 255, 241, 242;
+    --wheel-highlight-background: rgb(38, 35, 107);
+    --wheel-highlight-border-radius: 48px;
+    --wheel-fade-background-rgb: 245, 235, 247;
+
+    border-radius: 16px;
+    box-shadow: rgba(var(--ion-color-rose-rgb), 0.3) 0px 10px 15px -3px;
+}
+
+ion-datetime::part(datetime-header) {
+    background-color: #2F4B33;
+}
+
+
+ion-datetime::part(time-button) {
+    background: #ECE6D8;
+    color: #2F4B33;
+    border-radius: 12px;
+}
+
+
+ion-datetime::part(wheel):focus {
+    background: #2F4B33;
+}
+
+ion-datetime::part(wheel-item) {
+    color: #2F4B33;
+}
+
+ion-datetime::part(wheel-item active) {
+    color: rgb(128, 30, 171);
+}

@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Component } from '@angular/core';
+import { IonDatetime } from '@ionic/angular/standalone';
 
-@Injectable({
-  providedIn: 'root',
+@Component({
+  selector: 'app-example',
+  templateUrl: 'example.component.html',
+  styleUrls: ['example.component.css'],
+  imports: [IonDatetime],
 })
-export class Calendar {
-  
-}
+export class Calendar { }

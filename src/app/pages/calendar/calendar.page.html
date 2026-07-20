@@ -4,5 +4,16 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-card>
+        <ion-card-content>
+            <ion-datetime value={{date}} [formatOptions]="{
+                time: { hour: '2-digit', minute: '2-digit' },
+                date: { day: '2-digit', month: 'long' }, }">
+
+                <span slot="title">Wähle eine Zeit</span>
+
+            </ion-datetime>
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>

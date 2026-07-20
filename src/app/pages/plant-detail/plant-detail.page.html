@@ -1,0 +1,85 @@
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/explore"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Pflanze</ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="plant-image">
+
+    <img [src]="plant.image">
+
+  </div>
+
+  <div class="content">
+
+    <h1>{{plant.name}}</h1>
+
+    <p class="description">
+      {{plant.description}}
+    </p>
+
+    <p class="distance">
+      📍 {{plant.distance}}
+    </p>
+
+    <div class="section">
+
+      <h2> Aufgabe</h2>
+
+      <p>{{plant.task}}</p>
+
+      <p>Noch {{plant.peopleNeeded}} Helfer benötigt.</p>
+
+    </div>
+
+    <div class="section">
+
+      <h2> Pflege</h2>
+
+      <p><strong>Wasser:</strong> {{plant.watering}}</p>
+
+      <p><strong>Standort:</strong> {{plant.sunlight}}</p>
+
+      <p><strong>Pflanzenarten:</strong> {{plant.flowers}}</p>
+
+      <p><strong>Schwierigkeitsgrad:</strong> {{plant.difficulty}}</p>
+
+    </div>
+
+    <div class="section">
+
+      <h2>ℹ Beschreibung</h2>
+
+      <p>{{plant.text}}</p>
+
+    </div>
+
+    <ion-button expand="block">
+
+      Mithelfen
+
+    </ion-button>
+
+    <ion-button
+      expand="block"
+      fill="outline"
+      (click)="showOnMap()">
+
+      Auf Karte anzeigen
+
+    </ion-button>
+
+  </div>
+
+</ion-content>

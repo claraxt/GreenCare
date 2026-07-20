@@ -35,4 +35,241 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+/* @import "@ionic/angular/css/palettes/dark.system.css"; */
+
+
+/* 
+   Farben
+ */
+
+:root {
+
+  --green-primary: #5F7F5A;
+  --green-dark: #415A3A;
+  --green-light: #C8D4B0;
+
+  --cream: #F8F5EE;
+  --white-card: #FFFDF9;
+
+  --text: #2D2D2D;
+  --text-light: #666666;
+
+}
+
+
+/* 
+   Gesamte App
+ */
+
+html,
+body,
+ion-app,
+ion-content {
+
+  background: var(--cream);
+  color: var(--text);
+
+  font-family: "Poppins", sans-serif;
+
+}
+
+
+/* 
+   Header
+ */
+
+ion-header,
+ion-toolbar {
+
+  --background: var(--cream);
+  --color: var(--green-dark);
+
+  box-shadow: none;
+
+}
+
+
+/* 
+   Titel
+ */
+
+ion-title {
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  color: var(--green-dark);
+
+}
+
+
+/* 
+   Segment
+ */
+
+ion-segment {
+
+  --background: transparent;
+
+}
+
+ion-segment-button {
+
+  --color: #777;
+
+  --color-checked: var(--green-dark);
+
+  --indicator-color: var(--green-primary);
+
+  font-family: "Poppins";
+
+  font-weight: 500;
+
+}
+
+
+/* 
+   Karten
+ */
+
+ion-card {
+
+  background: var(--white-card);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0px 6px 20px rgba(0,0,0,0.08);
+
+  margin: 18px;
+
+}
+
+
+/* 
+   Buttons
+ */
+
+ion-button {
+
+  --background: var(--green-primary);
+
+  --border-radius: 16px;
+
+  --color: white;
+
+  height: 48px;
+
+  font-family: "Poppins";
+
+  font-weight: 600;
+
+}
+
+
+/* 
+   Labels
+ */
+
+h1 {
+
+  font-family: "Cormorant Garamond", serif;
+
+  color: var(--green-dark);
+
+}
+
+h2 {
+
+  font-family: "Cormorant Garamond", serif;
+
+  color: var(--green-dark);
+
+}
+
+h3 {
+
+  font-family: "Cormorant Garamond", serif;
+
+  color: var(--green-dark);
+
+}
+
+p {
+
+  color: var(--text-light);
+
+  font-family: "Poppins";
+
+}
+
+
+/* 
+   Icons
+ */
+
+ion-icon {
+
+  color: var(--green-dark);
+
+}
+
+
+/* 
+   Tabs
+ */
+
+ion-tab-bar {
+
+  --background: #ffffff;
+
+  border-top: 1px solid #ece7df;
+
+  height: 70px;
+
+}
+
+ion-tab-button {
+
+  --color: #888;
+
+  --color-selected: var(--green-dark);
+
+}
+
+
+/* 
+   Bilder
+ */
+
+img {
+
+  width: 100%;
+
+  display: block;
+
+  border-radius: 18px;
+
+}
+
+
+/* 
+   Scrollbar
+ */
+
+::-webkit-scrollbar {
+
+  width: 8px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+  background: #C8D4B0;
+
+  border-radius: 10px;
+
+}

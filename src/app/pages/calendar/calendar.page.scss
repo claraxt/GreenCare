@@ -40,15 +40,8 @@ ion-datetime::part(time-button) {
     border-radius: 12px;
 }
 
-
-ion-datetime::part(wheel):focus {
-    background: #2F4B33;
-}
-
-ion-datetime::part(wheel-item) {
-    color: #2F4B33;
-}
-
-ion-datetime::part(wheel-item active) {
-    color: rgb(128, 30, 171);
+ion-datetime::part(calendar-day active) {
+    background-color: #2F4B33;
+    outline: none;
+    box-shadow: none;
 }

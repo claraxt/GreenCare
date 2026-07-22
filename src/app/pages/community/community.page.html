@@ -2,17 +2,42 @@
     <ion-toolbar>
         <ion-title>Community</ion-title>
     </ion-toolbar>
+
+    <ion-toolbar>
+
+        <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="fragen">
+                <ion-label>Fragen</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="tipps">
+                <ion-label>Tipps</ion-label>
+            </ion-segment-button>
+             <ion-segment-button value="lexikon">
+                <ion-label>Lexikon</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
-<ion-content>
-    <ion-card *ngFor="let plant of plants">
 
-        <img [src]="plant.image_url">
+<ion-content> 
+    <ion-button
+    expand="block"
+    (click)="newPost()">
+   
+    + Neue Frage
+    </ion-button>
 
-        <ion-card-content>
-            <h2>{{ plant.common_name }}</h2>
-            <p>{{ plant.scientific_name }}</p>
-            <p>{{ plant.family }}</p>
-        </ion-card-content>
-
+ <ion-card *ngFor="let post of posts">
+    <ion-card-content>
+        <img [src]="post.image">
+        <h2>{{ post.title }}</h2>
+        <p>👤{{ post.user }}</p>
+        <p *ngIf="selectedSegment === 'fragen'">
+           💬 {{post.answers}} Antworten  
+        </p>
+        <p *ngIf="selectedSegment === 'tipps'">
+             ❤️ {{ post.likes }} Likes
+        </p>
+    </ion-card-content>
     </ion-card>
 </ion-content>

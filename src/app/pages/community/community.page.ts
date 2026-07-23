@@ -5,7 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButt
 import { CommunityService } from 'src/app/services/community';
 import { addIcons } from 'ionicons';
 import { personOutline, chatbubbleOutline, heartOutline } from 'ionicons/icons';
-
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-community',
   templateUrl: './community.page.html',
@@ -20,6 +20,7 @@ export class CommunityPage implements OnInit {
    posts: any [] = []; 
 
     constructor(
+      private router:Router,
       public communityService: CommunityService
     ) {
        addIcons ({
@@ -46,7 +47,7 @@ export class CommunityPage implements OnInit {
 
 
 newPost () {
-  console.log("Frage hinzufügen"); 
+  this.router.navigate(['/new-question']);
 }
 newTip () {
   console.log("Tipp hinzufügen"); 

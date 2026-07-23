@@ -67,8 +67,7 @@ ion-app,
 
 
 ion-content {
-
-  background: var(--cream);
+  --background: #F6F2E8;
   color: var(--text);
 
   font-family: "Poppins", sans-serif;
@@ -80,15 +79,12 @@ ion-content {
    Header
  */
 
-ion-header,
-ion-toolbar {
-
-  --background: var(--cream);
-  --color: var(--green-dark);
-
-  box-shadow: none;
-
+ion-header ion-toolbar {
+  --background: #F6F2E8;
+  --color: #2F4B33;
 }
+
+
 
 
 /* 
@@ -274,4 +270,40 @@ img {
 
   border-radius: 10px;
 
+}
+
+ion-datetime {
+
+  max-width: 80%;
+  min-width: 450px;
+
+  border-radius: 16px;
+}
+
+ion-datetime {
+  --background: #ECE6D8;
+
+  --wheel-highlight-background: #2F4B33;
+  --wheel-highlight-border-radius: 48px;
+  --wheel-fade-background: #2F4B33;
+
+  border-radius: 16px;
+
+}
+
+ion-datetime::part(datetime-header) {
+  background-color: #2F4B33;
+}
+
+
+ion-datetime::part(time-button) {
+  background: #ECE6D8;
+  color: #2F4B33;
+  border-radius: 12px;
+}
+
+ion-datetime::part(calendar-day active) {
+  background-color: #2F4B33;
+  outline: none;
+  box-shadow: none;
 }

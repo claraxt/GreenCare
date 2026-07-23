@@ -30,7 +30,7 @@
     </p>
 
     <p class="distance">
-      📍 {{plant.distance}}
+      {{plant.distance}}
     </p>
 
     <div class="section">
@@ -65,21 +65,50 @@
 
     </div>
 
-    <ion-button expand="block">
+    <ion-button id="calendar-modal" *ngIf="plant.peopleNeeded > 0" expand="block">
 
       Mithelfen
 
     </ion-button>
 
-    <ion-button
-      expand="block"
-      fill="outline"
-      (click)="showOnMap()">
+    <ion-modal trigger="calendar-modal" (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Wähle den Tag</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+
+          <ion-datetime>
+
+            <span slot="title">
+              Wähle einen Tag
+            </span>
+
+          </ion-datetime>
+
+          <ion-toolbar>
+            <ion-button color="danger" slot="start" fill="clear" (click)="cancel()">Abbrechen</ion-button>
+            <ion-button color="success" slot="end" fill="clear" (click)="confirm()"
+              [strong]="true">Bestätigen</ion-button>
+          </ion-toolbar>
+        </ion-content>
+
+      </ng-template>
+
+
+    </ion-modal>
+
+
+    <ion-button expand="block" fill="outline" (click)="showOnMap()">
 
       Auf Karte anzeigen
 
     </ion-button>
 
   </div>
+
 
 </ion-content>

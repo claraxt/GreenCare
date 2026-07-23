@@ -2,18 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Plant } from 'src/app/models/plant';
 
 import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonLabel,
-  IonSegment,
-  IonSegmentButton,
-  IonCard,
-  IonCardContent,
-  IonIcon
+  IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, IonIcon
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
@@ -27,18 +19,7 @@ import { ExploreService } from '../../services/explore';
   styleUrls: ['./explore.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonLabel,
-    IonSegment,
-    IonSegmentButton,
-    IonCard,
-    IonCardContent,
-    IonIcon,
-    CommonModule,
-    FormsModule
+    IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, IonIcon, CommonModule, FormsModule
   ]
 })
 export class ExplorePage implements OnInit {
@@ -63,6 +44,8 @@ export class ExplorePage implements OnInit {
     this.plants = this.exploreService.plantsSuggested;
 
   }
+
+
 
   segmentChanged(event: any) {
 

@@ -12,32 +12,30 @@
             <ion-segment-button value="tipps">
                 <ion-label>Tipps</ion-label>
             </ion-segment-button>
-             <ion-segment-button value="lexikon">
+            <ion-segment-button value="lexikon">
                 <ion-label>Lexikon</ion-label>
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 </ion-header>
 
-<ion-content> 
-    <ion-button
-    expand="block"
-    (click)="newPost()">
-   
-    + Neue Frage
+<ion-content>
+    <ion-button expand="block" (click)="newPost()">
+
+        + Neue Frage
     </ion-button>
 
- <ion-card *ngFor="let post of posts">
-    <ion-card-content>
-        <img [src]="post.image">
-        <h2>{{ post.title }}</h2>
-        <p>👤{{ post.user }}</p>
-        <p *ngIf="selectedSegment === 'fragen'">
-           💬 {{post.answers}} Antworten  
-        </p>
-        <p *ngIf="selectedSegment === 'tipps'">
-             ❤️ {{ post.likes }} Likes
-        </p>
-    </ion-card-content>
+    <ion-card *ngFor="let post of posts">
+        <ion-card-content>
+            <img [src]="post.image">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.user }}</p>
+            <p *ngIf="selectedSegment === 'fragen'">
+                {{post.answers}} Antworten
+            </p>
+            <p *ngIf="selectedSegment === 'tipps'">
+                {{ post.likes }} Likes
+            </p>
+        </ion-card-content>
     </ion-card>
 </ion-content>

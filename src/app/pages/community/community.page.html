@@ -21,23 +21,36 @@
 
 <ion-content> 
     <ion-button
+    *ngIf="selectedSegment === 'fragen'"
     expand="block"
     (click)="newPost()">
-   
-    + Neue Frage
+    + Frage hinzufügen
+    </ion-button>
+
+    <ion-button
+    *ngIf="selectedSegment === 'tipps'"
+    expand="block"
+    (click)="newTip()">
+    + Tipp hinzufügen
     </ion-button>
 
  <ion-card *ngFor="let post of posts">
     <ion-card-content>
         <img [src]="post.image">
         <h2>{{ post.title }}</h2>
-       <ion-icon name="person-ouline"></ion-icon>
+        <p>
+       <ion-icon name="person-outline"></ion-icon>
+       {{ post.user }}
+       </p>
         <p *ngIf="selectedSegment === 'fragen'">
           <ion-icon name="chatbubble-outline" ></ion-icon>
+          {{ post.answers }} Antworten
         </p>
         <p *ngIf="selectedSegment === 'tipps'">
              <ion-icon name="heart-outline"></ion-icon>
+             {{ post.likes }} Likes 
         </p>
     </ion-card-content>
     </ion-card>
 </ion-content>
+ 

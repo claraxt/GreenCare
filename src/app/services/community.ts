@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class CommunityService {
 
   constructor (){}
-
-    questions = [
+   questions = [
       {
         id: 1,
         user:"Lisa",
@@ -22,7 +21,7 @@ export class CommunityService {
         image:"assets/Fotos/krankerlavendel.jpeg",
         title:"Was fehlt meinem Lavendel?",
         answers:2
-      }
+      },
     ];
 
     tips = [
@@ -40,6 +39,6 @@ export class CommunityService {
         image:"assets/Fotos/freibad.jpeg",
         title:"Unkraut am besten nach Regen entfernen.",
         likes:11
-      }
+      },
     ];
 }

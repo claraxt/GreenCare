@@ -31,12 +31,12 @@
     <ion-card-content>
         <img [src]="post.image">
         <h2>{{ post.title }}</h2>
-        <p>👤{{ post.user }}</p>
+       <ion-icon name="person-ouline"></ion-icon>
         <p *ngIf="selectedSegment === 'fragen'">
-           💬 {{post.answers}} Antworten  
+          <ion-icon name="chatbubble-outline" ></ion-icon>
         </p>
         <p *ngIf="selectedSegment === 'tipps'">
-             ❤️ {{ post.likes }} Likes
+             <ion-icon name="heart-outline"></ion-icon>
         </p>
     </ion-card-content>
     </ion-card>

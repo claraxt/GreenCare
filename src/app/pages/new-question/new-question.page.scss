@@ -69,3 +69,17 @@ ion-button:hover {
   transition: 0.2s;
 
 }
+
+.preview-image {
+
+  width: 100%;
+
+  height: 220px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  margin: 20px 0;
+
+}

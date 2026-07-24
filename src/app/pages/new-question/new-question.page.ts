@@ -11,10 +11,15 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, Ion
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
 })
 export class NewQuestionPage implements OnInit {
+  selectedImage ="";
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectImage() {
+  this.selectedImage = "assets/Fotos/rosenwerdengelb.jpeg";
+  }
+  
 }

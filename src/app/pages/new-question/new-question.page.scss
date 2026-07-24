@@ -1,13 +1,71 @@
 ion-content {
 
-    background: #F6F2E8;
+  --background: #F6F2E8;
 
 }
 
-ion-input{
-    color: #ffffff;
+.content {
+
+  padding: 24px;
+
 }
 
-ion-textarea{
-    color: #ffffff;
+h2 {
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  color: #2F4B33;
+  margin-bottom: 24px;
+
+}
+
+.input-box{
+    --background: white; 
+    border-radius: 18px;
+    margin-bottom: 20px;
+    padding: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+ion-item {
+
+  --background: #FFFFFF;
+  --border-color: #D9D2C3;
+  --border-radius: 16px;
+  margin-bottom: 18px;
+
+}
+
+ion-input {
+
+  --color: #2F4B33;
+  font-family: "Poppins", sans-serif;
+
+}
+
+ion-textarea {
+
+  --color: #2F4B33;
+  font-family: "Poppins", sans-serif;
+  min-height: 180px;
+
+}
+
+ion-button {
+
+  --background: #6D8B57;
+  --border-radius: 18px;
+  height: 50px;
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 24px;
+
+}
+
+ion-button:hover {
+
+  transform: scale(1.02);
+  transition: 0.2s;
+
 }

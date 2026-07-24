@@ -2,9 +2,9 @@
 
   <ion-toolbar>
 
-    <ion-button slot="start">
+    <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/community"></ion-back-button>
-    </ion-button>
+    </ion-buttons>
 
     <ion-title>Frage hinzufügen</ion-title>
 
@@ -13,9 +13,36 @@
 </ion-header>
  
 <ion-content>
-  <h2>Stelle eine Frage</h2>
-  <p>Titel</p>
-  <ion-input ...></ion-input>
-  <p>Beschreibung</p>
-  <ion-textarea ...></ion-textarea>
+
+  <div class="content">
+
+    <h2>Stelle eine Frage</h2>
+
+    <ion-item class="input-box">
+
+      <ion-input
+        label="Titel"
+        labelPlacement="stacked"
+        placeholder="Gib einen Titel ein">
+      </ion-input>
+
+    </ion-item>
+
+    <ion-item class="input-box">
+
+      <ion-textarea
+        label="Beschreibung"
+        labelPlacement="stacked"
+        placeholder="Beschreibe dein Problem..."
+        rows="6">
+      </ion-textarea>
+
+    </ion-item>
+
+    <ion-button expand="block">
+      Frage veröffentlichen
+    </ion-button>
+
+  </div>
+
 </ion-content>

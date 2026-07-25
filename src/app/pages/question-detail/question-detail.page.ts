@@ -5,13 +5,13 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTex
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 @Component({
-  selector: 'app-question-deatil',
-  templateUrl: './question-deatil.page.html',
-  styleUrls: ['./question-deatil.page.scss'],
+  selector: 'app-question-detail',
+  templateUrl: './question-detail.page.html',
+  styleUrls: ['./question-detail.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton,IonItem, IonTextarea, CommonModule, FormsModule]
 })
-export class QuestionDeatilPage implements OnInit {
+export class QuestionDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,

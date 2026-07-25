@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem } from '@ionic/angular/standalone';
-
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.page.html',
@@ -12,14 +11,20 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, Ion
 })
 export class NewQuestionPage implements OnInit {
   selectedImage ="";
+  title ="";
+  description="";
 
+@ViewChild('fileInput')
+fileInput!: ElementRef;
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  selectImage() {  this.fileInput.nativeElement.click();
   }
 
-  selectImage() {
-  this.selectedImage = "assets/Fotos/rosenwerdengelb.jpeg";
-  }
-  
+  imageSelected(event: any) {const file = event.target.files[0];
+
+  console.log(file);}
+    
 }

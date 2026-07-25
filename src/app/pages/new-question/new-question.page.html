@@ -19,17 +19,24 @@
 
     <h2>Stelle eine Frage</h2>
     
-    <ion-toolbar>
-
-    <ion-button  (click)="selectImage()">
+    <ion-button
+    expand="block"
+      (click)="selectImage()">
       Foto hinzufügen
     </ion-button>
+
     <img
      *ngIf="selectedImage"
      [src]="selectedImage"
      class="preview-image">
-    
-  </ion-toolbar>
+
+     <input
+     #fileInput
+      type="file"
+      accept="image/*"
+      hidden
+      (change)="imageSelected($event)">
+
 
     <ion-item class="input-box">
 
@@ -57,5 +64,7 @@
     </ion-button>
 
   </div>
+
+  <input type="file" hidden>
 
 </ion-content>

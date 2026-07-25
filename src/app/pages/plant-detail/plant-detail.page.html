@@ -82,7 +82,7 @@
         <ion-content>
           <ion-card>
             <ion-card-content>
-              <ion-datetime>
+              <ion-datetime [(ngModel)]="chosenDate">
 
                 <span slot="title">
                   Wähle einen Tag
@@ -105,7 +105,7 @@
     </ion-modal>
 
 
-    <ion-button expand="block" fill="outline" (click)="showOnMap()">
+    <ion-button expand="block" (click)="showOnMap()">
 
       Auf Karte anzeigen
 

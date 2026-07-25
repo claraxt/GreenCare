@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonContent, IonHeader, IonList, IonTitle, IonToolbar, IonItem, IonAvatar, IonLabel, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonText, IonIcon, IonCol, IonGrid, IonRow, IonTabButton, IonAccordion, IonAccordionGroup, IonButton, IonButtons, IonInput, IonModal, IonTabBar } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { OverlayEventDetail } from '@ionic/core/components';
-import { Saving } from 'src/app/services/saving';
+import { SavingProfile } from 'src/app/services/savingProfile';
 import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
@@ -17,7 +17,7 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 export class ProfilePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
-  private greenCareService = inject(Saving);
+  private greenCareService = inject(SavingProfile);
 
 
   constructor() { }

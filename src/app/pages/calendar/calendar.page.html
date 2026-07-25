@@ -16,15 +16,33 @@
 
         </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card *ngFor="let task of taskService.task">
         <ion-card-header>
-            <ion-card-title>{{date}} //eingetragene tasks </ion-card-title>
+            <ion-card-title> {{task.date | date:'dd.MM.yyyy HH:mm'}} </ion-card-title>
 
         </ion-card-header>
         <ion-card-content>
             ort
-            beschreibung // beim klicken öffnet sich die dazugehörige card
+            {{ task.description }} // beim klicken öffnet sich die dazugehörige card
         </ion-card-content>
     </ion-card>
 
 </ion-content>
+
+<!-- <ion-list>
+    @for(todo of getUndoneTodos(); track todo)
+    {
+
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label>{{ todo.title }}</ion-label>
+        <ion-badge [class]="'prio_'+todo.prio" (click)="prio(todo)">{{ todo.prio }}</ion-badge>
+      </ion-item>
+
+      <ion-item-options>
+        <ion-item-option (click)="setDone(todo)">Done</ion-item-option>
+        <ion-item-option color="danger" (click)="delete(todo)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    }
+  </ion-list>-->

@@ -8,3 +8,10 @@ ion-card {
     --background: transparent;
     box-shadow: none;
 }
+
+ion-title {
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(24px, 5vw, 34px);
+    font-weight: 700;
+}

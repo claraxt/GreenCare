@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonDatetime, IonCardHeader, IonCardTitle } from '@ionic/angular/standalone';
+import { TaskCalendarService } from 'src/app/services/taskCalendar';
 
 
 @Component({
@@ -12,7 +13,9 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, I
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardContent, IonDatetime, IonCardHeader, IonCardTitle]
 })
 export class CalendarPage implements OnInit {
+  taskService = inject(TaskCalendarService)
   date = new Date().toISOString();
+  description = '';
 
   constructor() {
 
@@ -20,6 +23,9 @@ export class CalendarPage implements OnInit {
 
   ngOnInit() {
 
+  }
+  add() {
+    this.taskService.add(this.date, this.description);
   }
 
 

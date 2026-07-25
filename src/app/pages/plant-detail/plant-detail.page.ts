@@ -5,7 +5,8 @@ import { IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, Ion
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 import { CalendarPage } from '../calendar/calendar.page';
-import { Saving } from 'src/app/services/saving';
+import { SavingProfile } from 'src/app/services/savingProfile';
+import { TaskCalendarService } from 'src/app/services/taskCalendar';
 
 
 @Component({
@@ -17,14 +18,16 @@ import { Saving } from 'src/app/services/saving';
 })
 export class PlantDetailPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
-  private saving = inject(Saving);
+  private saving = inject(SavingProfile);
+  private taskService = inject(TaskCalendarService);
+  private exploreService = inject(ExploreService);
 
   plant: any;
+  chosenDate = '';
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    public exploreService: ExploreService) { }
+    private router: Router,) { }
 
 
   ngOnInit() {
@@ -75,11 +78,13 @@ export class PlantDetailPage implements OnInit {
 
   confirm() {
     this.helping();
-    this.modal.dismiss({
 
+    this.taskService.add(
+      this.chosenDate,
+      this.plant.description
+    );
 
-    }, 'confirm');
-
+    this.modal.dismiss(null, 'confirm');
   }
 
   helping() {

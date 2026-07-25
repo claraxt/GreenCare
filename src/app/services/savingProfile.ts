@@ -3,7 +3,7 @@ import { Injectable, effect, signal } from '@angular/core';
 @Injectable({
     providedIn: 'root',
 })
-export class Saving {
+export class SavingProfile {
 
     constructor() {
         if (localStorage.getItem('greenCare')) {

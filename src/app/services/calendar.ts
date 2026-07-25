@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IonDatetime } from '@ionic/angular/standalone';
+import { TaskCalendarService } from 'src/app/services/taskCalendar';
 
 @Component({
   selector: 'app-example',
@@ -7,4 +8,6 @@ import { IonDatetime } from '@ionic/angular/standalone';
   styleUrls: ['example.component.css'],
   imports: [IonDatetime],
 })
-export class Calendar { }
+export class Calendar {
+  ;
+}

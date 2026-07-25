@@ -5,6 +5,8 @@ import { IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, Ion
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 import { CalendarPage } from '../calendar/calendar.page';
+import { Saving } from 'src/app/services/saving';
+
 
 @Component({
   selector: 'app-plant-detail',
@@ -21,7 +23,8 @@ export class PlantDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public exploreService: ExploreService) { }
+    public exploreService: ExploreService, public saving: Saving) { }
+
 
   ngOnInit() {
 
@@ -81,6 +84,7 @@ export class PlantDetailPage implements OnInit {
   helping() {
     if (this.plant.peopleNeeded > 0) {
       this.plant.peopleNeeded--;
+      this.saving.iHelpUp();
     }
   }
 

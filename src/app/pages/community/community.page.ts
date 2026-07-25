@@ -52,4 +52,13 @@ export class CommunityPage implements OnInit {
   newTip() {
     console.log("Tipp hinzufügen");
   }
+
+  openQuestion(id:number){
+    this.router.navigate(['/question',id]);
+  }
+
+  deleteQuestion(id:number){
+    this.communityService.deleteQuestion(id);
+    this.posts=this.communityService.questions;
+  }
 }

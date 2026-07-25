@@ -1,0 +1,30 @@
+<img [src]="question.image">
+<h1>
+  {{question.title}}
+</h1>
+<p>
+  {{question.description}}
+</p>
+<h2>
+  Antworten
+</h2>
+
+<div *ngFor="let answer of question.answers">
+  <h3>
+    {{answer.user}}
+  </h3>
+  <p>
+    {{answer.text}}
+  </p>
+</div>
+
+<ion-item>
+  <ion-textarea [(ngModel)]="newAnswer"
+  placeholder="Antwort schreiben"></ion-textarea>
+</ion-item>
+
+<ion-button 
+expand="block"
+(click)="sendAnswer()">
+Antwort senden
+</ion-button>

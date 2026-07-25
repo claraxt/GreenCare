@@ -36,10 +36,21 @@
                 <ion-icon name="person-outline"></ion-icon>
                 {{ post.user }}
             </p>
-            <p *ngIf="selectedSegment === 'fragen'">
-                <ion-icon name="chatbubble-outline"></ion-icon>
-                {{ post.answers }} Antworten
-            </p>
+        <ion-button
+             fill="clear"
+             (click)="openQuestion(post.id)">
+             <ion-icon name="chatbubble-outline"></ion-icon>
+             {{post.answers.length}} Antworten
+        </ion-button>
+         <ion-button
+             fill="clear"
+             color="danger"
+             (click)="deleteQuestion(post.id)">
+             Löschen
+         </ion-button>
+        
+
+
             <p *ngIf="selectedSegment === 'tipps'">
                 <ion-icon name="heart-outline"></ion-icon>
                 {{ post.likes }} Likes

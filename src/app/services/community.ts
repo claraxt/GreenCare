@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -6,13 +7,23 @@ import { Injectable } from '@angular/core';
 export class CommunityService {
 
   constructor (){}
+
    questions = [
       {
         id: 1,
         user:"Lisa",
         image:"assets/Fotos/rosenwerdengelb.jpeg",
         title:"Warum werden meine Rosen gelb?",
-        answers:4
+        answers:[
+          {
+            user:"Anna",
+            text:"Vielleicht zu wenig Wasser."
+          },
+          {
+            user:"Max",
+            text:"Bei mir lag es am Boden."
+          }
+        ]
       },
 
       {
@@ -20,7 +31,16 @@ export class CommunityService {
         user:"Tim",
         image:"assets/Fotos/krankerlavendel.jpeg",
         title:"Was fehlt meinem Lavendel?",
-        answers:2
+        answers:[
+          {
+            user:"Jana",
+            text:"Vielleicht zu wenig Licht?"
+          },
+          {
+            user:"David",
+            text:"Vielleicht ist es auch zu viel Sonneneinstrahlung."
+          }
+        ]
       },
     ];
 
@@ -41,4 +61,21 @@ export class CommunityService {
         likes:11
       },
     ];
+
+    addQuestion(question: any) {
+      this.questions.unshift(question);
+    }
+    getQuestion(id:number){
+      return this.questions.find(
+        question=>question.id===id);
+    }
+
+    deleteQuestion(id:number){
+      this.questions=this.questions.filter(
+        question=>question.id!==id
+      );
+    }
+
+
+
 }

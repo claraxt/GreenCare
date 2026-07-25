@@ -43,7 +43,8 @@
       <ion-input
         label="Titel"
         labelPlacement="stacked"
-        placeholder="Gib einen Titel ein">
+        placeholder="Gib einen Titel ein"
+        [(ngModel)]="title">
       </ion-input>
 
     </ion-item>
@@ -54,12 +55,13 @@
         label="Beschreibung"
         labelPlacement="stacked"
         placeholder="Beschreibe dein Problem..."
-        rows="6">
+        rows="6"
+        [(ngModel)]="description">
       </ion-textarea>
 
     </ion-item>
 
-    <ion-button expand="block">
+    <ion-button expand="block"(click)="publishQuestion()">
       Frage veröffentlichen
     </ion-button>
 

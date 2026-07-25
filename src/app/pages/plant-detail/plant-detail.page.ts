@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 import { CalendarPage } from '../calendar/calendar.page';
@@ -13,17 +13,18 @@ import { Saving } from 'src/app/services/saving';
   templateUrl: './plant-detail.page.html',
   styleUrls: ['./plant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime]
+  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime, IonCard, IonCardContent]
 })
 export class PlantDetailPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
+  private saving = inject(Saving);
 
   plant: any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public exploreService: ExploreService, public saving: Saving) { }
+    public exploreService: ExploreService) { }
 
 
   ngOnInit() {

@@ -80,14 +80,17 @@
           </ion-toolbar>
         </ion-header>
         <ion-content>
+          <ion-card>
+            <ion-card-content>
+              <ion-datetime>
 
-          <ion-datetime>
+                <span slot="title">
+                  Wähle einen Tag
+                </span>
 
-            <span slot="title">
-              Wähle einen Tag
-            </span>
-
-          </ion-datetime>
+              </ion-datetime>
+            </ion-card-content>
+          </ion-card>
 
           <ion-toolbar>
             <ion-button color="danger" slot="start" fill="clear" (click)="cancel()">Abbrechen</ion-button>

@@ -5,7 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButt
 import { CommunityService } from 'src/app/services/community';
 import { addIcons } from 'ionicons';
 import { personOutline, chatbubbleOutline, heartOutline } from 'ionicons/icons';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-community',
   templateUrl: './community.page.html',
@@ -15,18 +15,18 @@ import { Router} from '@angular/router';
 })
 
 export class CommunityPage implements OnInit {
-   
-  selectedSegment = 'fragen'; 
-   posts: any [] = []; 
 
-    constructor(
-      private router:Router,
-      public communityService: CommunityService
-    ) {
-       addIcons ({
-       personOutline, chatbubbleOutline, heartOutline
-       });
-     }
+  selectedSegment = 'fragen';
+  posts: any[] = [];
+
+  constructor(
+    private router: Router,
+    public communityService: CommunityService
+  ) {
+    addIcons({
+      personOutline, chatbubbleOutline, heartOutline
+    });
+  }
 
   ngOnInit() {
 
@@ -34,22 +34,22 @@ export class CommunityPage implements OnInit {
 
   }
   segmentChanged(event: any) {
-  if(this.selectedSegment === "fragen"){
-    this.posts = this.communityService.questions; 
+    if (this.selectedSegment === "fragen") {
+      this.posts = this.communityService.questions;
+    }
+    if (this.selectedSegment === "tipps") {
+      this.posts = this.communityService.tips;
+    }
+    if (this.selectedSegment === "lexikon") {
+      this.posts = [];
+    }
   }
-  if(this.selectedSegment === "tipps"){
-    this.posts = this.communityService.tips; 
-  }
-  if(this.selectedSegment === "lexikon"){
-    this.posts = [];
-  }
-}
 
 
-newPost () {
-  this.router.navigate(['/new-question']);
-}
-newTip () {
-  console.log("Tipp hinzufügen"); 
-}
+  newPost() {
+    this.router.navigate(['/new-question']);
+  }
+  newTip() {
+    console.log("Tipp hinzufügen");
+  }
 }

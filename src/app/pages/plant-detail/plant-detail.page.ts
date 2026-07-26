@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent } from '@ionic/angular/standalone';
+import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 import { CalendarPage } from '../calendar/calendar.page';
@@ -21,6 +21,7 @@ export class PlantDetailPage implements OnInit {
   private saving = inject(SavingProfile);
   private taskService = inject(TaskCalendarService);
   private exploreService = inject(ExploreService);
+
 
   plant: any;
   chosenDate = '';
@@ -77,15 +78,22 @@ export class PlantDetailPage implements OnInit {
 
 
   confirm() {
-    this.helping();
+    if (this.chosenDate === '') {
+      return
+    } else
+      this.helping();
 
     this.taskService.add(
       this.chosenDate,
-      this.plant.description
+      this.plant.description,
+      this.plant.id,
+      this.plant.location
     );
 
     this.modal.dismiss(null, 'confirm');
   }
+
+
 
   helping() {
     if (this.plant.peopleNeeded > 0) {
@@ -94,6 +102,10 @@ export class PlantDetailPage implements OnInit {
     }
   }
 
+  stopHelping() {
+    this.plant.peopleNeeded++;
+    this.saving.iHelpDown();
+  }
 
 }
 

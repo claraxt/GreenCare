@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { ExploreService } from './explore';
+import { SavingProfile } from './savingProfile';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TaskCalendarService {
+    saving = inject(SavingProfile);
+
+    private exploreService = inject(ExploreService);
+
 
     task: any = [];
 
@@ -18,11 +24,13 @@ export class TaskCalendarService {
     }
 
 
-    add(date: string, description: string) {
+    add(date: string, description: string, id: string, location: string) {
 
         this.task.push({
             date: date,
             description: description,
+            id: id,
+            location: location,
             done: false
         });
 
@@ -30,24 +38,21 @@ export class TaskCalendarService {
     }
 
     delete(task: any) {
+
+        const plant = [
+            ...this.exploreService.plantsSuggested,
+            ...this.exploreService.plantsNearby,
+            ...this.exploreService.plantsNew
+        ].find(p => p.description === task.description);
+
+        if (plant) {
+            plant.peopleNeeded++;
+        }
+
+        this.saving.iHelpDown();
+
         this.task.splice(this.task.indexOf(task), 1);
-        this.persist();
-    }
 
-
-
-    setDone(task: any) {
-        task.done = true;
-        this.persist();
-    }
-
-    setUndone(task: any) {
-        task.done = false;
-        this.persist();
-    }
-
-    clearAll() {
-        this.task = [];
         this.persist();
     }
 }

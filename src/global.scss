@@ -54,6 +54,8 @@
   --text: #2D2D2D;
   --text-light: #666666;
 
+  --ion-color-danger: #aa9a67;
+
 }
 
 
@@ -275,7 +277,7 @@ img {
 ion-datetime {
 
   max-width: 80%;
-  min-width: 450px;
+  min-width: 350px;
 
   border-radius: 16px;
 }

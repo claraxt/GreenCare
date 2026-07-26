@@ -1,19 +1,19 @@
 <ion-content>
 
-  <ion-card class="question-card">
+  <ion-card class="tip-card">
 
     <img 
-      [src]="question.image"
-      class="question-image">
+      [src]="tip.image"
+      class="tip-image">
 
     <ion-card-content>
 
       <h1>
-        {{question.title}}
+        {{tip.title}}
       </h1>
 
       <p>
-        {{question.description}}
+        {{tip.description}}
       </p>
 
     </ion-card-content>
@@ -29,16 +29,16 @@
 
   <ion-card 
     class="answer-card"
-    *ngFor="let answer of question.answers">
+    *ngFor="let answer of tip.answers">
 
     <ion-card-content>
 
       <h3>
-        {{answer.user}}
+        {{tip.user}}
       </h3>
 
       <p>
-        {{answer.text}}
+        {{tip.text}}
       </p>
 
     </ion-card-content>

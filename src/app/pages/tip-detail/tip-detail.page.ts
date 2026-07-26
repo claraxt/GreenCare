@@ -5,13 +5,13 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTex
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 @Component({
-  selector: 'app-question-detail',
-  templateUrl: './question-detail.page.html',
-  styleUrls: ['./question-detail.page.scss'],
+  selector: 'app-tip-detail',
+  templateUrl: './tip-detail.page.html',
+  styleUrls: ['./tip-detail.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton,IonItem, IonTextarea, IonCard, IonCardContent, CommonModule, FormsModule]
 })
-export class QuestionDetailPage implements OnInit {
+export class TipDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -20,14 +20,14 @@ export class QuestionDetailPage implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.question = this.communityService.getQuestion(id);
+    this.tip = this.communityService.getTip(id);
   }
 
-  question: any;
+  tip: any;
 
   newAnswer="";
   sendAnswer(){
-    this.question.answers.push(
+    this.tip.answers.push(
       {
         user:"Du",
         text:this.newAnswer

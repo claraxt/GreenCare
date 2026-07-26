@@ -61,4 +61,13 @@ export class CommunityPage implements OnInit {
     this.communityService.deleteQuestion(id);
     this.posts=this.communityService.questions;
   }
+
+   openTip(id:number){
+    this.router.navigate(['/tip',id]);
+  }
+
+  deleteTip(id:number){
+    this.communityService.deleteTip(id);
+    this.posts=this.communityService.tips;
+  }
 }

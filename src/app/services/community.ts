@@ -76,6 +76,20 @@ export class CommunityService {
       );
     }
 
+     addTip(tip: any) {
+      this.tips.unshift(tip);
+    }
+    getTip(id:number){
+      return this.tips.find(
+        tip=>tip.id===id);
+    }
+
+    deleteTip(id:number){
+      this.tips=this.tips.filter(
+       tip=>tip.id!==id
+      );
+    }
+
 
 
 }

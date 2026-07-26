@@ -47,4 +47,15 @@ export class SavingProfile {
 
         this.persist();
     }
+
+    iHelpDown() {
+        this.greenCare.update(profile => ({
+            ...profile,
+            iHelp: profile.iHelp - 1
+        }));
+
+        this.persist();
+    }
+
+
 }

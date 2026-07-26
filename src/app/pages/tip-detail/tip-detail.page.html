@@ -13,56 +13,21 @@
       </h1>
 
       <p>
-        {{tip.description}}
-      </p>
+      <ion-icon name="heart-outline"></ion-icon>
+        {{ tip.likes }} Likes
+     </p>
 
-    </ion-card-content>
-
-  </ion-card>
-
-
-  <!-- Antworten -->
-  <h2 class="answer-title">
-    Antworten
-  </h2>
-
-
-  <ion-card 
-    class="answer-card"
-    *ngFor="let answer of tip.answers">
-
-    <ion-card-content>
-
-      <h3>
-        {{tip.user}}
-      </h3>
-
-      <p>
-        {{tip.text}}
-      </p>
-
-    </ion-card-content>
-
-  </ion-card>
-
-
-
-  <ion-card class="write-card">
-
-    <ion-textarea
-      [(ngModel)]="newAnswer"
-      placeholder="Antwort schreiben..."
-      autoGrow="true">
-    </ion-textarea>
-
-
-    <ion-button
+     <ion-button
       expand="block"
-      (click)="sendAnswer()">
+      (click)="likeTip()">
 
-      Antwort senden
+     <ion-icon name="heart-outline"></ion-icon>
 
-    </ion-button>
+      Gefällt mir
+
+      </ion-button>
+
+     </ion-card-content>
 
   </ion-card>
 

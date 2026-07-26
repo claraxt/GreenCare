@@ -50,7 +50,7 @@ export class CommunityPage implements OnInit {
     this.router.navigate(['/new-question']);
   }
   newTip() {
-    console.log("Tipp hinzufügen");
+    this.router.navigate(['/new-tip']);
   }
 
   openQuestion(id:number){
@@ -63,7 +63,7 @@ export class CommunityPage implements OnInit {
   }
 
    openTip(id:number){
-    this.router.navigate(['/tip',id]);
+    this.router.navigate(['/tip/3',id]);
   }
 
   deleteTip(id:number){

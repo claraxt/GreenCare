@@ -33,12 +33,13 @@ export const routes: Routes = [
   {
     path: 'question/:id',
     loadComponent: () => import('./pages/question-detail/question-detail.page').then( m => m.QuestionDetailPage)
-  },  {
+  },
+  {
     path: 'new-tip',
     loadComponent: () => import('./pages/new-tip/new-tip.page').then( m => m.NewTipPage)
   },
   {
-    path: 'tip-detail',
+    path: 'tip/:id',
     loadComponent: () => import('./pages/tip-detail/tip-detail.page').then( m => m.TipDetailPage)
   }
 

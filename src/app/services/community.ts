@@ -48,7 +48,7 @@ export class CommunityService {
       {
         id:1,
         user:"Anna",
-        image:"assets/Fotos/friedhof.jpeg",
+        image:"assets/Fotos/lavendel.jpeg",
         title:"Lavendel lieber selten, aber gründlich gießen.",
         likes:16
       },
@@ -56,7 +56,7 @@ export class CommunityService {
       {
         id:2,
         user:"Max",
-        image:"assets/Fotos/freibad.jpeg",
+        image:"assets/Fotos/unkraut.jpeg",
         title:"Unkraut am besten nach Regen entfernen.",
         likes:11
       },

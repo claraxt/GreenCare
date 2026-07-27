@@ -1,13 +1,10 @@
-ion-card-content {
+.calendar ion-card-content {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/*ion-card {
-    --background: transparent;
-    box-shadow: none;
-}*/
+
 ion-card {
     background: #ECE6D8;
     border-radius: 22px;

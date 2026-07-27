@@ -47,6 +47,7 @@ export class ProfilePage implements OnInit {
         description: this.description,
         image: this.image,
 
+
       }, 'confirm');
     }
   }
@@ -59,7 +60,7 @@ export class ProfilePage implements OnInit {
         data.description,
         this.greenCare().date,
         data.image,
-        data.iHelp,
+        this.greenCare().iHelp,
       )
       this.name = '';
       this.description = '';

@@ -24,15 +24,19 @@ export class TaskCalendarService {
     }
 
 
-    add(date: string, description: string, id: string, location: string) {
+    add(date: string, description: string, name: string, text: string, id: string,) {
 
         this.task.push({
             date: date,
             description: description,
+            name: name,
+            text: text,
             id: id,
-            location: location,
             done: false
         });
+        this.task.sort((a: any, b: any) =>
+            new Date(a.date).getTime() - new Date(b.date).getTime()
+        );
 
         this.persist();
     }

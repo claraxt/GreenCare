@@ -86,8 +86,9 @@ export class PlantDetailPage implements OnInit {
     this.taskService.add(
       this.chosenDate,
       this.plant.description,
-      this.plant.id,
-      this.plant.location
+      this.plant.name,
+      this.plant.text,
+      this.plant.id
     );
 
     this.modal.dismiss(null, 'confirm');

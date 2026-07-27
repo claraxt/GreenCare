@@ -20,18 +20,30 @@ export class CalendarPage implements OnInit {
 
   date = new Date().toISOString();
   description = '';
+  name = '';
+  text = '';
 
   constructor() {
 
   }
 
+  showDates: any[] = [];
   ngOnInit() {
-
+    this.updateShowDates();
   }
+
+  updateShowDates() {
+    this.showDates = this.taskService.task.map((task: any) => ({
+      date: task.date.substring(0, 10),
+      textColor: '#C8D4B0',
+      backgroundColor: '#5F7F5A'
+    }))
+  }
+
   async delete(task: any) {
     const alert = await this.alertController.create({
-      header: 'Todo löschen?',
-      message: 'Möchtest Du das Todo wirklich löschen?',
+      header: 'Einsatz löschen?',
+      message: 'Möchtest Du den Einsatz wirklich löschen?',
       buttons: [
         {
           text: 'Abbrechen',
@@ -45,7 +57,7 @@ export class CalendarPage implements OnInit {
           role: 'confirm',
           handler: () => {
             this.taskService.delete(task);
-
+            this.updateShowDates();
           },
         },
       ],
@@ -53,7 +65,5 @@ export class CalendarPage implements OnInit {
 
     await alert.present();
   }
-
-
 
 }

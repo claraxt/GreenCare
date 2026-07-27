@@ -1,80 +1,146 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>Community</ion-title>
-    </ion-toolbar>
 
-    <ion-toolbar>
+  <ion-toolbar>
+    <ion-title>Community</ion-title>
+  </ion-toolbar>
 
-        <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
-            <ion-segment-button value="fragen">
-                <ion-label>Fragen</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="tipps">
-                <ion-label>Tipps</ion-label>
-            </ion-segment-button>
-            <ion-segment-button value="lexikon">
-                <ion-label>Lexikon</ion-label>
-            </ion-segment-button>
-        </ion-segment>
-    </ion-toolbar>
+  <ion-toolbar>
+
+    <ion-segment
+      [(ngModel)]="selectedSegment"
+      (ionChange)="segmentChanged()">
+
+      <ion-segment-button value="fragen">
+        <ion-label>Fragen</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="tipps">
+        <ion-label>Tipps</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="lexikon">
+        <ion-label>Lexikon</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+
+  </ion-toolbar>
+
 </ion-header>
 
-<ion-content>
-    <ion-button *ngIf="selectedSegment === 'fragen'" expand="block" (click)="newPost()">
-        + Frage hinzufügen
-    </ion-button>
 
-    <ion-button *ngIf="selectedSegment === 'tipps'" expand="block" (click)="newTip()">
-        + Tipp hinzufügen
-    </ion-button>
+<ion-content>
+
+  <ion-button
+    *ngIf="selectedSegment === 'fragen'"
+    expand="block"
+    (click)="newPost()">
+
+    + Frage hinzufügen
+
+  </ion-button>
+
+
+  <ion-button
+    *ngIf="selectedSegment === 'tipps'"
+    expand="block"
+    (click)="newTip()">
+
+    + Tipp hinzufügen
+
+  </ion-button>
+
+
+
+  <ng-container *ngIf="selectedSegment !== 'lexikon'">
 
     <ion-card *ngFor="let post of posts">
-        <ion-card-content>
-            <img [src]="post.image">
-            <h2>{{ post.title }}</h2>
-            <p>
-                <ion-icon name="person-outline"></ion-icon>
-                {{ post.user }}
-            </p>
+
+      <ion-card-content>
+
+        <img [src]="post.image">
+
+        <h2>{{ post.title }}</h2>
+
+        <p>
+          <ion-icon name="person-outline"></ion-icon>
+          {{ post.user }}
+        </p>
+
+
         <ion-button
-            *ngIf="selectedSegment === 'fragen'"
+          *ngIf="selectedSegment === 'fragen'"
+          fill="clear"
+          (click)="openQuestion(post.id)">
 
-             fill="clear"
-             (click)="openQuestion(post.id)">
-             <ion-icon name="chatbubble-outline"></ion-icon>
-             {{post.answers.length}} Antworten
+          <ion-icon name="chatbubble-outline"></ion-icon>
+
+          {{ post.answers.length }} Antworten
+
         </ion-button>
-        
-         <ion-button
-                 *ngIf="selectedSegment === 'fragen'"
 
-                 fill="clear"
-                 color="danger"
-                 (click)="deleteQuestion(post.id)">
-                 Löschen
+
+        <ion-button
+          *ngIf="selectedSegment === 'fragen'"
+          fill="clear"
+          color="danger"
+          (click)="deleteQuestion(post.id)">
+
+          Löschen
+
         </ion-button>
-        
 
 
-          <ion-button
-             *ngIf="selectedSegment === 'tipps'"
-             fill="clear"
-             (click)="openTip(post.id)">
+        <!-- Tipps -->
+        <ion-button
+          *ngIf="selectedSegment === 'tipps'"
+          fill="clear"
+          (click)="openTip(post.id)">
 
-             <ion-icon name="heart-outline"></ion-icon>
-             {{ post.likes }} Likes
-         </ion-button>
+          <ion-icon name="heart-outline"></ion-icon>
 
-         <ion-button
-             *ngIf="selectedSegment === 'tipps'"
-             fill="clear"
-             color="danger"
-             (click)="deleteTip(post.id)">
+          {{ post.likes }} Likes
 
-              Löschen
+        </ion-button>
 
-         </ion-button>
 
-        </ion-card-content>
+        <ion-button
+          *ngIf="selectedSegment === 'tipps'"
+          fill="clear"
+          color="danger"
+          (click)="deleteTip(post.id)">
+
+          Löschen
+
+        </ion-button>
+
+      </ion-card-content>
+
     </ion-card>
+
+  </ng-container>
+
+
+  <ng-container *ngIf="selectedSegment === 'lexikon'">
+
+    <ion-card *ngFor="let plant of plants"
+            (click)="openPlant(plant.id)">
+
+
+      <ion-card-content>
+
+        <img [src]="plant.image_url">
+
+      <h2>{{ plant.common_name }}</h2>
+
+      <p><i>{{ plant.scientific_name }}</i></p>
+
+      <p>{{ plant.family }}</p>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </ng-container>
+
 </ion-content>

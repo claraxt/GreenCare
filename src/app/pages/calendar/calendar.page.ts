@@ -23,9 +23,6 @@ export class CalendarPage implements OnInit {
   name = '';
   text = '';
 
-  constructor() {
-
-  }
 
   showDates: any[] = [];
 

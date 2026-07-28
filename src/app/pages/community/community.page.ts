@@ -53,7 +53,6 @@ export class CommunityPage implements OnInit {
   posts: any[] = [];
   plants: any[] = [];
 
-
   async ngOnInit() {
 
     this.posts = this.communityService.questions;

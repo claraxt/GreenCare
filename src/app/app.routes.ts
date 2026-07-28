@@ -17,37 +17,38 @@ export const routes: Routes = [
   },
   {
     path: 'plant-detail',
-    loadComponent: () => import('./pages/plant-detail/plant-detail.page').then( m => m.PlantDetailPage)
+    loadComponent: () => import('./pages/plant-detail/plant-detail.page').then(m => m.PlantDetailPage)
   },
 
   {
-    path: 'plant/:id', 
+    path: 'plant/:id',
     loadComponent: () =>
       import('./pages/plant-detail/plant-detail.page')
         .then(m => m.PlantDetailPage)
   },
   {
     path: 'new-question',
-    loadComponent: () => import('./pages/new-question/new-question.page').then( m => m.NewQuestionPage)
+    loadComponent: () => import('./pages/new-question/new-question.page').then(m => m.NewQuestionPage)
   },
   {
     path: 'question/:id',
-    loadComponent: () => import('./pages/question-detail/question-detail.page').then( m => m.QuestionDetailPage)
+    loadComponent: () => import('./pages/question-detail/question-detail.page').then(m => m.QuestionDetailPage)
   },
   {
     path: 'new-tip',
-    loadComponent: () => import('./pages/new-tip/new-tip.page').then( m => m.NewTipPage)
+    loadComponent: () => import('./pages/new-tip/new-tip.page').then(m => m.NewTipPage)
   },
   {
     path: 'tip/:id',
-    loadComponent: () => import('./pages/tip-detail/tip-detail.page').then( m => m.TipDetailPage)
-  },  {
+    loadComponent: () => import('./pages/tip-detail/tip-detail.page').then(m => m.TipDetailPage)
+  },
+  {
     path: 'lexicon',
-    loadComponent: () => import('./pages/lexicon/lexicon.page').then( m => m.LexiconPage)
+    loadComponent: () => import('./pages/lexicon/lexicon.page').then(m => m.LexiconPage)
   },
   {
     path: 'lexicon-detail',
-    loadComponent: () => import('./pages/lexicon-detail/lexicon-detail.page').then( m => m.LexiconDetailPage)
+    loadComponent: () => import('./pages/lexicon-detail/lexicon-detail.page').then(m => m.LexiconDetailPage)
   }
 
 

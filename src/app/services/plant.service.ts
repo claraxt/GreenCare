@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -26,6 +27,12 @@ export class PlantService {
 
     return data.data;
   }
+
+  constructor(private http: HttpClient) { }
+
+  getPlants(id: number) {
+    return this.http.get<any>('assets/plant.json');
+  }
 }
 /*import { Injectable } from '@angular/core';
 import { CapacitorHttp } from '@capacitor/core';
@@ -47,40 +54,20 @@ export class PlantService {
   }
 
 }*/
-/*import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+//import { Injectable, inject } from '@angular/core';
+
+
+/*import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TrefleService {
+export class PlantService {
 
-  private http = inject(HttpClient);
+  constructor(private http: HttpClient) {}
 
-  private baseUrl = 'https://trefle.io/api/v1';
-  private token = 'usr-GJSaXOZN2GKx0_2WU8kKKYdPlh1iiDo88UruQsE248g';
-
-  searchPlants(query: string): Observable<any> {
-    return this.http.get(
-      `${this.baseUrl}/plants/search`,
-      {
-        params: {
-          token: this.token,
-          q: query
-        }
-      }
-    );
+  getPlants(id: number) {
+    return this.http.get<any>('assets/plant.json');
   }
 
-  getPlant(id: number): Observable<any> {
-    return this.http.get(
-      `${this.baseUrl}/plants/${id}`,
-      {
-        params: {
-          token: this.token
-        }
-      }
-    );
-  }
 }*/

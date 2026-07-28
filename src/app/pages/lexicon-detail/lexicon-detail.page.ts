@@ -38,32 +38,15 @@ export class LexiconDetailPage implements OnInit {
     private plantService: PlantService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    const plants = await this.plantService.plantInfo();
+    (this.plantService as any).getPlant(id).subscribe((data: any) => {
+      this.plant = data;
+      console.log(this.plant);
 
-    this.plant = plants.find(p => p.id === id);
-
-    if (!this.plant) {
-      return;
-    }
-
-    const trefle = await this.plantService.getPlantDetails(
-      this.plant.scientific_name
-    );
-
-    this.plant = {
-      ...this.plant,
-      ...trefle,
-      optional: {
-        ...this.plant.optional,
-        ...trefle?.optional
-      }
-    };
-
-    console.log(this.plant);
+    });
 
   }
 

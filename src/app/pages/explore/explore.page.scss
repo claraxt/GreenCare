@@ -8,11 +8,13 @@ ion-header ion-toolbar {
 }
 
 ion-title {
+
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(24px, 5vw, 34px);
+  font-size: 34px;
   font-weight: 700;
   color: #2F4B33;
   text-align: center;
+
 }
 
 ion-segment {

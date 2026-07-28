@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -15,8 +15,9 @@ import * as L from 'leaflet';
   ]
 })
 export class MapPage implements OnInit, AfterViewInit {
+  private route = inject(ActivatedRoute);
 
-  constructor(private route: ActivatedRoute) { }
+
 
   map: any;
 

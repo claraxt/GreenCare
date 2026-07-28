@@ -6,11 +6,6 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 
-/*export const appConfig: ApplicationConfig = {
-  providers: [
-    provideHttpClient()
-  ]
-};*/
 
 export class AppModule { }
 
@@ -19,5 +14,6 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideHttpClient()
   ],
 });

@@ -1,0 +1,145 @@
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/community"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Lexikon</ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+<div *ngIf="plant">
+
+  <img [src]="plant.image_url">
+
+  <h1>{{ plant.common_name }}</h1>
+
+  <h3>{{ plant.scientific_name }}</h3>
+
+
+  <h2>Allgemeine Informationen</h2>
+
+  <p><b>Familie:</b> {{ plant.family }}</p>
+
+  <p><b>Gattung:</b> {{ plant.genus }}</p>
+
+  <p><b>Autor:</b> {{ plant.author }}</p>
+
+  <p><b>Status:</b> {{ plant.status }}</p>
+
+  <p><b>Jahr:</b> {{ plant.year }}</p>
+
+
+  <h2>Herkunft</h2>
+
+  <p><b>Verbreitung:</b> {{ plant.optional.distribution }}</p>
+
+  <p><b>Lebensraum:</b> {{ plant.optional.habitat }}</p>
+
+  <p><b>Schutzstatus:</b> {{ plant.optional.conservation_status }}</p>
+
+
+  <h2>Pflege</h2>
+
+  <p><b>Licht:</b> {{ plant.optional.light_requirements }}</p>
+
+  <p><b>Gießen:</b> {{ plant.optional.water_requirements }}</p>
+
+  <p><b>Boden:</b> {{ plant.optional.soil_type }}</p>
+
+  <p><b>pH-Wert:</b> {{ plant.optional.soil_ph }}</p>
+
+  <p><b>Temperatur:</b> {{ plant.optional.temperature_range }}</p>
+
+  <p><b>Luftfeuchtigkeit:</b> {{ plant.optional.humidity_requirements }}</p>
+
+
+  <h2>Wachstum</h2>
+
+  <p><b>Höhe:</b> {{ plant.height }} m</p>
+
+  <p><b>Breite:</b> {{ plant.width }} m</p>
+
+  <p><b>Wuchs:</b> {{ plant.optional.growth_habit }}</p>
+
+  <p><b>Wachstumsrate:</b> {{ plant.optional.growth_rate }}</p>
+
+
+  <h2>Blätter</h2>
+
+  <p><b>Farbe:</b> {{ plant.optional.leaf_color }}</p>
+
+  <p><b>Form:</b> {{ plant.optional.leaf_shape }}</p>
+
+  <p><b>Größe:</b> {{ plant.optional.leaf_size }}</p>
+
+  <p><b>Textur:</b> {{ plant.optional.leaf_texture }}</p>
+
+
+  <h2>Blüte</h2>
+
+  <p><b>Blütezeit:</b> {{ plant.optional.flowering_period }}</p>
+
+  <p><b>Blütenfarbe:</b> {{ plant.optional.flower_color }}</p>
+
+
+  <h2>Früchte</h2>
+
+  <p><b>Fruchtfarbe:</b> {{ plant.optional.fruit_color }}</p>
+
+  <p><b>Fruchtzeit:</b> {{ plant.optional.fruiting_period }}</p>
+
+
+  <h2>Vermehrung</h2>
+
+  <ul>
+
+    <li *ngFor="let method of plant.optional.propagation_methods">
+      {{ method }}
+    </li>
+
+  </ul>
+
+
+  <h2>Krankheiten</h2>
+
+  <ul>
+
+    <li *ngFor="let disease of plant.optional.diseases">
+      {{ disease }}
+    </li>
+
+  </ul>
+
+
+  <h2>Schädlinge</h2>
+
+  <ul>
+
+    <li *ngFor="let pest of plant.optional.pests">
+      {{ pest }}
+    </li>
+
+  </ul>
+
+
+  <h2>Pflegehinweise</h2>
+
+  <p>{{ plant.optional.care_instructions }}</p>
+
+
+  <h2>Sicherheit</h2>
+
+  <p><b>Giftigkeit:</b> {{ plant.optional.toxicity_level }}</p>
+
+  <p><b>Essbar:</b> {{ plant.optional.edibility }}</p>
+
+</div>
+
+</ion-content>

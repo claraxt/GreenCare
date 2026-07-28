@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
+import { SavingProfile } from 'src/app/services/savingProfile';
 @Component({
   selector: 'app-new-tip',
   templateUrl: './new-tip.page.html',
@@ -12,22 +13,24 @@ import { CommunityService } from 'src/app/services/community';
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
 })
 export class NewTipPage implements OnInit {
-  selectedImage ="";
-  title ="";
-  description="";
+  selectedImage = "";
+  title = "";
+  description = "";
 
-@ViewChild('fileInput')
-fileInput!: ElementRef;
+  @ViewChild('fileInput')
+  fileInput!: ElementRef;
+  private saving = inject(SavingProfile);
+  public communityService = inject(CommunityService);
+
   constructor(
-     private router: Router,
-
-  public communityService: CommunityService
+    private router: Router,
 
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  selectImage() {  this.fileInput.nativeElement.click();
+  selectImage() {
+    this.fileInput.nativeElement.click();
   }
 
   imageSelected(event: any) {
@@ -53,6 +56,7 @@ fileInput!: ElementRef;
       answers: 0
     };
     this.communityService.addTip(newTip);
+    this.saving.postsUp();
     this.router.navigate(['/tabs/community']);
   }
 }

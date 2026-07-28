@@ -82,7 +82,7 @@
         <ion-content>
           <ion-card>
             <ion-card-content>
-              <ion-datetime [(ngModel)]="chosenDate">
+              <ion-datetime [(ngModel)]="chosenDate" [highlightedDates]="showDates">
 
                 <span slot="title">
                   Wähle einen Tag
@@ -112,4 +112,3 @@
     </ion-button>
 
   </div>
-

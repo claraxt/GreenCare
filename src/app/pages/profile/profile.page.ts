@@ -61,6 +61,7 @@ export class ProfilePage implements OnInit {
         this.greenCare().date,
         data.image,
         this.greenCare().iHelp,
+        this.greenCare().posts,
       )
       this.name = '';
       this.description = '';

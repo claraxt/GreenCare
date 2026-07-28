@@ -23,7 +23,7 @@ export class PlantDetailPage implements OnInit {
   private exploreService = inject(ExploreService);
 
 
-
+  showDates = [];
   plant: any;
   chosenDate = '';
 
@@ -33,6 +33,7 @@ export class PlantDetailPage implements OnInit {
 
 
   ngOnInit() {
+    this.updateShowDates();
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -50,6 +51,13 @@ export class PlantDetailPage implements OnInit {
 
   }
 
+  updateShowDates() {
+    this.showDates = this.taskService.task.map((task: any) => ({
+      date: task.date.substring(0, 10),
+      textColor: '#C8D4B0',
+      backgroundColor: '#5F7F5A'
+    }))
+  }
   /*exploreSave() {
     return this.exploreService.exploreSave();
   }*/

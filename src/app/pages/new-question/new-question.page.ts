@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
+import { SavingProfile } from 'src/app/services/savingProfile';
+
 @Component({
   selector: 'app-new-question',
   templateUrl: './new-question.page.html',
@@ -12,22 +14,24 @@ import { CommunityService } from 'src/app/services/community';
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
 })
 export class NewQuestionPage implements OnInit {
-  selectedImage ="";
-  title ="";
-  description="";
+  selectedImage = "";
+  title = "";
+  description = "";
 
-@ViewChild('fileInput')
-fileInput!: ElementRef;
+  @ViewChild('fileInput')
+  fileInput!: ElementRef;
+  private saving = inject(SavingProfile);
   constructor(
-     private router: Router,
+    private router: Router,
 
-  public communityService: CommunityService
+    public communityService: CommunityService
 
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  selectImage() {  this.fileInput.nativeElement.click();
+  selectImage() {
+    this.fileInput.nativeElement.click();
   }
 
   imageSelected(event: any) {
@@ -53,7 +57,16 @@ fileInput!: ElementRef;
       answers: 0
     };
     this.communityService.addQuestion(newQuestion);
+    this.saving.postsUp();
     this.router.navigate(['/tabs/community']);
   }
+
+  /* postsUp() {
+ 
+     //this.plant.peopleNeeded--;
+     this.saving.postsUp();
+     console.log(this.saving.greenCare());
+ 
+   }*/
 }
 

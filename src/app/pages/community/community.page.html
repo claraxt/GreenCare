@@ -124,7 +124,7 @@
   <ng-container *ngIf="selectedSegment === 'lexikon'">
 
     <ion-card *ngFor="let plant of plants"
-            (click)="openPlant(plant.id)">
+            (click)="openLexicon(plant.id)">
 
 
       <ion-card-content>
@@ -135,7 +135,6 @@
 
       <p><i>{{ plant.scientific_name }}</i></p>
 
-      <p>{{ plant.family }}</p>
 
       </ion-card-content>
 

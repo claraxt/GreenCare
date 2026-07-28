@@ -77,7 +77,7 @@ export class CommunityPage implements OnInit {
 
     this.plantService.getPlants(undefined as any).subscribe((data: any) => {
 
-      this.plants = [data];
+      this.plants = data;
 
       console.log(this.plants);
 
@@ -140,11 +140,10 @@ export class CommunityPage implements OnInit {
     this.posts = this.communityService.tips;
 
   }
-  
-  openPlant(id: number) {
 
-  this.router.navigate(['/plant', id]);
 
+openLexicon(id: number) {
+  this.router.navigate(['/lexicon-detail', id]);
 }
 
 }

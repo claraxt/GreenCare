@@ -36,18 +36,23 @@ export class LexiconDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private plantService: PlantService
-  ) {}
+  ) { }
 
-  ngOnInit() {
+
+
+  async ngOnInit() {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    (this.plantService as any).getPlant(id).subscribe((data: any) => {
-      this.plant = data;
-      console.log(this.plant);
+    const plants = await this.plantService.plantInfo();
 
-    });
+    this.plant = plants.find(
+      (p: any) => p.id === id
+    );
+    console.log(this.plant);
+
 
   }
+
 
 }

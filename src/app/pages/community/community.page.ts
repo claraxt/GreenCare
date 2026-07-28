@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -21,12 +21,6 @@ import { PlantService } from 'src/app/services/plant.service';
 
 import { Router } from '@angular/router';
 
-import { addIcons } from 'ionicons';
-import {
-  personOutline,
-  chatbubbleOutline,
-  heartOutline
-} from 'ionicons/icons';
 
 @Component({
   selector: 'app-community',
@@ -50,39 +44,21 @@ import {
   ]
 })
 export class CommunityPage implements OnInit {
+  private router = inject(Router);
+  public communityService = inject(CommunityService);
+  public plantService = inject(PlantService);
 
   selectedSegment = 'fragen';
 
   posts: any[] = [];
-
   plants: any[] = [];
 
-  constructor(
-    private router: Router,
-    public communityService: CommunityService,
-    public plantService: PlantService
-  ) {
-
-    addIcons({
-      personOutline,
-      chatbubbleOutline,
-      heartOutline
-    });
-
-  }
 
   async ngOnInit() {
 
     this.posts = this.communityService.questions;
     this.plants = await this.plantService.plantInfo();
 
-    /*this.plantService.getPlants(undefined as any).subscribe((data: any) => {
-
-      this.plants = data;
-
-      console.log(this.plants);
-
-    });*/
 
   }
 

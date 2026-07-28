@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,8 +8,7 @@ import {
   IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, IonIcon
 } from '@ionic/angular/standalone';
 
-import { addIcons } from 'ionicons';
-import { person } from 'ionicons/icons';
+
 
 import { ExploreService } from '../../services/explore';
 
@@ -26,18 +25,11 @@ export class ExplorePage implements OnInit {
 
   selectedSegment = 'vorgeschlagen';
 
+  router = inject(Router);
+  exploreService = inject(ExploreService)
+
   plants: any[] = [];
 
-  constructor(
-    private router: Router,
-    public exploreService: ExploreService
-  ) {
-
-    addIcons({
-      person
-    });
-
-  }
 
   ngOnInit() {
 

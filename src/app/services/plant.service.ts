@@ -28,11 +28,11 @@ export class PlantService {
     return data.data;
   }
 
-  constructor(private http: HttpClient) { }
-
-  getPlants(id: number) {
-    return this.http.get<any>('assets/plant.json');
-  }
+  /* constructor(private http: HttpClient) { }
+ 
+   getPlants(id: number) {
+     return this.http.get<any>('assets/plant.json');
+   }*/
 }
 /*import { Injectable } from '@angular/core';
 import { CapacitorHttp } from '@capacitor/core';

@@ -71,17 +71,18 @@ export class CommunityPage implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     this.posts = this.communityService.questions;
+    this.plants = await this.plantService.plantInfo();
 
-    this.plantService.getPlants(undefined as any).subscribe((data: any) => {
+    /*this.plantService.getPlants(undefined as any).subscribe((data: any) => {
 
       this.plants = data;
 
       console.log(this.plants);
 
-    });
+    });*/
 
   }
 
@@ -142,8 +143,8 @@ export class CommunityPage implements OnInit {
   }
 
 
-openLexicon(id: number) {
-  this.router.navigate(['/lexicon-detail', id]);
-}
+  openLexicon(id: number) {
+    this.router.navigate(['/lexicon-detail', id]);
+  }
 
 }

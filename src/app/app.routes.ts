@@ -41,16 +41,16 @@ export const routes: Routes = [
   {
     path: 'tip/:id',
     loadComponent: () => import('./pages/tip-detail/tip-detail.page').then( m => m.TipDetailPage)
-  },  {
+  },
+  {
     path: 'lexicon',
     loadComponent: () => import('./pages/lexicon/lexicon.page').then( m => m.LexiconPage)
   },
   {
-    path: 'lexicon-detail',
-    loadComponent: () => import('./pages/lexicon-detail/lexicon-detail.page').then( m => m.LexiconDetailPage)
-  }
-
-
-
+  path: 'lexicon-detail/:id',
+  loadComponent: () =>
+    import('./pages/lexicon-detail/lexicon-detail.page')
+      .then(m => m.LexiconDetailPage)
+},
 
 ];

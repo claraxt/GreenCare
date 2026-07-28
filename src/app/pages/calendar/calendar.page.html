@@ -19,7 +19,7 @@
     <ion-card *ngFor="let task of taskService.task">
         <ion-card-header>
             <ion-card-title>
-                <h1> {{task.date | date:'dd.MM.yyyy HH:mm'}} </h1>
+                <h1> {{task.date | date:'dd.MM.yyyy HH:mm':'Europe/Berlin'}} </h1>
                 <h2> {{task.name}} || {{ task.description }} </h2>
             </ion-card-title>
 

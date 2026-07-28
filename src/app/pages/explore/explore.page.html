@@ -8,16 +8,14 @@
 
   <ion-toolbar>
 
-    <ion-segment
-      [(ngModel)]="selectedSegment"
-      (ionChange)="segmentChanged($event)">
+    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
 
       <ion-segment-button value="vorgeschlagen">
-        <ion-label>Vorgeschlagen</ion-label>
+        <ion-label>Vorschläge</ion-label>
       </ion-segment-button>
 
       <ion-segment-button value="naehe">
-        <ion-label>In deiner Nähe</ion-label>
+        <ion-label>In der Nähe</ion-label>
       </ion-segment-button>
 
       <ion-segment-button value="neu">
@@ -33,9 +31,7 @@
 
 <ion-content>
 
-  <ion-card
-    *ngFor="let plant of plants"
-    (click)="openPlantDetail(plant)">
+  <ion-card *ngFor="let plant of plants" (click)="openPlantDetail(plant)">
 
     <ion-card-content>
 

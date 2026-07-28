@@ -43,6 +43,7 @@ export class ExplorePage implements OnInit {
 
     this.plants = this.exploreService.plantsSuggested;
 
+
   }
 
 

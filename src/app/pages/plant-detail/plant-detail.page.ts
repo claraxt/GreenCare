@@ -23,6 +23,7 @@ export class PlantDetailPage implements OnInit {
   private exploreService = inject(ExploreService);
 
 
+
   plant: any;
   chosenDate = '';
 
@@ -49,6 +50,9 @@ export class PlantDetailPage implements OnInit {
 
   }
 
+  /*exploreSave() {
+    return this.exploreService.exploreSave();
+  }*/
   showOnMap() {
 
     this.router.navigate(

@@ -1,34 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Injectable, effect, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExploreService {
-  constructor() {}
+  constructor() {
+
+  }
+
   plantsSuggested = [
 
     {
-      id:1,
+      id: 1,
       name: 'Park am See',
       description: 'Blumenbeet am Weg',
       distance: '800 m',
       peopleNeeded: 2,
       task: 'Gießen',
-      image: 'assets/Fotos/park.jpeg', 
-      
+      image: 'assets/Fotos/park.jpeg',
+
       watering: '2-3x pro Woche',
       sunlight: 'Sonne bis Halbschatten',
       flowers: 'Rosen, Lavendel, Ringelblumen, Wildblumen',
       text: 'Dieses Beet befindet sich am Hauptweg des Parks und benötigt regelmäßige Pflege.',
       difficulty: 'Einfach',
 
-      latitude: 52.304399, 
-      longitude: 8.051612, 
+      latitude: 52.304399,
+      longitude: 8.051612,
     },
 
 
     {
-      id:2,
+      id: 2,
       name: 'Friedhof Nord',
       description: 'Rosenbeet',
       distance: '1,2 km',
@@ -46,14 +49,14 @@ export class ExploreService {
       longitude: 8.055299,
     },
 
-     {
-      id:3,
+    {
+      id: 3,
       name: 'Stadtpark',
       description: 'Parkbeete',
       distance: '1,9 km',
       peopleNeeded: 6,
       task: 'Unkraut entfernen, Gießen',
-      image: 'assets/Fotos/stadtpark.jpeg', 
+      image: 'assets/Fotos/stadtpark.jpeg',
 
       watering: '3x pro Woche',
       sunlight: 'Sonne',
@@ -62,11 +65,11 @@ export class ExploreService {
       difficulty: 'mittel',
 
       latitude: 52.28666,
-      longitude: 8.047542, 
+      longitude: 8.047542,
     },
 
     {
-      id:4,
+      id: 4,
       name: 'Freibad',
       description: 'Blumen an der Rasenfläche',
       distance: '2,0 m',
@@ -89,14 +92,14 @@ export class ExploreService {
   plantsNearby = [
 
     {
-      id:5,
+      id: 5,
       name: 'Marktplatz',
       description: 'Blumenkübel',
       distance: '200 m',
       peopleNeeded: 2,
       task: 'Bewässern, Düngen',
       image: 'assets/Fotos/marktplatz.jpeg',
-      
+
       watering: 'täglich',
       sunlight: 'Vollsonnig',
       flowers: 'Eibisch-Baum, Petunien, Süßkartoffel-Ackerwinden',
@@ -108,7 +111,7 @@ export class ExploreService {
     },
 
     {
-      id:6,
+      id: 6,
       name: 'Schulhof',
       description: 'Wildblumenbeet',
       distance: '450 m',
@@ -127,7 +130,7 @@ export class ExploreService {
     },
 
     {
-      id:7,
+      id: 7,
       name: 'Krankenhaus',
       description: 'Blumenbeet am Eingang',
       distance: '500 m',
@@ -150,13 +153,13 @@ export class ExploreService {
   plantsNew = [
 
     {
-      id:8,
+      id: 8,
       name: 'Bahnhof',
       description: 'Blumen am Eingang',
       distance: '1,9 km',
       peopleNeeded: 1,
       task: 'gießen',
-      image: 'assets/Fotos/bahnhof.jpeg', 
+      image: 'assets/Fotos/bahnhof.jpeg',
 
       watering: 'bei extremer Hitze',
       sunlight: 'Vollonne und Wärme',
@@ -169,13 +172,13 @@ export class ExploreService {
     },
 
     {
-      id:9,
+      id: 9,
       name: 'Kirchplatz',
       description: 'mehrere Beete an dem Platz',
       distance: '2,1 km',
       peopleNeeded: 4,
       task: 'Pflege der Beete',
-      image: 'assets/Fotos/kirchplatz.jpeg', 
+      image: 'assets/Fotos/kirchplatz.jpeg',
 
       watering: 'regelmäßig bis wenig Bewässern, Staunässe vermeiden',
       sunlight: 'Vollsonnig',
@@ -189,5 +192,5 @@ export class ExploreService {
 
   ];
 
-  
+
 }

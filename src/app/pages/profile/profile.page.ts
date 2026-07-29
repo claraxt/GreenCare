@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { SavingProfile } from 'src/app/services/savingProfile';
 import { Camera, CameraResultType } from '@capacitor/camera';
+import { ExploreService } from 'src/app/services/explore';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,11 @@ export class ProfilePage implements OnInit {
   private greenCareService = inject(SavingProfile);
 
 
-  constructor() { }
+  constructor(
+    public exploreService: ExploreService
+  ) { }
+
+   favorites=this.exploreService.favorites; 
 
   ngOnInit() {
   }

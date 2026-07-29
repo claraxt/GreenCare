@@ -43,6 +43,7 @@
 
     </div>
 
+
     <div class="section">
 
       <h2> Pflege</h2>
@@ -65,12 +66,18 @@
 
     </div>
 
+     <ion-button expand="block" (click)="addFavorite()">
+      <ion-icon slot="start" name="heart"></ion-icon>
+      zu Favoriten hinzufügen
+     </ion-button>
+
     <ion-button id="calendar-modal" *ngIf="plant.peopleNeeded > 0" expand="block">
 
       Mithelfen
 
     </ion-button>
 
+  
     <ion-modal trigger="calendar-modal" (willDismiss)="onWillDismiss($event)">
       <ng-template>
 

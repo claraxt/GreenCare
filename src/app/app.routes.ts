@@ -70,6 +70,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/lexicon-detail/lexicon-detail.page')
         .then(m => m.LexiconDetailPage)
+  },  {
+    path: 'favorites',
+    loadComponent: () => import('./pages/favorites/favorites.page').then( m => m.FavoritesPage)
   }
+
 
 ];

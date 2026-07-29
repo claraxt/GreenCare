@@ -65,6 +65,7 @@ export class CommunityService {
     addQuestion(question: any) {
       this.questions.unshift(question);
     }
+    
     getQuestion(id:number){
       return this.questions.find(
         question=>question.id===id);

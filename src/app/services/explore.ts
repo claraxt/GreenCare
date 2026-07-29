@@ -4,9 +4,9 @@ import { Injectable, effect, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class ExploreService {
-  constructor() {
+  constructor() {}
 
-  }
+  favorites: any[]=[]; 
 
   plantsSuggested = [
 
@@ -192,5 +192,8 @@ export class ExploreService {
 
   ];
 
-
+  addFavorite(plant: any) {
+  const exists = this.favorites.find(p=> p.id === plant.id); 
+  if (!exists){this.favorites.push(plant)};
+}
 }

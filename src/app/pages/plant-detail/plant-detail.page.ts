@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent } from '@ionic/angular/standalone';
+import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 import { CalendarPage } from '../calendar/calendar.page';
@@ -14,7 +14,7 @@ import { TaskCalendarService } from 'src/app/services/taskCalendar';
   templateUrl: './plant-detail.page.html',
   styleUrls: ['./plant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime, IonCard, IonCardContent]
+  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon]
 })
 export class PlantDetailPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
@@ -118,6 +118,10 @@ export class PlantDetailPage implements OnInit {
   stopHelping() {
     this.plant.peopleNeeded++;
     this.saving.iHelpDown();
+  }
+
+  addFavorite() {
+    this.exploreService.addFavorite(this.plant);
   }
 
 }

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommunityService {
 
-  constructor (){}
+  constructor (){ this.loadData(); }
 
    questions = [
       {
@@ -64,32 +65,72 @@ export class CommunityService {
 
     addQuestion(question: any) {
       this.questions.unshift(question);
+      this.saveData();
     }
     
-    getQuestion(id:number){
-      return this.questions.find(
-        question=>question.id===id);
-    }
+   getQuestion(id: number) {
+  return this.questions.find(
+    question => question.id === id
+  );
+}
+    
 
     deleteQuestion(id:number){
       this.questions=this.questions.filter(
         question=>question.id!==id
       );
+      this.saveData();
     }
 
      addTip(tip: any) {
       this.tips.unshift(tip);
+      this.saveData();
     }
-    getTip(id:number){
-      return this.tips.find(
-        tip=>tip.id===id);
-    }
+
+    getTip(id: number) {
+  return this.tips.find(
+    tip => tip.id === id
+  );
+}
 
     deleteTip(id:number){
       this.tips=this.tips.filter(
        tip=>tip.id!==id
       );
+      this.saveData();
     }
+
+    async saveData() {
+
+      await Preferences.set({
+        key: 'questions',
+        value: JSON.stringify(this.questions)
+      });
+
+      await Preferences.set({
+        key: 'tips',
+        value: JSON.stringify(this.tips)
+      });
+    }
+
+    async loadData(){
+      const questions = await Preferences.get({
+        key: 'questions'
+      });
+      if (questions.value) {
+        this.questions = JSON.parse(questions.value);
+      }
+      const tips= await Preferences.get({
+        key: 'tips'
+      }); 
+      if(tips.value) {
+        this.tips=JSON.parse(tips.value);
+      }
+    }
+
+    saveLikes() {
+  this.saveData();
+}
 
 
 

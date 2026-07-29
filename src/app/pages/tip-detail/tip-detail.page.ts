@@ -26,8 +26,16 @@ export class TipDetailPage implements OnInit {
     this.tip = this.communityService.getTip(id);
   }
 
-  likeTip() {
-    this.tip.likes++;
+   likeTip() {
+
+    if (!this.tip.liked) {
+      this.tip.likes++;
+      this.tip.liked = true;
+    } else {
+      this.tip.likes--;
+      this.tip.liked = false;
+    }
+
   }
 
 

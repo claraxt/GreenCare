@@ -16,16 +16,12 @@
       <ion-icon name="heart-outline"></ion-icon>
         {{ tip.likes }} Likes
      </p>
-
-     <ion-button
-      expand="block"
-      (click)="likeTip()">
-
-     <ion-icon name="heart-outline"></ion-icon>
-
-      Gefällt mir
-
-      </ion-button>
+      <ion-button fill="clear" (click)="likeTip()">
+      <ion-icon
+        [name]="tip.liked ? 'heart' : 'heart-outline'">
+     </ion-icon>
+       {{tip.likes}}
+     </ion-button>
 
      </ion-card-content>
 

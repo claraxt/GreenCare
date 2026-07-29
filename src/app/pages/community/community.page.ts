@@ -56,9 +56,8 @@ export class CommunityPage implements OnInit {
   async ngOnInit() {
 
     this.posts = this.communityService.questions;
-    this.plants = await this.plantService.plantInfo();
-
-
+    //this.plants = await this.plantService.plantInfo();
+    this.plants = await this.plantService.getAllPlants();
   }
 
   segmentChanged() {

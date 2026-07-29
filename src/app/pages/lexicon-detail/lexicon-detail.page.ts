@@ -7,7 +7,9 @@ import {
   IonTitle,
   IonToolbar,
   IonButtons,
-  IonBackButton
+  IonBackButton,
+  IonCard,
+  IonCardContent
 } from '@ionic/angular/standalone';
 
 import { ActivatedRoute } from '@angular/router';
@@ -26,7 +28,9 @@ import { PlantService } from 'src/app/services/plant.service';
     IonButtons,
     IonBackButton,
     CommonModule,
-    FormsModule
+    FormsModule,
+    IonCard,
+    IonCardContent
   ]
 })
 export class LexiconDetailPage implements OnInit {
@@ -44,12 +48,21 @@ export class LexiconDetailPage implements OnInit {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    const plants = await this.plantService.plantInfo();
+    const plants = await this.plantService.getAllPlants();
+
 
     this.plant = plants.find(
       (p: any) => p.id === id
     );
-    console.log(this.plant);
+    if (!this.plant) {
+      return;
+    }
+
+    /*this.plant = plants.find((p: any) => p.id === id);
+
+    if (!this.plant) {
+      return;
+    }*/
 
 
   }

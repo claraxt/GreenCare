@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ export class PlantService {
   ngOnInit() {
 
   }
+
 
   async plantInfo() {
 
@@ -27,13 +29,68 @@ export class PlantService {
 
     return data.data;
   }
+  async localPlants() {
+    const response = await fetch('assets/plant.json');
+    return await response.json();
+  }
+  async getAllPlants() {
+    const local = await this.localPlants();
+    const trefle = await this.plantInfo();
 
-  /* constructor(private http: HttpClient) { }
- 
-   getPlants(id: number) {
-     return this.http.get<any>('assets/plant.json');
-   }*/
+    return [...local, ...trefle];
+  }
 }
+
+
+
+/* constructor(private http: HttpClient) { }
+
+ async plantInfo() {
+   return await firstValueFrom(
+     this.http.get<any[]>('assets/plant.json')
+   );
+ }
+ async getAllPlants() {
+   const localPlants = await this.plantInfo();
+
+   const response = await fetch(
+     `https://trefle.io/api/v1/species?token=usr-GJSaXOZN2GKx0_2WU8kKKYdPlh1iiDo88UruQsE248g`
+   );
+
+   const trefle = await response.json();
+
+   return [
+     ...localPlants,
+     ...trefle.data
+   ];
+ }
+ async getPlantDetails(scientificName: string) {
+
+   const search = await fetch(
+     `https://trefle.io/api/v1/species/search?q=${scientificName}$&token=usr-GJSaXOZN2GKx0_2WU8kKKYdPlh1iiDo88UruQsE248g`
+   );
+
+   const searchData = await search.json();
+
+   const id = searchData.data[0].id;
+
+   const detail = await fetch(
+     `https://trefle.io/api/v1/species/${id}?token=usr-GJSaXOZN2GKx0_2WU8kKKYdPlh1iiDo88UruQsE248g`
+   );
+
+   const detailData = await detail.json();
+
+   return detailData.data;
+
+ }
+}
+
+/* constructor(private http: HttpClient) { }
+
+getPlants(id: number) {
+  return this.http.get<any>('assets/plant.json');
+}*/
+
 /*import { Injectable } from '@angular/core';
 import { CapacitorHttp } from '@capacitor/core';
 

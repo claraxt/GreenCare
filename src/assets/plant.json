@@ -4,119 +4,206 @@
     "common_name": "Lavendel",
     "scientific_name": "Lavandula angustifolia",
     "image_url": "assets/Fotos/lavendel.jpeg",
-
     "family": "Lippenblütler",
     "genus": "Lavandula",
     "author": "Mill.",
     "status": "accepted",
-
     "height": 1,
     "width": 1,
-
     "optional": {
       "distribution": "Mittelmeerraum",
       "habitat": "Trockene Hänge",
       "conservation_status": "nicht gefährdet",
-
       "light_requirements": "volle Sonne",
       "water_requirements": "wenig",
       "soil_type": "sandig",
       "soil_ph": "6-8",
       "temperature_range": "-15 bis 35°C",
       "humidity_requirements": "gering",
-
       "growth_habit": "buschig",
       "growth_rate": "mittel",
-
       "leaf_color": "grün",
       "leaf_shape": "schmal",
       "leaf_size": "klein",
       "leaf_texture": "weich",
-
       "flowering_period": "Juni-August",
       "flower_color": "violett",
-
       "fruit_color": "braun",
       "fruiting_period": "September",
-
       "propagation_methods": [
         "Stecklinge",
         "Samen"
       ],
-
       "diseases": [
         "Wurzelfäule"
       ],
-
       "pests": [
         "Blattläuse"
       ],
-
       "care_instructions": "Nur wenig gießen und sonnig stellen.",
-
       "toxicity_level": "ungiftig",
-
       "edibility": "essbar"
     }
   },
-
   {
     "id": 2,
     "common_name": "Rose",
     "scientific_name": "Rosa",
     "image_url": "assets/Fotos/friedhof.jpeg",
-
     "family": "Rosengewächse",
     "genus": "Rosa",
     "author": "L.",
     "status": "accepted",
-
     "height": 2,
     "width": 1,
-
     "optional": {
       "distribution": "Europa",
       "habitat": "Gärten",
       "conservation_status": "nicht gefährdet",
-
       "light_requirements": "Sonne",
       "water_requirements": "mittel",
       "soil_type": "humos",
       "soil_ph": "6-7",
       "temperature_range": "-20 bis 30°C",
       "humidity_requirements": "mittel",
-
       "growth_habit": "Strauch",
       "growth_rate": "mittel",
-
       "leaf_color": "grün",
       "leaf_shape": "gefiedert",
       "leaf_size": "mittel",
       "leaf_texture": "glatt",
-
       "flowering_period": "Mai-September",
       "flower_color": "rot",
-
       "fruit_color": "rot",
       "fruiting_period": "Herbst",
-
       "propagation_methods": [
         "Stecklinge"
       ],
-
       "diseases": [
         "Mehltau"
       ],
-
       "pests": [
         "Blattläuse"
       ],
-
       "care_instructions": "Regelmäßig gießen und im Frühjahr schneiden.",
-
       "toxicity_level": "ungiftig",
-
       "edibility": "teilweise essbar"
+    }
+  },
+  {
+    "id": 62423,
+    "common_name": "Tarovine",
+    "slug": "monstera-adansonii",
+    "scientific_name": "Monstera adansonii",
+    "year": 1830,
+    "bibliography": "Wiener Z. Kunst 4: 1028 (1830)",
+    "author": "Schott",
+    "status": "accepted",
+    "rank": "species",
+    "family_common_name": null,
+    "genus_id": 2961,
+    "image_url": "https://bs.plantnet.org/image/o/38d4346034e89f4e5917357f2bc62cdcd150a3af",
+    "synonyms": [
+      "Dracontium pertusum",
+      "Calla dracontium",
+      "Calla pertusa"
+    ],
+    "genus": "Monstera",
+    "family": "Araceae",
+    "links": {
+      "self": "/api/v1/species/monstera-adansonii",
+      "plant": "/api/v1/plants/monstera-adansonii",
+      "genus": "/api/v1/genus/monstera"
+    },
+    "area_of_use": [
+      "edible",
+      "non-edible",
+      "medicinal",
+      "ornamental",
+      "toxic",
+      "cultivated",
+      "invasive",
+      "native",
+      "introduced",
+      "endangered",
+      "threatened",
+      "extinct",
+      "data deficient",
+      "not evaluated"
+    ],
+    "height": 3,
+    "width": 3,
+    "depth": 3,
+    "user_data": {
+      "team_1": {
+        "id": 1,
+        "name": "Team A"
+      },
+      "team_2": {
+        "id": 2,
+        "name": "Team B"
+      }
+    },
+    "optional": {
+      "flowering_period": "summer",
+      "growth_rate": "medium",
+      "sunlight": "partial shade",
+      "watering": "moderate",
+      "soil": "well-drained",
+      "flower_color": "green",
+      "fruit_color": "green",
+      "leaf_color": "green",
+      "leaf_shape": "heart-shaped",
+      "leaf_size": "large",
+      "leaf_texture": "smooth",
+      "bark_texture": "smooth",
+      "root_type": "fibrous",
+      "toxicity": "toxic",
+      "edibility": "non-edible",
+      "medicinal_uses": "none",
+      "cultural_significance": "popular houseplant",
+      "distribution": "Central and South America",
+      "habitat": "tropical rainforests",
+      "conservation_status": "least concern",
+      "uses": [
+        "ornamental"
+      ],
+      "care_instructions": "Keep in bright, indirect light. Water when the top inch of soil is dry. Provide high humidity and well-drained soil.",
+      "fruiting_period": "fall",
+      "leaf_shedding": "evergreen",
+      "growth_habit": "climbing",
+      "propagation_methods": [
+        "stem cuttings",
+        "air layering"
+      ],
+      "pests": [
+        "spider mites",
+        "mealybugs"
+      ],
+      "diseases": [
+        "root rot",
+        "leaf spot"
+      ],
+      "climate_zones": [
+        "10",
+        "11"
+      ],
+      "soil_ph": "5.5-7.0",
+      "soil_type": "loamy",
+      "water_requirements": "moderate",
+      "light_requirements": "partial shade",
+      "temperature_range": "60-80°F (15-27°C)",
+      "humidity_requirements": "high",
+      "fertilizer_requirements": "balanced fertilizer every 4-6 weeks during growing season",
+      "pruning_requirements": "minimal, prune to control size and shape",
+      "toxicity_level": "toxic to pets and humans if ingested",
+      "medicinal_uses_level": "none",
+      "cultural_significance_level": "popular houseplant",
+      "distribution_level": "Central and South America",
+      "habitat_level": "tropical rainforests",
+      "disease_resistance": "moderate",
+      "pest_resistance": "moderate",
+      "growth_habit_level": "climbing"
     }
   }
 ]

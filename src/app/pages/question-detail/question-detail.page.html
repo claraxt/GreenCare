@@ -1,10 +1,20 @@
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/community"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
 <ion-content>
 
   <ion-card class="question-card">
 
-    <img 
-      [src]="question.image"
-      class="question-image">
+    <img [src]="question.image" class="question-image">
 
     <ion-card-content>
 
@@ -21,15 +31,13 @@
   </ion-card>
 
 
-  <!-- Antworten -->
+
   <h2 class="answer-title">
     Antworten
   </h2>
 
 
-  <ion-card 
-    class="answer-card"
-    *ngFor="let answer of question.answers">
+  <ion-card class="answer-card" *ngFor="let answer of question.answers">
 
     <ion-card-content>
 
@@ -49,16 +57,11 @@
 
   <ion-card class="write-card">
 
-    <ion-textarea
-      [(ngModel)]="newAnswer"
-      placeholder="Antwort schreiben..."
-      autoGrow="true">
+    <ion-textarea [(ngModel)]="newAnswer" placeholder="Antwort schreiben..." autoGrow="true">
     </ion-textarea>
 
 
-    <ion-button
-      expand="block"
-      (click)="sendAnswer()">
+    <ion-button expand="block" (click)="sendAnswer()">
 
       Antwort senden
 

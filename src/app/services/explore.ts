@@ -1,12 +1,26 @@
-import { Injectable, effect, signal } from '@angular/core';
+import { Injectable, effect, signal, inject } from '@angular/core';
+import { SavingProfile } from './savingProfile';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExploreService {
-  constructor() {}
+  savingProfile = inject(SavingProfile)
+  constructor() { }
 
-  favorites: any[]=[]; 
+  favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+  addFavorite(plant: any) {
+    const exists = this.favorites.find(p => p.id === plant.id);
+    if (!exists) { this.favorites.push(plant) };
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify(this.favorites)
+    );
+
+    this.savingProfile.locationUp();
+
+  }
 
   plantsSuggested = [
 
@@ -192,8 +206,5 @@ export class ExploreService {
 
   ];
 
-  addFavorite(plant: any) {
-  const exists = this.favorites.find(p=> p.id === plant.id); 
-  if (!exists){this.favorites.push(plant)};
-}
+
 }

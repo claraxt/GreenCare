@@ -20,6 +20,7 @@ export class SavingProfile {
         image: '',
         iHelp: 0,
         posts: 0,
+        location: 0,
     },
     )
 
@@ -27,7 +28,7 @@ export class SavingProfile {
         localStorage.setItem('greenCare', JSON.stringify(this.greenCare()));
     }
 
-    async updateProfile(name: string = '', description: string = '', date: string, image: string = '', iHelp: number, posts: number) {
+    async updateProfile(name: string = '', description: string = '', date: string, image: string = '', iHelp: number, posts: number, location: number,) {
         console.log('Image:', image);
         this.greenCare.set({
             name: name,
@@ -36,6 +37,7 @@ export class SavingProfile {
             image: image,
             iHelp: iHelp,
             posts: posts,
+            location: location,
         });
         this.persist();
         console.log(this.greenCare());
@@ -63,6 +65,15 @@ export class SavingProfile {
         this.greenCare.update(profile => ({
             ...profile,
             posts: profile.posts + 1
+        }));
+
+        this.persist();
+    }
+
+    locationUp() {
+        this.greenCare.update(profile => ({
+            ...profile,
+            location: profile.location + 1
         }));
 
         this.persist();

@@ -1,3 +1,14 @@
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/community"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
 <ion-content>
   <ion-card *ngFor="let plant of exploreService.favorites">
     <img [src]="plant.image">

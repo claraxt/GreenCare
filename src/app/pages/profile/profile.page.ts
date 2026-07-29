@@ -19,13 +19,14 @@ export class ProfilePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   private greenCareService = inject(SavingProfile);
+  exploreService = inject(ExploreService)
 
 
   constructor(
-    public exploreService: ExploreService
+
   ) { }
 
-   favorites=this.exploreService.favorites; 
+  favorites = this.exploreService.favorites;
 
   ngOnInit() {
   }
@@ -67,6 +68,7 @@ export class ProfilePage implements OnInit {
         data.image,
         this.greenCare().iHelp,
         this.greenCare().posts,
+        this.greenCare().location,
       )
       this.name = '';
       this.description = '';

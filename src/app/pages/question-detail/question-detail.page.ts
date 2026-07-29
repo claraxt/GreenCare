@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonCardContent } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonCardContent, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 @Component({
@@ -9,7 +9,7 @@ import { CommunityService } from 'src/app/services/community';
   templateUrl: './question-detail.page.html',
   styleUrls: ['./question-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton,IonItem, IonTextarea, IonCard, IonCardContent, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonCardContent, CommonModule, FormsModule, IonButtons, IonBackButton]
 })
 export class QuestionDetailPage implements OnInit {
 
@@ -25,15 +25,15 @@ export class QuestionDetailPage implements OnInit {
 
   question: any;
 
-  newAnswer="";
-  sendAnswer(){
+  newAnswer = "";
+  sendAnswer() {
     this.question.answers.push(
       {
-        user:"Du",
-        text:this.newAnswer
+        user: "Du",
+        text: this.newAnswer
       }
     );
-    this.newAnswer="";
+    this.newAnswer = "";
   }
 
 }

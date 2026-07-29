@@ -13,13 +13,13 @@
 <ion-content>
 
   <ion-card class="question-card">
-    <img [src]="question.image" class="question-image">
+    <img [src]="question?.image" class="question-image">
     <ion-card-content>
       <h1>
-        {{question.title}}
+        {{question?.title}}
       </h1>
       <p>
-        {{question.description}}
+        {{question?.description}}
       </p>
     </ion-card-content>
   </ion-card>
@@ -30,18 +30,15 @@
     Antworten
   </h2>
 
-<ion-card *ngFor="let answer of question.answers; let i = index">
-  <ion-card-content>
-    <h3>{{ answer.user }}</h3>
-    <p>{{ answer.text }}</p>
-    <ion-button
-      color="danger"
-      fill="clear"
-      (click)="deleteAnswer(i)">
-      Löschen
-    </ion-button>
-  </ion-card-content>
-</ion-card>
+  <ion-card *ngFor="let answer of question?.answers; let i = index">
+    <ion-card-content>
+      <h3>{{ answer?.user }}</h3>
+      <p>{{ answer?.text }}</p>
+      <ion-button color="danger" fill="clear" (click)="deleteAnswer(i)">
+        Löschen
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 
 
   <ion-card class="write-card">

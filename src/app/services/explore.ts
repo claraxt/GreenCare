@@ -206,5 +206,14 @@ export class ExploreService {
 
   ];
 
+  delete(favorites: any) {
 
+    this.favorites.splice(this.favorites.indexOf(favorites), 1);
+
+    this.persist()
+  }
+
+  persist() {
+    localStorage.setItem('favorites', JSON.stringify(this.favorites));
+  }
 }

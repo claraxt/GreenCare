@@ -16,5 +16,9 @@
       <h2>{{ plant.name }}</h2>
       <p>{{ plant.description }}</p>
     </ion-card-content>
+    <ion-button fill="clear" color="danger" (click)="delete(plant)" Delete> Löschen
+      <ion-icon slot="start" name="trash-outline">
+      </ion-icon>
+    </ion-button>
   </ion-card>
 </ion-content>

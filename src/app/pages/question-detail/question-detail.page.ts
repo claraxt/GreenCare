@@ -18,7 +18,8 @@ export class QuestionDetailPage implements OnInit {
     public communityService: CommunityService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.communityService.loadData();
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.question = this.communityService.getQuestion(id);
   }
@@ -33,7 +34,14 @@ export class QuestionDetailPage implements OnInit {
         text: this.newAnswer
       }
     );
+
+    this.communityService.saveData(); 
     this.newAnswer = "";
+  }
+
+  deleteAnswer(index: number) {
+    this.question.answers.splice(index,1);
+    this.communityService.saveData();
   }
 
 }

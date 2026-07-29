@@ -20,7 +20,7 @@ import { CommunityService } from 'src/app/services/community';
 import { PlantService } from 'src/app/services/plant.service';
 
 import { Router } from '@angular/router';
-
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-community',
@@ -54,8 +54,14 @@ export class CommunityPage implements OnInit {
   plants: any[] = [];
 
   async ngOnInit() {
-
-    this.posts = this.communityService.questions;
+    await this.communityService.loadData();
+    const segment = await Preferences.get({
+      key: 'communitySegment'
+    });
+    if (segment.value) {
+      this.selectedSegment = segment.value; 
+    }
+    this.segmentChanged();
     //this.plants = await this.plantService.plantInfo();
     this.plants = await this.plantService.getAllPlants();
   }
@@ -63,16 +69,16 @@ export class CommunityPage implements OnInit {
   segmentChanged() {
 
     if (this.selectedSegment == "fragen") {
-
       this.posts = this.communityService.questions;
-
     }
 
     if (this.selectedSegment == "tipps") {
-
       this.posts = this.communityService.tips;
-
     }
+      Preferences.set({
+    key: 'communitySegment',
+    value: this.selectedSegment
+  });
 
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonIcon, IonCardContent } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonIcon, IonCardContent, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 
@@ -11,7 +11,7 @@ import { CommunityService } from 'src/app/services/community';
   templateUrl: './tip-detail.page.html',
   styleUrls: ['./tip-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonIcon, IonCardContent, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonIcon, IonCardContent, IonButtons, IonBackButton, CommonModule, FormsModule]
 })
 export class TipDetailPage implements OnInit {
   public communityService = inject(CommunityService);
@@ -21,7 +21,8 @@ export class TipDetailPage implements OnInit {
 
 
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.communityService.loadData();
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.tip = this.communityService.getTip(id);
   }
@@ -35,6 +36,8 @@ export class TipDetailPage implements OnInit {
       this.tip.likes--;
       this.tip.liked = false;
     }
+      this.communityService.saveData();
+
 
   }
 

@@ -6,8 +6,9 @@ import { Preferences } from '@capacitor/preferences';
   providedIn: 'root',
 })
 export class CommunityService {
+  private loaded = false;
 
-  constructor (){ this.loadData(); }
+  constructor (){ }
 
    questions = [
       {
@@ -114,6 +115,9 @@ export class CommunityService {
     }
 
     async loadData(){
+      if (this.loaded) {
+        return;
+      }
       const questions = await Preferences.get({
         key: 'questions'
       });
@@ -126,6 +130,7 @@ export class CommunityService {
       if(tips.value) {
         this.tips=JSON.parse(tips.value);
       }
+      this.loaded=true;
     }
 
     saveLikes() {

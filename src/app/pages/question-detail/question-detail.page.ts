@@ -35,12 +35,12 @@ export class QuestionDetailPage implements OnInit {
       }
     );
 
-    this.communityService.saveData(); 
+    this.communityService.saveData();
     this.newAnswer = "";
   }
 
   deleteAnswer(index: number) {
-    this.question.answers.splice(index,1);
+    this.question.answers.splice(index, 1);
     this.communityService.saveData();
   }
 

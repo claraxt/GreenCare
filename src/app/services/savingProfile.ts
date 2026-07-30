@@ -69,11 +69,28 @@ export class SavingProfile {
 
         this.persist();
     }
+    postsDown() {
+        this.greenCare.update(profile => ({
+            ...profile,
+            posts: profile.posts - 1
+        }));
+
+        this.persist();
+    }
 
     locationUp() {
         this.greenCare.update(profile => ({
             ...profile,
             location: profile.location + 1
+        }));
+
+        this.persist();
+    }
+
+    locationDown() {
+        this.greenCare.update(profile => ({
+            ...profile,
+            location: profile.location - 1
         }));
 
         this.persist();

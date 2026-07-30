@@ -7,6 +7,7 @@ import { ExploreService } from '../../services/explore';
 import { CalendarPage } from '../calendar/calendar.page';
 import { SavingProfile } from 'src/app/services/savingProfile';
 import { TaskCalendarService } from 'src/app/services/taskCalendar';
+import { MapPage } from '../map/map.page';
 
 
 @Component({
@@ -22,9 +23,12 @@ export class PlantDetailPage implements OnInit {
   private taskService = inject(TaskCalendarService);
   private exploreService = inject(ExploreService);
 
+
+
   showDates = [];
   plant: any;
   chosenDate = '';
+  //mapMarkers: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -80,6 +84,8 @@ export class PlantDetailPage implements OnInit {
     );
 
   }
+
+
   onWillDismiss(event: any) {
     console.log(event);
   }
@@ -103,8 +109,17 @@ export class PlantDetailPage implements OnInit {
       this.plant.text,
       this.plant.id
     );
+    this.exploreService.mapMarkers.push({
+      lat: this.plant.latitude,
+      lng: this.plant.longitude,
+      name: this.plant.name
+    });
+
+
 
     this.modal.dismiss(null, 'confirm');
+
+
   }
   /* helping() {
     if (this.plant.peopleNeeded > 0) {
@@ -133,6 +148,11 @@ export class PlantDetailPage implements OnInit {
       this.plant.peopleNeeded++;
       this.plant.isHelping = false;
       this.taskService.remove(this.plant.id);
+
+      this.exploreService.mapMarkers = this.exploreService.mapMarkers.filter(
+        marker => marker.lat !== this.plant.latitude || marker.lng !== this.plant.longitude
+      );
+
       await this.exploreService.savePlants();
       this.saving.iHelpDown();
     }

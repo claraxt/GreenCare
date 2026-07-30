@@ -8,6 +8,7 @@ import { Preferences } from '@capacitor/preferences';
 export class ExploreService {
   savingProfile = inject(SavingProfile)
   constructor() { this.loadPlants(); }
+  mapMarkers: any[] = [];
 
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
   private loaded = false;

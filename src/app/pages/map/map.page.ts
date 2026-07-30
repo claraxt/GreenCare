@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
+import { PlantDetailPage } from '../plant-detail/plant-detail.page';
+import { ExploreService } from 'src/app/services/explore';
 
 @Component({
   selector: 'app-map',
@@ -16,6 +18,7 @@ import * as L from 'leaflet';
 })
 export class MapPage implements OnInit, AfterViewInit {
   private route = inject(ActivatedRoute);
+  exploreService = inject(ExploreService);
 
 
 
@@ -23,6 +26,8 @@ export class MapPage implements OnInit, AfterViewInit {
 
   userMarker: L.Marker | null = null;
   plantMarker: L.Marker | null = null;
+  taskMarker: L.Marker[] = [];
+
   circle: L.Circle | null = null;
 
   targetLat = 0;
@@ -90,6 +95,7 @@ export class MapPage implements OnInit, AfterViewInit {
     }
 
     this.newMarker();
+    this.showTaskMarker();
 
     // Eigener Standort
     this.userMarker = L.marker([lat, lng]).addTo(this.map);
@@ -145,6 +151,8 @@ export class MapPage implements OnInit, AfterViewInit {
       return;
     }
 
+    console.log("showPlantMarker läuft");
+
 
     /* // alten Pflanzenmarker entfernen idk ob wir sammeln wollen oder nah?? bräuchten vermutlcih iene netfern option
      if (this.plantMarker) {
@@ -170,6 +178,25 @@ export class MapPage implements OnInit, AfterViewInit {
       ],
       17
     );
+
+  }
+
+  showTaskMarker() {
+
+    console.log("showTaskMarker gestartet");
+
+    this.exploreService.mapMarkers.forEach(marker => {
+
+      const newMarker = L.marker([
+        marker.lat,
+        marker.lng
+      ])
+        .addTo(this.map)
+        .bindPopup(marker.name);
+
+      this.taskMarker.push(newMarker);
+
+    });
 
   }
 

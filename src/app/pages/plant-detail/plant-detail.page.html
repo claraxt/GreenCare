@@ -71,7 +71,7 @@
       zu Favoriten hinzufügen
     </ion-button>
 
-    <ng-container *ngIf="plant.peopleNeeded > 0">
+    <ng-container *ngIf="!isHelping">
       <ion-button id="calendar-modal" expand="block">
 
         Mithelfen
@@ -117,6 +117,16 @@
     <ion-button expand="block" (click)="showOnMap()">
 
       Auf Karte anzeigen
+
+    </ion-button>
+
+    <ion-button
+     *ngIf="isHelping"
+      expand="block"
+      color="danger"
+      (click)="stopHelping()">
+
+      Hilfe zurückziehen
 
     </ion-button>
 

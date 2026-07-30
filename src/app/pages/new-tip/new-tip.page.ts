@@ -56,7 +56,9 @@ export class NewTipPage implements OnInit {
         image: this.selectedImage,
         title: this.title,
         description: this.description,
-        tip: 0
+        tip: 0,
+        likes: 0,
+        liked: false
       };
       this.communityService.addTip(newTip);
       this.saving.postsUp();

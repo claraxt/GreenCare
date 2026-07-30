@@ -62,6 +62,8 @@ export class NewQuestionPage implements OnInit {
         title: this.title,
         description: this.description,
         answers: [],
+        likes:0,
+        liked: false
       };
       this.communityService.addQuestion(newQuestion);
       this.saving.postsUp();

@@ -22,7 +22,7 @@ export class PlantDetailPage implements OnInit {
   private taskService = inject(TaskCalendarService);
   private exploreService = inject(ExploreService);
 
-
+  isHelping = false;
   showDates = [];
   plant: any;
   chosenDate = '';
@@ -109,16 +109,20 @@ export class PlantDetailPage implements OnInit {
 
 
   helping() {
-    if (this.plant.peopleNeeded > 0) {
+    if (!this.isHelping && this.plant.peopleNeeded > 0) {
       this.plant.peopleNeeded--;
+      this.isHelping = true; 
       this.saving.iHelpUp();
     }
   }
 
   stopHelping() {
+      if (this.isHelping) {
     this.plant.peopleNeeded++;
+        this.isHelping = false;
     this.saving.iHelpDown();
   }
+}
 
   addFavorite() {
     this.exploreService.addFavorite(this.plant);

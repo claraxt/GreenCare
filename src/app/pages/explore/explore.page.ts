@@ -5,7 +5,15 @@ import { Router } from '@angular/router';
 import { Plant } from 'src/app/models/plant';
 
 import {
-  IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, IonIcon
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonLabel,
+  IonSegment,
+  IonSegmentButton,
+  IonCard,
+  IonCardContent
 } from '@ionic/angular/standalone';
 
 
@@ -18,7 +26,17 @@ import { ExploreService } from '../../services/explore';
   styleUrls: ['./explore.page.scss'],
   standalone: true,
   imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, CommonModule, FormsModule
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonLabel,
+    IonSegment,
+    IonSegmentButton,
+    IonCard,
+    IonCardContent,
+    CommonModule,
+    FormsModule
   ]
 })
 export class ExplorePage implements OnInit {

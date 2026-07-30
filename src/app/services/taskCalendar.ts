@@ -41,30 +41,30 @@ export class TaskCalendarService {
         this.persist();
     }
 
-    delete(task: any) {
+   async delete(task: any) {
 
         const plant = [
             ...this.exploreService.plantsSuggested,
             ...this.exploreService.plantsNearby,
             ...this.exploreService.plantsNew
-        ].find(p => p.description === task.description);
+  ].find(p => p.id === task.id);
 
         if (plant) {
+
+    if (plant.isHelping) {
             plant.peopleNeeded++;
-        }
+      plant.isHelping = false;
+
+      await this.exploreService.savePlants();
 
         this.saving.iHelpDown();
-
-        this.task.splice(this.task.indexOf(task), 1);
-
-        this.persist();
     }
 
-    remove(id: number) {
+  }
 
-     this.task = this.task.filter(
-      (task:any) => task.id !== id
-      );
+  this.task = this.task.filter((t: any) => t.id !== task.id);
+
       this.persist();
+
     }
 }

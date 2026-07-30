@@ -105,24 +105,34 @@ export class PlantDetailPage implements OnInit {
 
     this.modal.dismiss(null, 'confirm');
   }
-
-
-
   helping() {
-    if (!this.isHelping && this.plant.peopleNeeded > 0) {
+    if (this.plant.peopleNeeded > 0) {
       this.plant.peopleNeeded--;
-      this.isHelping = true; 
       this.saving.iHelpUp();
     }
   }
 
   stopHelping() {
-      if (this.isHelping) {
     this.plant.peopleNeeded++;
-        this.isHelping = false;
     this.saving.iHelpDown();
   }
-}
+
+
+  /* helping() {
+     if (!this.isHelping && this.plant.peopleNeeded > 0) {
+       this.plant.peopleNeeded--;
+       this.isHelping = true; 
+       this.saving.iHelpUp();
+     }
+   }
+ 
+   stopHelping() {
+       if (this.isHelping) {
+     this.plant.peopleNeeded++;
+         this.isHelping = false;
+     this.saving.iHelpDown();
+   }
+ }*/
 
   addFavorite() {
     this.exploreService.addFavorite(this.plant);

@@ -10,18 +10,17 @@ export class ExploreService {
   constructor() { this.loadPlants(); }
 
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
-  private loaded = false; 
+  private loaded = false;
 
   addFavorite(plant: any) {
     const exists = this.favorites.find(p => p.id === plant.id);
-    if (!exists) { this.favorites.push(plant) };
-    localStorage.setItem(
-      'favorites',
-      JSON.stringify(this.favorites)
-    );
 
-    this.savingProfile.locationUp();
+    if (!exists) {
+      this.favorites.push(plant);
+      this.persist();
 
+      this.savingProfile.locationUp();
+    }
   }
 
   plantsSuggested = [
@@ -230,54 +229,54 @@ export class ExploreService {
 
   async savePlants() {
 
-  await Preferences.set({
-    key: 'plantsSuggested',
-    value: JSON.stringify(this.plantsSuggested)
-  });
+    await Preferences.set({
+      key: 'plantsSuggested',
+      value: JSON.stringify(this.plantsSuggested)
+    });
 
-  await Preferences.set({
-    key: 'plantsNearby',
-    value: JSON.stringify(this.plantsNearby)
-  });
+    await Preferences.set({
+      key: 'plantsNearby',
+      value: JSON.stringify(this.plantsNearby)
+    });
 
-  await Preferences.set({
-    key: 'plantsNew',
-    value: JSON.stringify(this.plantsNew)
-  });
+    await Preferences.set({
+      key: 'plantsNew',
+      value: JSON.stringify(this.plantsNew)
+    });
 
-}
+  }
 
   async loadPlants() {
 
     if (this.loaded) {
-      return; 
+      return;
     }
 
-  const suggested = await Preferences.get({
-    key: 'plantsSuggested'
-  });
+    const suggested = await Preferences.get({
+      key: 'plantsSuggested'
+    });
 
-  if (suggested.value) {
-    this.plantsSuggested = JSON.parse(suggested.value);
+    if (suggested.value) {
+      this.plantsSuggested = JSON.parse(suggested.value);
+    }
+
+    const nearby = await Preferences.get({
+      key: 'plantsNearby'
+    });
+
+    if (nearby.value) {
+      this.plantsNearby = JSON.parse(nearby.value);
+    }
+
+    const newest = await Preferences.get({
+      key: 'plantsNew'
+    });
+
+    if (newest.value) {
+      this.plantsNew = JSON.parse(newest.value);
+    }
+
+    this.loaded = true;
+
   }
-
-  const nearby = await Preferences.get({
-    key: 'plantsNearby'
-  });
-
-  if (nearby.value) {
-    this.plantsNearby = JSON.parse(nearby.value);
-  }
-
-  const newest = await Preferences.get({
-    key: 'plantsNew'
-  });
-
-  if (newest.value) {
-    this.plantsNew = JSON.parse(newest.value);
-  }
-
-  this.loaded = true; 
-
-}
 }

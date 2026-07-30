@@ -17,29 +17,29 @@
 
   <div class="plant-image">
 
-    <img [src]="plant.image">
+    <img [src]="plant?.image">
 
   </div>
 
   <div class="content">
 
-    <h1>{{plant.name}}</h1>
+    <h1>{{plant?.name}}</h1>
 
     <p class="description">
-      {{plant.description}}
+      {{plant?.description}}
     </p>
 
     <p class="distance">
-      {{plant.distance}}
+      {{plant?.distance}}
     </p>
 
     <div class="section">
 
       <h2> Aufgabe</h2>
 
-      <p>{{plant.task}}</p>
+      <p>{{plant?.task}}</p>
 
-      <p>Noch {{plant.peopleNeeded}} Helfer benötigt.</p>
+      <p>Noch {{plant?.peopleNeeded}} Helfer benötigt.</p>
 
     </div>
 
@@ -48,13 +48,13 @@
 
       <h2> Pflege</h2>
 
-      <p><strong>Wasser:</strong> {{plant.watering}}</p>
+      <p><strong>Wasser:</strong> {{plant?.watering}}</p>
 
-      <p><strong>Standort:</strong> {{plant.sunlight}}</p>
+      <p><strong>Standort:</strong> {{plant?.sunlight}}</p>
 
-      <p><strong>Pflanzenarten:</strong> {{plant.flowers}}</p>
+      <p><strong>Pflanzenarten:</strong> {{plant?.flowers}}</p>
 
-      <p><strong>Schwierigkeitsgrad:</strong> {{plant.difficulty}}</p>
+      <p><strong>Schwierigkeitsgrad:</strong> {{plant?.difficulty}}</p>
 
     </div>
 
@@ -62,7 +62,7 @@
 
       <h2>ℹ Beschreibung</h2>
 
-      <p>{{plant.text}}</p>
+      <p>{{plant?.text}}</p>
 
     </div>
 
@@ -71,7 +71,7 @@
       zu Favoriten hinzufügen
     </ion-button>
 
-    <ng-container *ngIf="!plant.isHelping">
+    <ng-container *ngIf="!plant?.isHelping">
       <ion-button id="calendar-modal" expand="block">
 
         Mithelfen
@@ -120,11 +120,7 @@
 
     </ion-button>
 
-    <ion-button
-     *ngIf="plant.isHelping"
-      expand="block"
-      color="danger"
-      (click)="stopHelping()">
+    <ion-button *ngIf="plant?.isHelping" expand="block" color="danger" (click)="stopHelping()">
 
       Hilfe zurückziehen
 

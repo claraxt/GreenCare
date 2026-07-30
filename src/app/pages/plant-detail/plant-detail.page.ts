@@ -111,34 +111,34 @@ export class PlantDetailPage implements OnInit {
       this.plant.peopleNeeded--;
       this.saving.iHelpUp();
     }
-  }*/ 
-
- /* stopHelping() {
-    this.plant.peopleNeeded++;
-    this.saving.iHelpDown();
   }*/
 
+  /* stopHelping() {
+     this.plant.peopleNeeded++;
+     this.saving.iHelpDown();
+   }*/
 
-   async helping() {
-     if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
-       this.plant.peopleNeeded--;
-       this.plant.isHelping = true; 
-       await this.exploreService.savePlants();
-       this.saving.iHelpUp();
-     }
-   }
- 
-   async stopHelping() {
-         if (this.plant.isHelping) {
-         this.plant.peopleNeeded++;
-         this.plant.isHelping = false;
-         this.taskService.remove(this.plant.id);
-         await this.exploreService.savePlants();
-         this.saving.iHelpDown();
-       }
-     }
 
-   addFavorite() {
+  async helping() {
+    if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
+      this.plant.peopleNeeded--;
+      this.plant.isHelping = true;
+      await this.exploreService.savePlants();
+      this.saving.iHelpUp();
+    }
+  }
+
+  async stopHelping() {
+    if (this.plant.isHelping) {
+      this.plant.peopleNeeded++;
+      this.plant.isHelping = false;
+      this.taskService.remove(this.plant.id);
+      await this.exploreService.savePlants();
+      this.saving.iHelpDown();
+    }
+  }
+
+  addFavorite() {
     this.exploreService.addFavorite(this.plant);
   }
 

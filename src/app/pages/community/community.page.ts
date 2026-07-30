@@ -109,7 +109,7 @@ export class CommunityPage implements OnInit {
     this.posts = this.communityService.questions;
 
   }
-  async delete(id: any) {
+  async deleteQ(id: any) {
     const alert = await this.alertController.create({
       header: 'Frage löschen?',
       message: 'Möchtest Du die Frage wirklich löschen?',
@@ -147,6 +147,31 @@ export class CommunityPage implements OnInit {
 
     this.posts = this.communityService.tips;
 
+  }
+  async deleteT(id: any) {
+    const alert = await this.alertController.create({
+      header: 'Tipp löschen?',
+      message: 'Möchtest Du den Tipp wirklich löschen?',
+      buttons: [
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+          handler: () => {
+            console.log('Alert canceled');
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.deleteTip(id);
+
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
 

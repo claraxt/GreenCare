@@ -54,8 +54,8 @@ export class CalendarPage implements OnInit {
         {
           text: 'OK',
           role: 'confirm',
-          handler: () => {
-            this.taskService.delete(task);
+          handler: async () => {
+            await this.taskService.delete(task);
             this.updateShowDates();
           },
         },

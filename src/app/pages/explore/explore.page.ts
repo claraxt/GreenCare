@@ -1,16 +1,19 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { ExploreService } from '../../services/explore';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonLabel,
+  IonSegment,
+  IonSegmentButton,
+  IonCard,
+  IonCardContent
+} from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Plant } from 'src/app/models/plant';
-
-import {
-  IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, IonIcon
-} from '@ionic/angular/standalone';
-
-
-
-import { ExploreService } from '../../services/explore';
 
 @Component({
   selector: 'app-explore',
@@ -18,7 +21,17 @@ import { ExploreService } from '../../services/explore';
   styleUrls: ['./explore.page.scss'],
   standalone: true,
   imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, CommonModule, FormsModule
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonLabel,
+    IonSegment,
+    IonSegmentButton,
+    IonCard,
+    IonCardContent,
+    CommonModule,
+    FormsModule
   ]
 })
 export class ExplorePage implements OnInit {
@@ -26,42 +39,43 @@ export class ExplorePage implements OnInit {
   selectedSegment = 'vorgeschlagen';
 
   router = inject(Router);
-  exploreService = inject(ExploreService)
+  exploreService = inject(ExploreService);
 
   plants: any[] = [];
 
-
-  ngOnInit() {
-
-    this.plants = this.exploreService.plantsSuggested;
-
-
+  async ngOnInit() {
+    await this.exploreService.loadPlants();
+    this.refreshPlants();
   }
 
+  async ionViewWillEnter() {
+    await this.exploreService.loadPlants();
+    this.refreshPlants();
+  }
 
-
-  segmentChanged(event: any) {
-
-    this.selectedSegment = event.detail.value;
+  refreshPlants() {
 
     if (this.selectedSegment === 'vorgeschlagen') {
-      this.plants = this.exploreService.plantsSuggested;
+      this.plants = [...this.exploreService.plantsSuggested];
     }
 
     if (this.selectedSegment === 'naehe') {
-      this.plants = this.exploreService.plantsNearby;
+      this.plants = [...this.exploreService.plantsNearby];
     }
 
     if (this.selectedSegment === 'neu') {
-      this.plants = this.exploreService.plantsNew;
+      this.plants = [...this.exploreService.plantsNew];
     }
 
   }
 
+  segmentChanged(event: any) {
+    this.selectedSegment = event.detail.value;
+    this.refreshPlants();
+  }
+
   openPlantDetail(plant: any) {
-
     this.router.navigate(['/plant', plant.id]);
-
   }
 
 }

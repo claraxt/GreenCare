@@ -129,18 +129,25 @@ export class PlantDetailPage implements OnInit {
   }
 
   async stopHelping() {
-    if (this.plant.isHelping) {
-      this.plant.peopleNeeded++;
-      this.plant.isHelping = false;
-      this.taskService.remove(this.plant.id);
-      await this.exploreService.savePlants();
-      this.saving.iHelpDown();
-    }
+     const task = this.taskService.task.find(
+    (t: any) => t.id === this.plant.id
+  );
+
+  if (task) {
+   await this.taskService.delete(task);
+  }
+
+  this.plant = [
+    ...this.exploreService.plantsSuggested,
+    ...this.exploreService.plantsNearby,
+    ...this.exploreService.plantsNew
+  ].find(p => p.id === this.plant.id);
   }
 
   addFavorite() {
     this.exploreService.addFavorite(this.plant);
   }
+
 
 }
 

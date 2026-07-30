@@ -10,7 +10,6 @@ export class ExploreService {
   constructor() { this.loadPlants(); }
 
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
-  private loaded = false;
 
   addFavorite(plant: any) {
     const exists = this.favorites.find(p => p.id === plant.id);
@@ -18,7 +17,6 @@ export class ExploreService {
     if (!exists) {
       this.favorites.push(plant);
       this.persist();
-
       this.savingProfile.locationUp();
     }
   }
@@ -248,10 +246,6 @@ export class ExploreService {
 
   async loadPlants() {
 
-    if (this.loaded) {
-      return;
-    }
-
     const suggested = await Preferences.get({
       key: 'plantsSuggested'
     });
@@ -275,8 +269,6 @@ export class ExploreService {
     if (newest.value) {
       this.plantsNew = JSON.parse(newest.value);
     }
-
-    this.loaded = true;
 
   }
 }

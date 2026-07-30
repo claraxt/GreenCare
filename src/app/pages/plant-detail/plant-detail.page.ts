@@ -22,7 +22,6 @@ export class PlantDetailPage implements OnInit {
   private taskService = inject(TaskCalendarService);
   private exploreService = inject(ExploreService);
 
-  isHelping = false;
   showDates = [];
   plant: any;
   chosenDate = '';
@@ -32,7 +31,9 @@ export class PlantDetailPage implements OnInit {
     private router: Router,) { }
 
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.exploreService.loadPlants();
+
     this.updateShowDates();
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -105,36 +106,39 @@ export class PlantDetailPage implements OnInit {
 
     this.modal.dismiss(null, 'confirm');
   }
-  helping() {
+  /* helping() {
     if (this.plant.peopleNeeded > 0) {
       this.plant.peopleNeeded--;
       this.saving.iHelpUp();
     }
-  }
+  }*/ 
 
-  stopHelping() {
+ /* stopHelping() {
     this.plant.peopleNeeded++;
     this.saving.iHelpDown();
-  }
+  }*/
 
 
-  /* helping() {
-     if (!this.isHelping && this.plant.peopleNeeded > 0) {
+   async helping() {
+     if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
        this.plant.peopleNeeded--;
-       this.isHelping = true; 
+       this.plant.isHelping = true; 
+       await this.exploreService.savePlants();
        this.saving.iHelpUp();
      }
    }
  
-   stopHelping() {
-       if (this.isHelping) {
-     this.plant.peopleNeeded++;
-         this.isHelping = false;
-     this.saving.iHelpDown();
-   }
- }*/
+   async stopHelping() {
+         if (this.plant.isHelping) {
+         this.plant.peopleNeeded++;
+         this.plant.isHelping = false;
+         this.taskService.remove(this.plant.id);
+         await this.exploreService.savePlants();
+         this.saving.iHelpDown();
+       }
+     }
 
-  addFavorite() {
+   addFavorite() {
     this.exploreService.addFavorite(this.plant);
   }
 

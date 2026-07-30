@@ -24,7 +24,7 @@ export class TaskCalendarService {
     }
 
 
-    add(date: string, description: string, name: string, text: string, id: string,) {
+    add(date: string, description: string, name: string, text: string, id: number,) {
 
         this.task.push({
             date: date,
@@ -58,5 +58,13 @@ export class TaskCalendarService {
         this.task.splice(this.task.indexOf(task), 1);
 
         this.persist();
+    }
+
+    remove(id: number) {
+
+     this.task = this.task.filter(
+      (task:any) => task.id !== id
+      );
+      this.persist();
     }
 }

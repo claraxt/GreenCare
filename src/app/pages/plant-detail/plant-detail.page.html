@@ -71,7 +71,7 @@
       zu Favoriten hinzufügen
     </ion-button>
 
-    <ng-container *ngIf="!isHelping">
+    <ng-container *ngIf="!plant.isHelping">
       <ion-button id="calendar-modal" expand="block">
 
         Mithelfen
@@ -121,7 +121,7 @@
     </ion-button>
 
     <ion-button
-     *ngIf="isHelping"
+     *ngIf="plant.isHelping"
       expand="block"
       color="danger"
       (click)="stopHelping()">

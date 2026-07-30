@@ -1,14 +1,16 @@
 import { Injectable, effect, signal, inject } from '@angular/core';
 import { SavingProfile } from './savingProfile';
+import { Preferences } from '@capacitor/preferences';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExploreService {
   savingProfile = inject(SavingProfile)
-  constructor() { }
+  constructor() { this.loadPlants(); }
 
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
+  private loaded = false; 
 
   addFavorite(plant: any) {
     const exists = this.favorites.find(p => p.id === plant.id);
@@ -30,6 +32,7 @@ export class ExploreService {
       description: 'Blumenbeet am Weg',
       distance: '800 m',
       peopleNeeded: 2,
+      isHelping: false,
       task: 'Gießen',
       image: 'assets/Fotos/park.jpeg',
 
@@ -50,6 +53,7 @@ export class ExploreService {
       description: 'Rosenbeet',
       distance: '1,2 km',
       peopleNeeded: 4,
+      isHelping: false,
       task: 'Unkraut entfernen, Gießen, schneiden',
       image: 'assets/Fotos/friedhof.jpeg',
 
@@ -69,6 +73,7 @@ export class ExploreService {
       description: 'Parkbeete',
       distance: '1,9 km',
       peopleNeeded: 6,
+      isHelping: false,
       task: 'Unkraut entfernen, Gießen',
       image: 'assets/Fotos/stadtpark.jpeg',
 
@@ -88,6 +93,7 @@ export class ExploreService {
       description: 'Blumen an der Rasenfläche',
       distance: '2,0 m',
       peopleNeeded: 2,
+      isHelping: false,
       task: 'Unkrauft entfernen',
       image: 'assets/Fotos/freibad.jpeg',
 
@@ -111,6 +117,7 @@ export class ExploreService {
       description: 'Blumenkübel',
       distance: '200 m',
       peopleNeeded: 2,
+      isHelping: false,
       task: 'Bewässern, Düngen',
       image: 'assets/Fotos/marktplatz.jpeg',
 
@@ -130,6 +137,7 @@ export class ExploreService {
       description: 'Wildblumenbeet',
       distance: '450 m',
       peopleNeeded: 1,
+      isHelping: false,
       task: 'Unkrauft entfernen',
       image: 'assets/Fotos/schulhof.jpeg',
 
@@ -149,6 +157,7 @@ export class ExploreService {
       description: 'Blumenbeet am Eingang',
       distance: '500 m',
       peopleNeeded: 1,
+      isHelping: false,
       task: 'Gießen',
       image: 'assets/Fotos/krankenhaus.jpeg',
 
@@ -172,7 +181,8 @@ export class ExploreService {
       description: 'Blumen am Eingang',
       distance: '1,9 km',
       peopleNeeded: 1,
-      task: 'gießen',
+      isHelping: false,
+      task: 'Gießen',
       image: 'assets/Fotos/bahnhof.jpeg',
 
       watering: 'bei extremer Hitze',
@@ -191,6 +201,7 @@ export class ExploreService {
       description: 'mehrere Beete an dem Platz',
       distance: '2,1 km',
       peopleNeeded: 4,
+      isHelping: false,
       task: 'Pflege der Beete',
       image: 'assets/Fotos/kirchplatz.jpeg',
 
@@ -216,4 +227,57 @@ export class ExploreService {
   persist() {
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
+
+  async savePlants() {
+
+  await Preferences.set({
+    key: 'plantsSuggested',
+    value: JSON.stringify(this.plantsSuggested)
+  });
+
+  await Preferences.set({
+    key: 'plantsNearby',
+    value: JSON.stringify(this.plantsNearby)
+  });
+
+  await Preferences.set({
+    key: 'plantsNew',
+    value: JSON.stringify(this.plantsNew)
+  });
+
+}
+
+  async loadPlants() {
+
+    if (this.loaded) {
+      return; 
+    }
+
+  const suggested = await Preferences.get({
+    key: 'plantsSuggested'
+  });
+
+  if (suggested.value) {
+    this.plantsSuggested = JSON.parse(suggested.value);
+  }
+
+  const nearby = await Preferences.get({
+    key: 'plantsNearby'
+  });
+
+  if (nearby.value) {
+    this.plantsNearby = JSON.parse(nearby.value);
+  }
+
+  const newest = await Preferences.get({
+    key: 'plantsNew'
+  });
+
+  if (newest.value) {
+    this.plantsNew = JSON.parse(newest.value);
+  }
+
+  this.loaded = true; 
+
+}
 }

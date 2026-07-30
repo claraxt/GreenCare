@@ -22,6 +22,7 @@ import { PlantService } from 'src/app/services/plant.service';
 
 import { Router } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
+import { SavingProfile } from 'src/app/services/savingProfile';
 
 @Component({
   selector: 'app-community',
@@ -49,6 +50,7 @@ export class CommunityPage implements OnInit {
   public communityService = inject(CommunityService);
   public plantService = inject(PlantService);
   alertController = inject(AlertController);
+  savingProfile = inject(SavingProfile);
 
   selectedSegment = 'fragen';
 
@@ -126,6 +128,7 @@ export class CommunityPage implements OnInit {
           role: 'confirm',
           handler: () => {
             this.deleteQuestion(id);
+            this.savingProfile.postsDown();
 
           },
         },
@@ -165,6 +168,7 @@ export class CommunityPage implements OnInit {
           role: 'confirm',
           handler: () => {
             this.deleteTip(id);
+            this.savingProfile.postsDown();
 
           },
         },

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonButtons, IonBackButton, AlertController, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { ExploreService } from 'src/app/services/explore';
+import { SavingProfile } from 'src/app/services/savingProfile';
 
 @Component({
   selector: 'app-favorites',
@@ -13,6 +14,7 @@ import { ExploreService } from 'src/app/services/explore';
 })
 export class FavoritesPage implements OnInit {
   public exploreService = inject(ExploreService);
+  savingProfile = inject(SavingProfile);
   private alertController = inject(AlertController);
 
   constructor() { }
@@ -36,6 +38,7 @@ export class FavoritesPage implements OnInit {
           role: 'confirm',
           handler: () => {
             this.exploreService.delete(plant);
+            this.savingProfile.locationDown();
 
           },
         },

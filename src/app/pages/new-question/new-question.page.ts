@@ -23,6 +23,8 @@ export class NewQuestionPage implements OnInit {
   private saving = inject(SavingProfile);
   public communityService = inject(CommunityService);
 
+
+
   constructor(
     private router: Router,
 
@@ -50,17 +52,21 @@ export class NewQuestionPage implements OnInit {
   }
 
   publishQuestion() {
-    const newQuestion = {
-      id: Date.now(),
-      user: "Du",
-      image: this.selectedImage,
-      title: this.title,
-      description: this.description,
-      answers: [],
-    };
-    this.communityService.addQuestion(newQuestion);
-    this.saving.postsUp();
-    this.router.navigate(['/tabs/community']);
+    if (this.title === "") {
+      return
+    } else {
+      const newQuestion = {
+        id: Date.now(),
+        user: "Du",
+        image: this.selectedImage,
+        title: this.title,
+        description: this.description,
+        answers: [],
+      };
+      this.communityService.addQuestion(newQuestion);
+      this.saving.postsUp();
+      this.router.navigate(['/tabs/community']);
+    }
   }
 
   /* postsUp() {

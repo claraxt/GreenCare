@@ -47,17 +47,21 @@ export class NewTipPage implements OnInit {
   }
 
   publishTip() {
-    const newTip = {
-      id: Date.now(),
-      user: "Du",
-      image: this.selectedImage,
-      title: this.title,
-      description: this.description,
-      tip: 0
-    };
-    this.communityService.addTip(newTip);
-    this.saving.postsUp();
-    this.router.navigate(['/tabs/community']);
+    if (this.title === "") {
+      return
+    } else {
+      const newTip = {
+        id: Date.now(),
+        user: "Du",
+        image: this.selectedImage,
+        title: this.title,
+        description: this.description,
+        tip: 0
+      };
+      this.communityService.addTip(newTip);
+      this.saving.postsUp();
+      this.router.navigate(['/tabs/community']);
+    }
   }
 }
 

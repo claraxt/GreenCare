@@ -13,7 +13,8 @@ import {
   IonCard,
   IonCardContent,
   IonButton,
-  IonIcon
+  IonIcon,
+  AlertController,
 } from '@ionic/angular/standalone';
 
 import { CommunityService } from 'src/app/services/community';
@@ -47,6 +48,7 @@ export class CommunityPage implements OnInit {
   private router = inject(Router);
   public communityService = inject(CommunityService);
   public plantService = inject(PlantService);
+  alertController = inject(AlertController);
 
   selectedSegment = 'fragen';
 
@@ -59,7 +61,7 @@ export class CommunityPage implements OnInit {
       key: 'communitySegment'
     });
     if (segment.value) {
-      this.selectedSegment = segment.value; 
+      this.selectedSegment = segment.value;
     }
     this.segmentChanged();
     //this.plants = await this.plantService.plantInfo();
@@ -75,10 +77,10 @@ export class CommunityPage implements OnInit {
     if (this.selectedSegment == "tipps") {
       this.posts = this.communityService.tips;
     }
-      Preferences.set({
-    key: 'communitySegment',
-    value: this.selectedSegment
-  });
+    Preferences.set({
+      key: 'communitySegment',
+      value: this.selectedSegment
+    });
 
   }
 
@@ -106,6 +108,31 @@ export class CommunityPage implements OnInit {
 
     this.posts = this.communityService.questions;
 
+  }
+  async delete(id: any) {
+    const alert = await this.alertController.create({
+      header: 'Frage löschen?',
+      message: 'Möchtest Du die Frage wirklich löschen?',
+      buttons: [
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+          handler: () => {
+            console.log('Alert canceled');
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.deleteQuestion(id);
+
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   openTip(id: number) {

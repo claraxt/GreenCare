@@ -11,7 +11,7 @@ import { TaskCalendarService } from 'src/app/services/taskCalendar';
   templateUrl: './calendar.page.html',
   styleUrls: ['./calendar.page.scss'],
   standalone: true,
-  imports: [IonRow, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardContent, IonDatetime, IonCardHeader, IonCardTitle, IonList, IonItem, IonItemOption, IonItemSliding, IonLabel, IonItemOptions, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCard, IonCardContent, IonDatetime, IonCardHeader, IonCardTitle, IonIcon]
 })
 export class CalendarPage implements OnInit {
   taskService = inject(TaskCalendarService);

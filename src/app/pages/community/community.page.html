@@ -59,7 +59,7 @@
           {{post.answers.length}} Antworten
         </ion-button>
 
-        <ion-button *ngIf="selectedSegment === 'fragen'" fill="clear" color="danger" (click)="deleteQuestion(post.id)">
+        <ion-button *ngIf="selectedSegment === 'fragen'" fill="clear" color="danger" (click)="delete(post.id)">
           Löschen
         </ion-button>
 

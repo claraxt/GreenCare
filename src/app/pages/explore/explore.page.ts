@@ -18,7 +18,7 @@ import { ExploreService } from '../../services/explore';
   styleUrls: ['./explore.page.scss'],
   standalone: true,
   imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, IonIcon, CommonModule, FormsModule
+    IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, CommonModule, FormsModule
   ]
 })
 export class ExplorePage implements OnInit {

@@ -13,7 +13,7 @@ import { ExploreService } from 'src/app/services/explore';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [RouterLink, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonAvatar, IonLabel, IonCard, IonIcon, IonCardContent, IonCardHeader, IonCardTitle, IonText, IonCol, IonGrid, IonRow, IonTabButton, IonAccordion, IonAccordionGroup, FormsModule, IonButton, IonButtons, IonInput, IonModal, IonTabBar]
+  imports: [RouterLink, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonAvatar, IonLabel, IonCard, IonIcon, IonText, IonCol, IonGrid, IonRow, FormsModule, IonButton, IonInput, IonModal]
 })
 export class ProfilePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;

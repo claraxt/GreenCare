@@ -21,10 +21,12 @@ export class NewQuestionPage implements OnInit {
   @ViewChild('fileInput')
   fileInput!: ElementRef;
   private saving = inject(SavingProfile);
+  public communityService = inject(CommunityService);
+
   constructor(
     private router: Router,
 
-    public communityService: CommunityService
+
 
   ) { }
 
@@ -54,7 +56,7 @@ export class NewQuestionPage implements OnInit {
       image: this.selectedImage,
       title: this.title,
       description: this.description,
-      answers: 0
+      answers: [],
     };
     this.communityService.addQuestion(newQuestion);
     this.saving.postsUp();

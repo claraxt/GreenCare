@@ -9,49 +9,49 @@ export const routes: Routes = [
     children: [
 
       {
-        path:'map',
+        path: 'map',
         loadComponent: () =>
-        import('../pages/map/map.page')
-        .then(m => m.MapPage)
+          import('../pages/map/map.page')
+            .then(m => m.MapPage)
       },
 
 
       {
-        path:'explore',
+        path: 'explore',
         loadComponent: () =>
-        import('../pages/explore/explore.page')
-        .then(m => m.ExplorePage)
+          import('../pages/explore/explore.page')
+            .then(m => m.ExplorePage)
       },
 
 
       {
-        path:'community',
+        path: 'community',
         loadComponent: () =>
-        import('../pages/community/community.page')
-        .then(m => m.CommunityPage)
+          import('../pages/community/community.page')
+            .then(m => m.CommunityPage)
       },
 
 
       {
-        path:'calendar',
+        path: 'calendar',
         loadComponent: () =>
-        import('../pages/calendar/calendar.page')
-        .then(m => m.CalendarPage)
+          import('../pages/calendar/calendar.page')
+            .then(m => m.CalendarPage)
       },
 
 
       {
-        path:'profile',
+        path: 'profile',
         loadComponent: () =>
-        import('../pages/profile/profile.page')
-        .then(m => m.ProfilePage)
+          import('../pages/profile/profile.page')
+            .then(m => m.ProfilePage)
       },
 
 
       {
-        path:'',
-        redirectTo:'map',
-        pathMatch:'full'
+        path: '',
+        redirectTo: 'map',
+        pathMatch: 'full'
       }
 
 

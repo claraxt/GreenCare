@@ -68,7 +68,7 @@ export class TaskCalendarService {
         }
 
         this.task = this.task.filter((t: any) => t.id !== task.id);
-        this.taskChanged = true;
+        //this.taskChanged = true;
 
         this.persist();
 

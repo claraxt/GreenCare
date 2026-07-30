@@ -57,23 +57,24 @@ export class MapPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log("ngAfterViewInit");
 
     navigator.geolocation.getCurrentPosition(
-
       (pos) => this.showMap(pos),
-      () => alert("GPS nicht erlaubt"),
+      (err) => {
+        console.log('Geolocation Error:', err);
+        alert(`${err.code}: ${err.message}`);
+      },
       {
         enableHighAccuracy: false,
         timeout: 5000,
         maximumAge: 60000
       }
-
-
     );
-
   }
 
   showMap(pos: GeolocationPosition) {
+    console.log("showMap gestartet");
 
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
@@ -197,9 +198,9 @@ export class MapPage implements OnInit, AfterViewInit {
     this.taskService.task.forEach((task: any) => {
 
       const plant = [
-        ...this.exploreService.plantsSuggested,
-        ...this.exploreService.plantsNearby,
-        ...this.exploreService.plantsNew
+        ...(this.exploreService.plantsSuggested ?? []),
+        ...(this.exploreService.plantsNearby ?? []),
+        ...(this.exploreService.plantsNew ?? [])
       ].find(p => p.id === task.id);
 
 

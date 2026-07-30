@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
 import { PlantDetailPage } from '../plant-detail/plant-detail.page';
 import { ExploreService } from 'src/app/services/explore';
+import { TaskCalendarService } from 'src/app/services/taskCalendar';
 
 @Component({
   selector: 'app-map',
@@ -19,6 +20,7 @@ import { ExploreService } from 'src/app/services/explore';
 export class MapPage implements OnInit, AfterViewInit {
   private route = inject(ActivatedRoute);
   exploreService = inject(ExploreService);
+  taskService = inject(TaskCalendarService);
 
 
 
@@ -26,7 +28,7 @@ export class MapPage implements OnInit, AfterViewInit {
 
   userMarker: L.Marker | null = null;
   plantMarker: L.Marker | null = null;
-  taskMarker: L.Marker[] = [];
+  taskMarker: { id: number, marker: L.Marker }[] = [];
 
   circle: L.Circle | null = null;
 
@@ -95,7 +97,7 @@ export class MapPage implements OnInit, AfterViewInit {
     }
 
     this.newMarker();
-    this.showTaskMarker();
+
 
     // Eigener Standort
     this.userMarker = L.marker([lat, lng]).addTo(this.map);
@@ -103,6 +105,8 @@ export class MapPage implements OnInit, AfterViewInit {
     this.circle = L.circle([lat, lng], {
       radius: pos.coords.accuracy
     }).addTo(this.map);
+
+    this.showTaskMarker();
 
     setTimeout(() => {
       this.showPlantMarker();
@@ -154,10 +158,10 @@ export class MapPage implements OnInit, AfterViewInit {
     console.log("showPlantMarker läuft");
 
 
-    /* // alten Pflanzenmarker entfernen idk ob wir sammeln wollen oder nah?? bräuchten vermutlcih iene netfern option
-     if (this.plantMarker) {
-       this.map.removeLayer(this.plantMarker);
-     }*/
+    // alten Pflanzenmarker entfernen idk ob wir sammeln wollen oder nah?? bräuchten vermutlcih iene netfern option
+    if (this.plantMarker) {
+      this.map.removeLayer(this.plantMarker);
+    }
 
 
     // neue makrierung
@@ -183,20 +187,58 @@ export class MapPage implements OnInit, AfterViewInit {
 
   showTaskMarker() {
 
-    console.log("showTaskMarker gestartet");
+    this.taskMarker.forEach(item => {
+      this.map.removeLayer(item.marker);
+    });
 
-    this.exploreService.mapMarkers.forEach(marker => {
+    this.taskMarker = [];
 
-      const newMarker = L.marker([
-        marker.lat,
-        marker.lng
-      ])
-        .addTo(this.map)
-        .bindPopup(marker.name);
 
-      this.taskMarker.push(newMarker);
+    this.taskService.task.forEach((task: any) => {
+
+      const plant = [
+        ...this.exploreService.plantsSuggested,
+        ...this.exploreService.plantsNearby,
+        ...this.exploreService.plantsNew
+      ].find(p => p.id === task.id);
+
+
+      if (plant) {
+
+        const marker = L.marker([
+          plant.latitude,
+          plant.longitude
+        ])
+          .addTo(this.map)
+          .bindPopup(plant.name);
+
+
+        this.taskMarker.push({
+          id: plant.id,
+          marker: marker
+        });
+
+      }
 
     });
+
+  }
+  delTaskMarker(id: number) {
+
+    const found = this.taskMarker.find(
+      item => item.id === id
+    );
+
+    if (found) {
+
+      this.map.removeLayer(found.marker);
+
+      this.taskMarker =
+        this.taskMarker.filter(
+          item => item.id !== id
+        );
+
+    }
 
   }
 

@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
-import { CalendarPage } from '../calendar/calendar.page';
+
 import { SavingProfile } from 'src/app/services/savingProfile';
 import { TaskCalendarService } from 'src/app/services/taskCalendar';
-import { MapPage } from '../map/map.page';
+
 
 
 @Component({
@@ -24,11 +24,9 @@ export class PlantDetailPage implements OnInit {
   private exploreService = inject(ExploreService);
 
 
-
   showDates = [];
   plant: any;
   chosenDate = '';
-  //mapMarkers: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -84,8 +82,6 @@ export class PlantDetailPage implements OnInit {
     );
 
   }
-
-
   onWillDismiss(event: any) {
     console.log(event);
   }
@@ -96,30 +92,23 @@ export class PlantDetailPage implements OnInit {
   }
 
 
-  confirm() {
+  async confirm() {
     if (this.chosenDate === '') {
       return
     } else
-      this.helping();
+      await this.helping();
 
     this.taskService.add(
       this.chosenDate,
       this.plant.description,
       this.plant.name,
       this.plant.text,
-      this.plant.id
+      this.plant.id,
+
     );
-    this.exploreService.mapMarkers.push({
-      lat: this.plant.latitude,
-      lng: this.plant.longitude,
-      name: this.plant.name
-    });
-
-
-
+    //this.exploreService.addMapMarker(this.plant);
+    this.showOnMap();
     this.modal.dismiss(null, 'confirm');
-
-
   }
   /* helping() {
     if (this.plant.peopleNeeded > 0) {
@@ -144,24 +133,34 @@ export class PlantDetailPage implements OnInit {
   }
 
   async stopHelping() {
-    if (this.plant.isHelping) {
-      this.plant.peopleNeeded++;
-      this.plant.isHelping = false;
-      this.taskService.remove(this.plant.id);
+    const task = this.taskService.task.find(
+      (t: any) => t.id === this.plant.id
+    );
 
-      this.exploreService.mapMarkers = this.exploreService.mapMarkers.filter(
-        marker => marker.lat !== this.plant.latitude || marker.lng !== this.plant.longitude
-      );
+    if (task) {
+      await this.taskService.delete(task);
+      /*this.router.navigate(
+        ['/tabs/map'],
+        {
+          queryParams: {
+            refresh: Date.now()
+          }
+        }
+      );*/
 
-      await this.exploreService.savePlants();
-      this.saving.iHelpDown();
+
     }
+
+    this.plant = [
+      ...this.exploreService.plantsSuggested,
+      ...this.exploreService.plantsNearby,
+      ...this.exploreService.plantsNew
+    ].find(p => p.id === this.plant.id);
   }
 
   addFavorite() {
     this.exploreService.addFavorite(this.plant);
   }
 
+
 }
-
-

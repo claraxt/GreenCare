@@ -1,9 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Plant } from 'src/app/models/plant';
-
+import { ExploreService } from '../../services/explore';
 import {
   IonContent,
   IonHeader,
@@ -15,10 +12,8 @@ import {
   IonCard,
   IonCardContent
 } from '@ionic/angular/standalone';
-
-
-
-import { ExploreService } from '../../services/explore';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-explore',
@@ -44,42 +39,43 @@ export class ExplorePage implements OnInit {
   selectedSegment = 'vorgeschlagen';
 
   router = inject(Router);
-  exploreService = inject(ExploreService)
+  exploreService = inject(ExploreService);
 
   plants: any[] = [];
 
-
-  ngOnInit() {
-
-    this.plants = this.exploreService.plantsSuggested;
-
-
+  async ngOnInit() {
+    await this.exploreService.loadPlants();
+    this.refreshPlants();
   }
 
+  async ionViewWillEnter() {
+    await this.exploreService.loadPlants();
+    this.refreshPlants();
+  }
 
-
-  segmentChanged(event: any) {
-
-    this.selectedSegment = event.detail.value;
+  refreshPlants() {
 
     if (this.selectedSegment === 'vorgeschlagen') {
-      this.plants = this.exploreService.plantsSuggested;
+      this.plants = [...this.exploreService.plantsSuggested];
     }
 
     if (this.selectedSegment === 'naehe') {
-      this.plants = this.exploreService.plantsNearby;
+      this.plants = [...this.exploreService.plantsNearby];
     }
 
     if (this.selectedSegment === 'neu') {
-      this.plants = this.exploreService.plantsNew;
+      this.plants = [...this.exploreService.plantsNew];
     }
 
   }
 
+  segmentChanged(event: any) {
+    this.selectedSegment = event.detail.value;
+    this.refreshPlants();
+  }
+
   openPlantDetail(plant: any) {
-
     this.router.navigate(['/plant', plant.id]);
-
   }
 
 }

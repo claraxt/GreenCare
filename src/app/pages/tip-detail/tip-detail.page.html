@@ -1,29 +1,19 @@
 <ion-header>
-
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/community"></ion-back-button>
     </ion-buttons>
-
     <ion-title>Tipp</ion-title>
-
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
-
   <ion-card class="tip-card">
-
     <img [src]="tip?.image" class="tip-image">
-
     <ion-card-content>
-
       <h1>
         {{tip?.title}}
       </h1>
-
       <p>
         <ion-icon name="heart-outline"></ion-icon>
         {{ tip?.likes }} Likes
@@ -33,10 +23,6 @@
         </ion-icon>
         {{tip?.likes}}
       </ion-button>
-
     </ion-card-content>
-
   </ion-card>
-
-
 </ion-content>

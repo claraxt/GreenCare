@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { Community } from './community';
 
 describe('Community', () => {

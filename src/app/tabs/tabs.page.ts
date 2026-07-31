@@ -9,6 +9,7 @@ import { location, search, people, calendar, person, settings, heart, trashOutli
   styleUrls: ['tabs.page.scss'],
   imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
 })
+
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
 

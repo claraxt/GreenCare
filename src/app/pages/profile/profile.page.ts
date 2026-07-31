@@ -15,21 +15,17 @@ import { ExploreService } from 'src/app/services/explore';
   standalone: true,
   imports: [RouterLink, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonItem, IonAvatar, IonLabel, IonCard, IonIcon, IonText, IonCol, IonGrid, IonRow, FormsModule, IonButton, IonInput, IonModal]
 })
+
 export class ProfilePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
-
   private greenCareService = inject(SavingProfile);
   exploreService = inject(ExploreService)
 
-
-  constructor(
-
-  ) { }
+  constructor() {}
 
   favorites = this.exploreService.favorites;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   name: string = '';
   description: string = '';
@@ -43,7 +39,6 @@ export class ProfilePage implements OnInit {
     this.modal.dismiss(null, 'cancel');
   }
 
-
   confirm() {
     if (this.name === '') {
       return;
@@ -52,8 +47,6 @@ export class ProfilePage implements OnInit {
         name: this.name,
         description: this.description,
         image: this.image,
-
-
       }, 'confirm');
     }
   }
@@ -82,13 +75,11 @@ export class ProfilePage implements OnInit {
   }
 
   async takePicture() {
-
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.DataUrl
     });
-
     this.image = image.dataUrl!;
     console.log(this.image);
   }

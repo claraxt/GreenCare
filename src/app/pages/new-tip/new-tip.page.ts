@@ -5,13 +5,15 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, Ion
 import { Router } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 import { SavingProfile } from 'src/app/services/savingProfile';
+
 @Component({
   selector: 'app-new-tip',
   templateUrl: './new-tip.page.html',
   styleUrls: ['./new-tip.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
 })
+
 export class NewTipPage implements OnInit {
   selectedImage = "";
   title = "";
@@ -24,10 +26,9 @@ export class NewTipPage implements OnInit {
 
   constructor(
     private router: Router,
+  ) {}
 
-  ) { }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   selectImage() {
     this.fileInput.nativeElement.click();
@@ -42,7 +43,6 @@ export class NewTipPage implements OnInit {
     reader.onload = () => {
       this.selectedImage = reader.result as string;
     };
-
     reader.readAsDataURL(file);
   }
 

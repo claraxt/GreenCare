@@ -1,61 +1,41 @@
 <ion-header>
-
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/community"></ion-back-button>
     </ion-buttons>
-
     <ion-title>Tipp hinzufügen</ion-title>
-
   </ion-toolbar>
-
 </ion-header>
- 
-<ion-content>
-  
-  
-  <div class="content">
 
+<ion-content>
+  <div class="content">
     <h2>Gib einen Tipp ab</h2>
-    
     <ion-button
     expand="block"
       (click)="selectImage()">
       Foto hinzufügen
     </ion-button>
-
     <img
      *ngIf="selectedImage"
      [src]="selectedImage"
      class="preview-image">
-
      <input
      #fileInput
       type="file"
       accept="image/*"
       hidden
       (change)="imageSelected($event)">
-
-
     <ion-item class="input-box">
-
       <ion-input
         label="Titel"
         labelPlacement="stacked"
         placeholder="Gib einen Titel ein"
         [(ngModel)]="title">
       </ion-input>
-
     </ion-item>
-
-
     <ion-button expand="block"(click)="publishTip()">
       Tipp veröffentlichen
     </ion-button>
-
   </div>
-
   <input type="file" hidden>
-
 </ion-content>

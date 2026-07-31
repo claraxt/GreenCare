@@ -1,40 +1,32 @@
 import { Injectable } from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root',
 })
+
 export class PlantService {
 
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 
   async plantInfo() {
-
     console.log("1: Fetch startet");
-
     const response = await fetch(
       'https://trefle.io/api/v1/plants?token=usr-GJSaXOZN2GKx0_2WU8kKKYdPlh1iiDo88UruQsE248g'
     );
-
     console.log("2: Antwort bekommen");
-
     const data = await response.json();
-
     console.log("3: Daten", data);
-
     return data.data;
   }
+
   async localPlants() {
     const response = await fetch('assets/plant.json');
     return await response.json();
   }
+
   async getAllPlants() {
     const local = await this.localPlants();
     const trefle = await this.plantInfo();
-
     return [...local, ...trefle];
   }
 }

@@ -8,6 +8,7 @@ import { TaskCalendarService } from 'src/app/services/taskCalendar';
   styleUrls: ['example.component.css'],
   imports: [IonDatetime],
 })
+
 export class Calendar {
   ;
 }

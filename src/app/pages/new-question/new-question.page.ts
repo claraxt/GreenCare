@@ -13,6 +13,7 @@ import { SavingProfile } from 'src/app/services/savingProfile';
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
 })
+
 export class NewQuestionPage implements OnInit {
   selectedImage = "";
   title = "";
@@ -23,16 +24,11 @@ export class NewQuestionPage implements OnInit {
   private saving = inject(SavingProfile);
   public communityService = inject(CommunityService);
 
-
-
   constructor(
     private router: Router,
+  ) {}
 
-
-
-  ) { }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   selectImage() {
     this.fileInput.nativeElement.click();
@@ -47,7 +43,6 @@ export class NewQuestionPage implements OnInit {
     reader.onload = () => {
       this.selectedImage = reader.result as string;
     };
-
     reader.readAsDataURL(file);
   }
 
@@ -70,13 +65,5 @@ export class NewQuestionPage implements OnInit {
       this.router.navigate(['/tabs/community']);
     }
   }
-
-  /* postsUp() {
- 
-     //this.plant.peopleNeeded--;
-     this.saving.postsUp();
-     console.log(this.saving.greenCare());
- 
-   }*/
 }
 

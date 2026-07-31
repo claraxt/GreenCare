@@ -10,17 +10,18 @@ import { SavingProfile } from 'src/app/services/savingProfile';
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonToolbar, IonCard, IonCardContent, CommonModule, FormsModule, IonButtons, IonBackButton, IonButton, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, CommonModule, FormsModule, IonButtons, IonBackButton, IonButton, IonIcon]
 })
+
 export class FavoritesPage implements OnInit {
   public exploreService = inject(ExploreService);
   savingProfile = inject(SavingProfile);
   private alertController = inject(AlertController);
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
   async delete(plant: any) {
     const alert = await this.alertController.create({
       header: 'Einsatz löschen?',
@@ -33,18 +34,17 @@ export class FavoritesPage implements OnInit {
             console.log('Alert canceled');
           },
         },
+
         {
           text: 'OK',
           role: 'confirm',
           handler: () => {
             this.exploreService.delete(plant);
             this.savingProfile.locationDown();
-
           },
         },
       ],
     });
-
     await alert.present();
   }
 }

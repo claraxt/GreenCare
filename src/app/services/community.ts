@@ -5,11 +5,11 @@ import { Preferences } from '@capacitor/preferences';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CommunityService {
   private loaded = false;
 
-  constructor() { }
-
+  constructor() {}
 
   questions = [
     {
@@ -77,7 +77,6 @@ export class CommunityService {
     );
   }
 
-
   deleteQuestion(id: number) {
     this.questions = this.questions.filter(
       question => question.id !== id
@@ -104,7 +103,6 @@ export class CommunityService {
   }
 
   async saveData() {
-
     await Preferences.set({
       key: 'questions',
       value: JSON.stringify(this.questions)
@@ -138,7 +136,4 @@ export class CommunityService {
   saveLikes() {
     this.saveData();
   }
-
-
-
 }

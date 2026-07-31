@@ -3,6 +3,7 @@ import { Injectable, effect, signal } from '@angular/core';
 @Injectable({
     providedIn: 'root',
 })
+
 export class SavingProfile {
 
     constructor() {
@@ -48,7 +49,6 @@ export class SavingProfile {
             ...profile,
             iHelp: profile.iHelp + 1
         }));
-
         this.persist();
     }
 
@@ -57,7 +57,6 @@ export class SavingProfile {
             ...profile,
             iHelp: profile.iHelp - 1
         }));
-
         this.persist();
     }
 
@@ -66,15 +65,14 @@ export class SavingProfile {
             ...profile,
             posts: profile.posts + 1
         }));
-
         this.persist();
     }
+
     postsDown() {
         this.greenCare.update(profile => ({
             ...profile,
             posts: profile.posts - 1
         }));
-
         this.persist();
     }
 
@@ -83,7 +81,6 @@ export class SavingProfile {
             ...profile,
             location: profile.location + 1
         }));
-
         this.persist();
     }
 
@@ -92,9 +89,6 @@ export class SavingProfile {
             ...profile,
             location: profile.location - 1
         }));
-
         this.persist();
     }
-
-
 }

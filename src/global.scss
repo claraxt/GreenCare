@@ -1,320 +1,159 @@
 @import "leaflet/dist/leaflet.css";
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
-/* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
-
-/* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-/* @import "@ionic/angular/css/palettes/dark.system.css"; */
-
-
-/* 
-   Farben
- */
-
+/* Farben*/
 :root {
-
   --green-primary: #5F7F5A;
   --green-dark: #415A3A;
   --green-light: #C8D4B0;
-
   --cream: #F8F5EE;
   --white-card: #FFFDF9;
-
   --text: #2D2D2D;
   --text-light: #666666;
-
   --ion-color-danger: #aa9a67;
-
 }
 
-
-/* 
-   Gesamte App
- */
-
+/* Gesamte App */
 html,
 body,
 ion-app,
-
-
 ion-content {
   --background: #F6F2E8;
   color: var(--text);
-
   font-family: "Poppins", sans-serif;
-
 }
 
-
-/* 
-   Header
- */
-
+/* Header*/
 ion-header ion-toolbar {
   --background: #F6F2E8;
   --color: #2F4B33;
 }
 
-
-
-
-/* 
-   Titel
- */
-
+/* Titel*/
 ion-title {
-
   font-family: "Cormorant Garamond", serif;
-
   font-size: 34px;
-
   font-weight: 700;
-
   color: var(--green-dark);
-
 }
 
-
-/* 
-   Segment
- */
-
+/* Segment*/
 ion-segment {
-
   --background: transparent;
-
 }
-
 ion-segment-button {
-
   --color: #777;
-
   --color-checked: var(--green-dark);
-
   --indicator-color: var(--green-primary);
-
   font-family: "Poppins";
-
   font-weight: 500;
-
 }
 
-
-/* 
-   Karten
- */
-
+/* Karten*/
 ion-card {
-
   background: var(--cream);
-
   border-radius: 22px;
-
   box-shadow:
     0px 6px 20px rgba(0, 0, 0, 0.08);
-
   margin: 18px;
-
 }
 
-
-/* 
-   Buttons
- */
-
+/* Buttons*/
 ion-button {
-
   --background: var(--green-primary);
-
   --border-radius: 16px;
-
   --color: white;
-
   height: 48px;
-
   font-family: "Poppins";
-
   font-weight: 600;
-
 }
 
-
-/* 
-   Labels
- */
-
+/*Labels*/
 h1 {
-
   font-family: "Cormorant Garamond", serif;
-
   color: var(--green-dark);
-
 }
-
 h2 {
-
   font-family: "Cormorant Garamond", serif;
-
   color: var(--green-dark);
-
 }
-
 h3 {
-
   font-family: "Cormorant Garamond", serif;
-
   color: var(--green-dark);
-
 }
-
 p {
-
   color: var(--text-light);
-
   font-family: "Poppins";
-
 }
 
-
-/* 
-   Icons
- */
-
+/*Icons */
 ion-icon {
-
   color: var(--green-dark);
-
 }
 
-
-/* 
-   Tabs
- */
-
+/*Tabs*/
 ion-tab-bar {
-
   --background: #ffffff;
-
   border-top: 1px solid #ece7df;
-
   height: 70px;
-
 }
-
 ion-tab-button {
-
   --color: #888;
-
   --color-selected: var(--green-dark);
-
 }
 
-
-/* 
-   Bilder
- */
-
+/*Bilder*/
 img {
-
   width: 100%;
-
   display: block;
-
   border-radius: 18px;
-
 }
 
-
-/* 
-   Scrollbar
- */
-
+/*Scrollbar*/
 ::-webkit-scrollbar {
-
   width: 8px;
-
 }
-
 ::-webkit-scrollbar-thumb {
-
   background: #C8D4B0;
-
   border-radius: 10px;
-
 }
-
 ion-datetime {
-
   max-width: 80%;
   min-width: 350px;
-
   border-radius: 16px;
 }
-
 ion-datetime {
   --background: #ECE6D8;
-
   --wheel-highlight-background: #2F4B33;
   --wheel-highlight-border-radius: 48px;
   --wheel-fade-background: #2F4B33;
-
   border-radius: 16px;
-
 }
-
 ion-datetime::part(datetime-header) {
   background-color: #2F4B33;
 }
-
-
 ion-datetime::part(time-button) {
   background: #ECE6D8;
   color: #2F4B33;
   border-radius: 12px;
 }
-
 ion-datetime::part(calendar-day active) {
   background-color: #2F4B33;
   outline: none;
   box-shadow: none;
 }
-
-
 .sendAnswer{
     color: #F6F2E8;
 }
-
 .newAnswer{
     color:#F6F2E8;
 }

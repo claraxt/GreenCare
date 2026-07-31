@@ -5,7 +5,6 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTex
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 
-
 @Component({
   selector: 'app-tip-detail',
   templateUrl: './tip-detail.page.html',
@@ -13,13 +12,12 @@ import { CommunityService } from 'src/app/services/community';
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonIcon, IonCardContent, IonButtons, IonBackButton, CommonModule, FormsModule]
 })
+
 export class TipDetailPage implements OnInit {
   public communityService = inject(CommunityService);
   private route = inject(ActivatedRoute);
 
   tip: any;
-
-
 
   async ngOnInit() {
     await this.communityService.loadData();
@@ -28,7 +26,6 @@ export class TipDetailPage implements OnInit {
   }
 
    likeTip() {
-
     if (!this.tip.liked) {
       this.tip.likes++;
       this.tip.liked = true;
@@ -37,9 +34,5 @@ export class TipDetailPage implements OnInit {
       this.tip.liked = false;
     }
       this.communityService.saveData();
-
-
   }
-
-
 }

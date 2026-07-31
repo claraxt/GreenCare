@@ -5,15 +5,16 @@ import { Preferences } from '@capacitor/preferences';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ExploreService {
   savingProfile = inject(SavingProfile)
+
   constructor() { this.loadPlants(); }
 
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
 
   addFavorite(plant: any) {
     const exists = this.favorites.find(p => p.id === plant.id);
-
     if (!exists) {
       this.favorites.push(plant);
       this.persist();
@@ -22,7 +23,6 @@ export class ExploreService {
   }
 
   plantsSuggested = [
-
     {
       id: 1,
       name: 'Park am See',
@@ -42,7 +42,6 @@ export class ExploreService {
       latitude: 52.304399,
       longitude: 8.051612,
     },
-
 
     {
       id: 2,
@@ -103,11 +102,9 @@ export class ExploreService {
       latitude: 52.303293,
       longitude: 8.052641,
     },
-
   ];
 
   plantsNearby = [
-
     {
       id: 5,
       name: 'Marktplatz',
@@ -167,11 +164,9 @@ export class ExploreService {
       latitude: 52.288366,
       longitude: 8.052233,
     },
-
   ];
 
   plantsNew = [
-
     {
       id: 8,
       name: 'Bahnhof',
@@ -211,13 +206,10 @@ export class ExploreService {
       latitude: 52.277832,
       longitude: 8.041496,
     },
-
   ];
 
   delete(favorites: any) {
-
     this.favorites.splice(this.favorites.indexOf(favorites), 1);
-
     this.persist()
   }
 
@@ -226,49 +218,38 @@ export class ExploreService {
   }
 
   async savePlants() {
-
     await Preferences.set({
       key: 'plantsSuggested',
       value: JSON.stringify(this.plantsSuggested)
     });
-
     await Preferences.set({
       key: 'plantsNearby',
       value: JSON.stringify(this.plantsNearby)
     });
-
     await Preferences.set({
       key: 'plantsNew',
       value: JSON.stringify(this.plantsNew)
     });
-
   }
 
   async loadPlants() {
-
     const suggested = await Preferences.get({
       key: 'plantsSuggested'
     });
-
     if (suggested.value) {
       this.plantsSuggested = JSON.parse(suggested.value);
     }
-
     const nearby = await Preferences.get({
       key: 'plantsNearby'
     });
-
     if (nearby.value) {
       this.plantsNearby = JSON.parse(nearby.value);
     }
-
     const newest = await Preferences.get({
       key: 'plantsNew'
     });
-
     if (newest.value) {
       this.plantsNew = JSON.parse(newest.value);
     }
-
   }
 }

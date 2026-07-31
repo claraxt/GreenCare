@@ -1,17 +1,12 @@
 <ion-header>
-
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/community"></ion-back-button>
     </ion-buttons>
-
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
-
   <ion-card class="question-card">
     <img [src]="question?.image" class="question-image">
     <ion-card-content>
@@ -23,13 +18,9 @@
       </p>
     </ion-card-content>
   </ion-card>
-
-
-
   <h2 class="answer-title">
     Antworten
   </h2>
-
   <ion-card *ngFor="let answer of question?.answers; let i = index">
     <ion-card-content>
       <h3>{{ answer?.user }}</h3>
@@ -39,8 +30,6 @@
       </ion-button>
     </ion-card-content>
   </ion-card>
-
-
   <ion-card class="write-card">
     <ion-textarea [(ngModel)]="newAnswer" placeholder="Antwort schreiben..." autoGrow="true">
     </ion-textarea>
@@ -48,6 +37,4 @@
       Antwort senden
     </ion-button>
   </ion-card>
-
-
 </ion-content>

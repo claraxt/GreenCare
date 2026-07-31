@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
-import { CalendarPage } from '../calendar/calendar.page';
+
 import { SavingProfile } from 'src/app/services/savingProfile';
 import { TaskCalendarService } from 'src/app/services/taskCalendar';
+
 
 
 @Component({
@@ -21,6 +22,7 @@ export class PlantDetailPage implements OnInit {
   private saving = inject(SavingProfile);
   private taskService = inject(TaskCalendarService);
   private exploreService = inject(ExploreService);
+
 
   showDates = [];
   plant: any;
@@ -90,20 +92,22 @@ export class PlantDetailPage implements OnInit {
   }
 
 
-  confirm() {
+  async confirm() {
     if (this.chosenDate === '') {
       return
     } else
-      this.helping();
+      await this.helping();
 
     this.taskService.add(
       this.chosenDate,
       this.plant.description,
       this.plant.name,
       this.plant.text,
-      this.plant.id
-    );
+      this.plant.id,
 
+    );
+    //this.exploreService.addMapMarker(this.plant);
+    this.showOnMap();
     this.modal.dismiss(null, 'confirm');
   }
   /* helping() {
@@ -129,19 +133,29 @@ export class PlantDetailPage implements OnInit {
   }
 
   async stopHelping() {
-     const task = this.taskService.task.find(
-    (t: any) => t.id === this.plant.id
-  );
+    const task = this.taskService.task.find(
+      (t: any) => t.id === this.plant.id
+    );
 
-  if (task) {
-   await this.taskService.delete(task);
-  }
+    if (task) {
+      await this.taskService.delete(task);
+      /*this.router.navigate(
+        ['/tabs/map'],
+        {
+          queryParams: {
+            refresh: Date.now()
+          }
+        }
+      );*/
 
-  this.plant = [
-    ...this.exploreService.plantsSuggested,
-    ...this.exploreService.plantsNearby,
-    ...this.exploreService.plantsNew
-  ].find(p => p.id === this.plant.id);
+
+    }
+
+    this.plant = [
+      ...this.exploreService.plantsSuggested,
+      ...this.exploreService.plantsNearby,
+      ...this.exploreService.plantsNew
+    ].find(p => p.id === this.plant.id);
   }
 
   addFavorite() {
@@ -150,5 +164,3 @@ export class PlantDetailPage implements OnInit {
 
 
 }
-
-

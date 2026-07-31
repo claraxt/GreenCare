@@ -22,6 +22,8 @@ export class ExploreService {
     }
   }
 
+
+
   plantsSuggested = [
     {
       id: 1,

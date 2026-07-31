@@ -57,6 +57,7 @@ export class CalendarPage implements OnInit {
           handler: async () => {
             await this.taskService.delete(task);
             this.updateShowDates();
+
           },
         },
       ],

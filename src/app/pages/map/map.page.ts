@@ -99,7 +99,7 @@ export class MapPage implements OnInit, AfterViewInit {
 
     }
 
-    this.newMarker();
+
 
 
     // Eigener Standort
@@ -220,7 +220,7 @@ export class MapPage implements OnInit, AfterViewInit {
       console.log(
         'Task',
         task.id,
-        '→ Plant:',
+        'Plant:',
         plant
       );
 
@@ -248,37 +248,6 @@ export class MapPage implements OnInit, AfterViewInit {
       }
     });
 
-
-  }
-  delTaskMarker(id: number) {
-
-    const found = this.taskMarker.find(
-      item => item.id === id
-    );
-
-    if (found) {
-
-      this.map.removeLayer(found.marker);
-
-      this.taskMarker =
-        this.taskMarker.filter(
-          item => item.id !== id
-        );
-
-    }
-
-  }
-
-  newMarker() {
-
-    this.map.on('click', (click: L.LeafletMouseEvent) => {
-
-      const lat = click.latlng.lat;
-      const lng = click.latlng.lng;
-
-      L.marker([lat, lng]).addTo(this.map);
-
-    });
 
   }
 

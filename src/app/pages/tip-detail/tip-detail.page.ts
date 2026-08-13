@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonIcon, IonCardContent, IonButtons, IonBackButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonCard, IonIcon, IonCardContent, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 
@@ -10,7 +10,7 @@ import { CommunityService } from 'src/app/services/community';
   templateUrl: './tip-detail.page.html',
   styleUrls: ['./tip-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonIcon, IonCardContent, IonButtons, IonBackButton, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonCard, IonIcon, IonCardContent, IonButtons, IonBackButton, CommonModule, FormsModule]
 })
 
 export class TipDetailPage implements OnInit {
@@ -25,7 +25,7 @@ export class TipDetailPage implements OnInit {
     this.tip = this.communityService.getTip(id);
   }
 
-   likeTip() {
+  likeTip() {
     if (!this.tip.liked) {
       this.tip.likes++;
       this.tip.liked = true;
@@ -33,6 +33,6 @@ export class TipDetailPage implements OnInit {
       this.tip.likes--;
       this.tip.liked = false;
     }
-      this.communityService.saveData();
+    this.communityService.saveData();
   }
 }

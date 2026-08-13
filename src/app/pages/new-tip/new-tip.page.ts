@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonButtons, IonBackButton, IonItem } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 import { SavingProfile } from 'src/app/services/savingProfile';
@@ -11,7 +11,7 @@ import { SavingProfile } from 'src/app/services/savingProfile';
   templateUrl: './new-tip.page.html',
   styleUrls: ['./new-tip.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonTextarea, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonButtons, IonBackButton, IonItem, CommonModule, FormsModule]
 })
 
 export class NewTipPage implements OnInit {
@@ -26,9 +26,9 @@ export class NewTipPage implements OnInit {
 
   constructor(
     private router: Router,
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   selectImage() {
     this.fileInput.nativeElement.click();

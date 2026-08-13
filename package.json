@@ -30,6 +30,7 @@
     "@capacitor/preferences": "^8.0.1",
     "@capacitor/status-bar": "8.0.2",
     "@ionic/angular": "^8.0.0",
+    "firebase": "^12.17.1",
     "ionicons": "^7.0.0",
     "leaflet": "^1.9.4",
     "node-fetch": "^3.3.2",

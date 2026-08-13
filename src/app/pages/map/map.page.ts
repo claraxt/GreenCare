@@ -56,8 +56,10 @@ export class MapPage implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
     console.log("ngAfterViewInit");
+
+    await this.exploreService.loadPlants();
 
     navigator.geolocation.getCurrentPosition(
       (pos) => this.showMap(pos),
@@ -185,8 +187,21 @@ export class MapPage implements OnInit, AfterViewInit {
     );
 
   }
+  ionViewWillEnter() {
+    if (this.map) {
+      this.showTaskMarker();
+    }
+  }
 
   showTaskMarker() {
+
+
+    this.taskService.task.map((t: any) => t.id)
+
+    this.exploreService.plantsSuggested.map(p => p.id)
+    this.exploreService.plantsNearby.map(p => p.id)
+    this.exploreService.plantsNew.map(p => p.id)
+
 
     this.taskMarker.forEach(item => {
       this.map.removeLayer(item.marker);
@@ -194,15 +209,20 @@ export class MapPage implements OnInit, AfterViewInit {
 
     this.taskMarker = [];
 
-
     this.taskService.task.forEach((task: any) => {
 
       const plant = [
-        ...(this.exploreService.plantsSuggested ?? []),
-        ...(this.exploreService.plantsNearby ?? []),
-        ...(this.exploreService.plantsNew ?? [])
+        ...this.exploreService.plantsSuggested,
+        ...this.exploreService.plantsNearby,
+        ...this.exploreService.plantsNew
       ].find(p => p.id === task.id);
 
+      console.log(
+        'Task',
+        task.id,
+        '→ Plant:',
+        plant
+      );
 
       if (plant) {
 
@@ -213,15 +233,21 @@ export class MapPage implements OnInit, AfterViewInit {
           .addTo(this.map)
           .bindPopup(plant.name);
 
-
         this.taskMarker.push({
           id: plant.id,
-          marker: marker
+          marker
         });
 
-      }
+      } else {
 
+        console.warn(
+          'KEINE PFLANZE FÜR TASK GEFUNDEN:',
+          task.id
+        );
+
+      }
     });
+
 
   }
   delTaskMarker(id: number) {

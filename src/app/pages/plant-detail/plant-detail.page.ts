@@ -107,8 +107,9 @@ export class PlantDetailPage implements OnInit {
 
     );
     //this.exploreService.addMapMarker(this.plant);
+
+    //this.modal.dismiss(null, 'confirm');
     this.showOnMap();
-    this.modal.dismiss(null, 'confirm');
   }
   /* helping() {
     if (this.plant.peopleNeeded > 0) {
@@ -139,14 +140,14 @@ export class PlantDetailPage implements OnInit {
 
     if (task) {
       await this.taskService.delete(task);
-      /*this.router.navigate(
-        ['/tabs/map'],
-        {
-          queryParams: {
-            refresh: Date.now()
-          }
-        }
-      );*/
+      /* this.router.navigate(
+         ['/tabs/map'],
+         {
+           queryParams: {
+             refresh: Date.now()
+           }
+         }
+       );*/
 
 
     }

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
-import { PlantDetailPage } from '../plant-detail/plant-detail.page';
 import { ExploreService } from 'src/app/services/explore';
 import { TaskCalendarService } from 'src/app/services/taskCalendar';
 
@@ -26,6 +25,29 @@ export class MapPage implements OnInit, AfterViewInit {
 
   map: any;
 
+
+  myLocation = L.icon({
+    iconUrl: 'assets/leaflet/myLocation.png',
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+  });
+
+  myTask = L.icon({
+    iconUrl: 'assets/leaflet/myTask.png',
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+  });
+
+  myPlant = L.icon({
+    iconUrl: 'assets/leaflet/myPlant.png',
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+  });
+
+
   userMarker: L.Marker | null = null;
   plantMarker: L.Marker | null = null;
   taskMarker: { id: number, marker: L.Marker }[] = [];
@@ -44,8 +66,6 @@ export class MapPage implements OnInit, AfterViewInit {
         this.targetLat = Number(params['lat']);
         this.targetLng = Number(params['lng']);
 
-        console.log("Neues Ziel:", this.targetLat, this.targetLng);
-
         if (this.map) {
           this.showPlantMarker();
         }
@@ -57,7 +77,6 @@ export class MapPage implements OnInit, AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    console.log("ngAfterViewInit");
 
     await this.exploreService.loadPlants();
 
@@ -76,7 +95,6 @@ export class MapPage implements OnInit, AfterViewInit {
   }
 
   showMap(pos: GeolocationPosition) {
-    console.log("showMap gestartet");
 
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
@@ -103,7 +121,10 @@ export class MapPage implements OnInit, AfterViewInit {
 
 
     // Eigener Standort
-    this.userMarker = L.marker([lat, lng]).addTo(this.map);
+    this.userMarker = L.marker([lat, lng],
+      {
+        icon: this.myLocation
+      }).addTo(this.map);
 
     this.circle = L.circle([lat, lng], {
       radius: pos.coords.accuracy
@@ -158,9 +179,6 @@ export class MapPage implements OnInit, AfterViewInit {
       return;
     }
 
-    console.log("showPlantMarker läuft");
-
-
     // alten Pflanzenmarker entfernen idk ob wir sammeln wollen oder nah?? bräuchten vermutlcih iene netfern option
     if (this.plantMarker) {
       this.map.removeLayer(this.plantMarker);
@@ -171,7 +189,10 @@ export class MapPage implements OnInit, AfterViewInit {
     this.plantMarker = L.marker([
       this.targetLat,
       this.targetLng
-    ])
+    ],
+      {
+        icon: this.myPlant
+      })
       .addTo(this.map)
       .bindPopup("Pflegeort")
       .openPopup();
@@ -217,19 +238,31 @@ export class MapPage implements OnInit, AfterViewInit {
         ...this.exploreService.plantsNew
       ].find(p => p.id === task.id);
 
-      console.log(
+      /*console.log(
         'Task',
         task.id,
         'Plant:',
         plant
-      );
+      );*/
 
       if (plant) {
+        if (
+          plant.latitude === this.targetLat &&
+          plant.longitude === this.targetLng
+        ) {
+          if (this.plantMarker) {
+            this.map.removeLayer(this.plantMarker);
+            this.plantMarker = null;
+          }
+        }
 
         const marker = L.marker([
           plant.latitude,
           plant.longitude
-        ])
+        ],
+          {
+            icon: this.myTask
+          })
           .addTo(this.map)
           .bindPopup(plant.name);
 

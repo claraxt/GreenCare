@@ -27,7 +27,7 @@ export class CalendarPage implements OnInit {
   showDates: any[] = [];
 
   ngOnInit() {
-    console.log(this.taskService.task);
+
     this.updateShowDates();
   }
 

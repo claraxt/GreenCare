@@ -45,7 +45,74 @@ export class TaskCalendarService {
         this.persist();
     }
 
+    /*async delete(task: any) {
+
+        const plant = [
+            ...this.exploreService.plantsSuggested,
+            ...this.exploreService.plantsNearby,
+            ...this.exploreService.plantsNew
+        ].find(p => p.id === task.id);
+
+        if (plant) {
+            if (plant.isHelping) {
+                //await this.exploreService.changePeopleNeeded(plant, 1);
+
+                //plant.peopleNeeded++;
+                //plant.isHelping = false;
+
+                this.saving.iHelpDown();
+            }
+
+            /*if (plant.isHelping) {
+                plant.peopleNeeded++;
+                plant.isHelping = false;
+
+                await this.exploreService.savePlants();
+
+
+                this.saving.iHelpDown();
+            }*/
+
+    //}
+
+    /*this.task = this.task.filter((t: any) => t.id !== task.id);
+    //this.taskChanged = true;
+
+    this.persist();
+
+
+}*/
+
+
     async delete(task: any) {
+
+        const plant = [
+            ...this.exploreService.plantsSuggested,
+            ...this.exploreService.plantsNearby,
+            ...this.exploreService.plantsNew
+        ].find(p => p.id === task.id);
+
+        if (plant && plant.isHelping) {
+
+            await this.exploreService.changePeopleNeeded(
+                plant,
+                1
+            );
+
+            plant.peopleNeeded++;
+            plant.isHelping = false;
+
+            this.saving.iHelpDown();
+        }
+
+        this.task = this.task.filter(
+            (t: any) => t.id !== task.id
+        );
+
+        this.persist();
+    }
+
+    /*async delete(task: any) {
 
         const plant = [
             ...this.exploreService.plantsSuggested,
@@ -56,22 +123,23 @@ export class TaskCalendarService {
         if (plant) {
 
             if (plant.isHelping) {
+
                 plant.peopleNeeded++;
                 plant.isHelping = false;
 
-                await this.exploreService.savePlants();
-
+                await this.exploreService.changePeopleNeeded(
+                    plant,
+                    1
+                );
 
                 this.saving.iHelpDown();
             }
-
         }
 
-        this.task = this.task.filter((t: any) => t.id !== task.id);
-        //this.taskChanged = true;
+        this.task = this.task.filter(
+            (t: any) => t.id !== task.id
+        );
 
         this.persist();
-
-
-    }
+    }*/
 }

@@ -10,7 +10,7 @@ import { PlantService } from 'src/app/services/plant.service';
   templateUrl: './lexicon-detail.page.html',
   styleUrls: ['./lexicon-detail.page.scss'],
   standalone: true,
-  imports: [ IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonCard, IonCardContent ]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonCard, IonCardContent]
 })
 
 export class LexiconDetailPage implements OnInit {

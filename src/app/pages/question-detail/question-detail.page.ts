@@ -22,7 +22,7 @@ export class QuestionDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
   async ngOnInit() {
     await this.communityService.loadData();
@@ -30,7 +30,7 @@ export class QuestionDetailPage implements OnInit {
     this.question = this.communityService.getQuestion(id);
   }
 
-  sendAnswer() {
+  async sendAnswer() {
     if (this.newAnswer === "") {
       return
     } else {
@@ -40,14 +40,26 @@ export class QuestionDetailPage implements OnInit {
           text: this.newAnswer
         }
       );
-      this.communityService.saveData();
+      await this.communityService.updateQuestion(
+        this.question.id,
+        {
+          answers: this.question.answers
+        }
+      );
+      //altes noch.. this.communityService.saveData();
       this.newAnswer = "";
     }
   }
 
-  deleteAnswer(index: number) {
+  async deleteAnswer(index: number) {
     this.question.answers.splice(index, 1);
-    this.communityService.saveData();
+    await this.communityService.updateQuestion(
+      this.question.id,
+      {
+        answers: this.question.answers
+      }
+    );
+    //this.communityService.saveData();
   }
 
   async delete(index: any) {

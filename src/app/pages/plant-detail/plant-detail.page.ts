@@ -92,7 +92,7 @@ export class PlantDetailPage implements OnInit {
   }
 
 
-  async confirm() {
+  /* og async confirm() {
     if (this.chosenDate === '') {
       return
     } else
@@ -110,6 +110,26 @@ export class PlantDetailPage implements OnInit {
 
     //this.modal.dismiss(null, 'confirm');
     this.showOnMap();
+  }*/
+
+  async confirm() {
+    if (this.chosenDate === '') {
+      return;
+    }
+
+    // Kalender-Eintrag IMMER anlegen
+    this.taskService.add(
+      this.chosenDate,
+      this.plant.description,
+      this.plant.name,
+      this.plant.text,
+      this.plant.id
+    );
+
+    // peopleNeeded danach ändern
+    await this.helping();
+
+    this.showOnMap();
   }
   /* helping() {
     if (this.plant.peopleNeeded > 0) {
@@ -124,39 +144,125 @@ export class PlantDetailPage implements OnInit {
    }*/
 
 
-  async helping() {
+  /*async helping() {
     if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
       this.plant.peopleNeeded--;
       this.plant.isHelping = true;
       await this.exploreService.savePlants();
       this.saving.iHelpUp();
     }
+  }*/
+
+  /* async helping() {
+     if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
+ 
+       this.plant.peopleNeeded--;
+       this.plant.isHelping = true;
+ 
+       try {
+         await this.exploreService.changePeopleNeeded(
+           this.plant,
+           -1
+         );
+ 
+         this.saving.iHelpUp();
+ 
+       } catch (error) {
+         console.error('Fehler bei peopleNeeded:', error);
+       }
+     }
+   }*/
+  /*async helping() {
+    if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
+
+      await this.exploreService.changePeopleNeeded(
+        this.plant,
+        -1
+      );
+
+      this.plant.peopleNeeded--;
+      this.plant.isHelping = true;
+
+      this.saving.iHelpUp();
+    }
+  }*/
+
+  async helping() {
+    if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
+
+      await this.exploreService.changePeopleNeeded(this.plant, -1);
+
+      this.plant.peopleNeeded--;
+      this.plant.isHelping = true;
+
+      this.saving.iHelpUp();
+    }
   }
 
-  async stopHelping() {
+  /* async stopHelping() {
+     const task = this.taskService.task.find(
+       (t: any) => t.id === this.plant.id
+     );
+ 
+     if (task) {
+       await this.taskService.delete(task);
+ 
+ 
+     }
+ 
+     this.plant = [
+       ...this.exploreService.plantsSuggested,
+       ...this.exploreService.plantsNearby,
+       ...this.exploreService.plantsNew
+     ].find(p => p.id === this.plant.id);
+   }*/
+
+  /*async stopHelping() {
+
     const task = this.taskService.task.find(
       (t: any) => t.id === this.plant.id
     );
 
     if (task) {
       await this.taskService.delete(task);
-      /* this.router.navigate(
-         ['/tabs/map'],
-         {
-           queryParams: {
-             refresh: Date.now()
-           }
-         }
-       );*/
-
-
     }
 
-    this.plant = [
-      ...this.exploreService.plantsSuggested,
-      ...this.exploreService.plantsNearby,
-      ...this.exploreService.plantsNew
-    ].find(p => p.id === this.plant.id);
+    await this.exploreService.changePeopleNeeded(
+      this.plant,
+      1
+    );
+
+    this.plant.peopleNeeded++;
+    this.plant.isHelping = false;
+  }*/
+  /*async stopHelping() {
+
+    const task = this.taskService.task.find(
+      (t: any) => t.id === this.plant.id
+    );
+
+    if (task) {
+      await this.taskService.delete(task);
+    }
+
+    await this.exploreService.changePeopleNeeded(
+      this.plant,
+      1
+    );
+
+    this.plant.peopleNeeded++;
+    this.plant.isHelping = false;
+  }*/
+
+  async stopHelping() {
+
+    const task = this.taskService.task.find(
+      (t: any) => t.id === this.plant.id
+    );
+
+    if (task) {
+      await this.taskService.delete(task);
+    }
   }
 
   addFavorite() {

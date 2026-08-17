@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import {
+  Firestore, collection, collectionData, addDoc, deleteDoc, doc, updateDoc, getDocs, query
+} from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
 
@@ -9,9 +12,44 @@ import { Preferences } from '@capacitor/preferences';
 export class CommunityService {
   private loaded = false;
 
-  constructor() {}
+  //constructor() {}
+  private firestore = inject(Firestore);
 
-  questions = [
+  private questionsCollection = collection(
+    this.firestore,
+    'questions'
+  );
+
+  private tipsCollection = collection(
+    this.firestore,
+    'tips'
+  );
+
+  questions: any[] = [];
+  tips: any[] = [];
+
+  //private loaded = false;
+
+  constructor() {
+
+    // Frage aus Firestore laden
+    collectionData(this.questionsCollection, {
+      idField: 'firebaseId'
+    }).subscribe(data => {
+      this.questions.length = 0;
+      this.questions.push(...data);
+    });
+
+    // Tipps live aus Firestore laden
+    collectionData(this.tipsCollection, {
+      idField: 'firebaseId'
+    }).subscribe(data => {
+      this.tips.length = 0;
+      this.tips.push(...data);
+    });
+  }
+
+  /*startQuestions = [
     {
       id: 1,
       user: "Lisa",
@@ -47,7 +85,7 @@ export class CommunityService {
     },
   ];
 
-  tips = [
+  startTips = [
     {
       id: 1,
       user: "Anna",
@@ -63,43 +101,107 @@ export class CommunityService {
       title: "Unkraut am besten nach Regen entfernen.",
       likes: 11
     },
-  ];
+  ];*/
 
-  addQuestion(question: any) {
+  //question zeugs
+  async addQuestion(question: any) {
 
-    this.questions.unshift(question);
-    this.saveData();
+    await addDoc(
+      this.questionsCollection,
+      question
+    );
   }
 
+
   getQuestion(id: number) {
+
     return this.questions.find(
       question => question.id === id
     );
   }
 
-  deleteQuestion(id: number) {
-    this.questions = this.questions.filter(
-      question => question.id !== id
+
+  async deleteQuestion(id: number) {
+
+    const question = this.questions.find(
+      question => question.id === id
     );
-    this.saveData();
+
+    if (!question?.firebaseId) {
+      return;
+    }
+
+    await deleteDoc(
+      doc(
+        this.firestore,
+        'questions',
+        question.firebaseId
+      )
+    );
   }
 
-  addTip(tip: any) {
-    this.tips.unshift(tip);
-    this.saveData();
+  async updateQuestion(id: number, data: any) {
+
+    const question = this.questions.find(
+      question => question.id === id
+    );
+
+    if (!question?.firebaseId) {
+      return;
+    }
+
+    await updateDoc(
+      doc(
+        this.firestore,
+        'questions',
+        question.firebaseId
+      ),
+      data
+    );
   }
+
+
+  //tipp zeugs
+
+  async addTip(tip: any) {
+
+    await addDoc(
+      this.tipsCollection,
+      tip
+    );
+  }
+
 
   getTip(id: number) {
+
     return this.tips.find(
       tip => tip.id === id
     );
   }
 
-  deleteTip(id: number) {
-    this.tips = this.tips.filter(
-      tip => tip.id !== id
+
+  async deleteTip(id: number) {
+
+    const tip = this.tips.find(
+      tip => tip.id === id
     );
-    this.saveData();
+
+    if (!tip?.firebaseId) {
+      return;
+    }
+
+    await deleteDoc(
+      doc(
+        this.firestore,
+        'tips',
+        tip.firebaseId
+      )
+    );
+  }
+
+
+  async loadData() {
+    this.loaded = true;
   }
 
   async saveData() {
@@ -114,7 +216,7 @@ export class CommunityService {
     });
   }
 
-  async loadData() {
+  /*async loadData() {
     if (this.loaded) {
       return;
     }
@@ -131,9 +233,81 @@ export class CommunityService {
       this.tips = JSON.parse(tips.value);
     }
     this.loaded = true;
-  }
+  }*/
 
   saveLikes() {
     this.saveData();
   }
 }
+/*addQuestion(question: any) {
+
+  this.questions.unshift(question);
+  this.saveData();
+}
+
+getQuestion(id: number) {
+  return this.questions.find(
+    question => question.id === id
+  );
+}
+
+deleteQuestion(id: number) {
+  this.questions = this.questions.filter(
+    question => question.id !== id
+  );
+  this.saveData();
+}
+
+addTip(tip: any) {
+  this.tips.unshift(tip);
+  this.saveData();
+}
+
+getTip(id: number) {
+  return this.tips.find(
+    tip => tip.id === id
+  );
+}
+
+deleteTip(id: number) {
+  this.tips = this.tips.filter(
+    tip => tip.id !== id
+  );
+  this.saveData();
+}
+
+async saveData() {
+  await Preferences.set({
+    key: 'questions',
+    value: JSON.stringify(this.questions)
+  });
+
+  await Preferences.set({
+    key: 'tips',
+    value: JSON.stringify(this.tips)
+  });
+}
+
+async loadData() {
+  if (this.loaded) {
+    return;
+  }
+  const questions = await Preferences.get({
+    key: 'questions'
+  });
+  if (questions.value) {
+    this.questions = JSON.parse(questions.value);
+  }
+  const tips = await Preferences.get({
+    key: 'tips'
+  });
+  if (tips.value) {
+    this.tips = JSON.parse(tips.value);
+  }
+  this.loaded = true;
+}
+
+saveLikes() {
+  this.saveData();
+}
+}*/

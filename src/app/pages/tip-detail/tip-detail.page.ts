@@ -33,6 +33,5 @@ export class TipDetailPage implements OnInit {
       this.tip.likes--;
       this.tip.liked = false;
     }
-    this.communityService.saveData();
   }
 }

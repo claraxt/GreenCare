@@ -238,13 +238,6 @@ export class MapPage implements OnInit, AfterViewInit {
         ...this.exploreService.plantsNew
       ].find(p => p.id === task.id);
 
-      /*console.log(
-        'Task',
-        task.id,
-        'Plant:',
-        plant
-      );*/
-
       if (plant) {
         if (
           plant.latitude === this.targetLat &&

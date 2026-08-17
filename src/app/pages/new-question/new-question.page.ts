@@ -26,9 +26,9 @@ export class NewQuestionPage implements OnInit {
 
   constructor(
     private router: Router,
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   selectImage() {
     this.fileInput.nativeElement.click();
@@ -46,24 +46,27 @@ export class NewQuestionPage implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  publishQuestion() {
+  async publishQuestion() {
     if (this.title === "") {
-      return
-    } else {
-      const newQuestion = {
-        id: Date.now(),
-        user: "Du",
-        image: this.selectedImage,
-        title: this.title,
-        description: this.description,
-        answers: [],
-        likes:0,
-        liked: false
-      };
-      this.communityService.addQuestion(newQuestion);
-      this.saving.postsUp();
-      this.router.navigate(['/tabs/community']);
+      return;
     }
+
+    const newQuestion = {
+      id: Date.now(),
+      user: "Du",
+      image: this.selectedImage,
+      title: this.title,
+      description: this.description,
+      answers: [],
+      likes: 0,
+      liked: false
+    };
+
+    await this.communityService.addQuestion(newQuestion);
+
+    this.saving.postsUp();
+
+    this.router.navigate(['/tabs/community']);
   }
 }
 

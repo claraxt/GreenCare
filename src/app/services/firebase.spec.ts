@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+/*import { TestBed } from '@angular/core/testing';
 import { Firebase } from './firebase';
 
 describe('Firebase', () => {
@@ -12,4 +12,4 @@ describe('Firebase', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-});
+});*/

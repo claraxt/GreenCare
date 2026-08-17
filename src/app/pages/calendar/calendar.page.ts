@@ -30,6 +30,9 @@ export class CalendarPage implements OnInit {
 
     this.updateShowDates();
   }
+  ionViewWillEnter() {
+    this.updateShowDates();
+  }
 
   updateShowDates() {
     this.showDates = this.taskService.task.map((task: any) => ({

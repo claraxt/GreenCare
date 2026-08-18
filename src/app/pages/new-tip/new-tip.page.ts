@@ -46,13 +46,12 @@ export class NewTipPage implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  publishTip() {
+  async publishTip() {
     if (this.title === "") {
       return
     } else {
       const newTip = {
         id: Date.now(),
-        user: "Du",
         image: this.selectedImage,
         title: this.title,
         description: this.description,
@@ -60,7 +59,7 @@ export class NewTipPage implements OnInit {
         likes: 0,
         liked: false
       };
-      this.communityService.addTip(newTip);
+      await this.communityService.addTip(newTip);
       this.saving.postsUp();
       this.router.navigate(['/tabs/community']);
     }

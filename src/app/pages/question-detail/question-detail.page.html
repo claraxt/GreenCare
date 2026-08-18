@@ -25,11 +25,14 @@
     <ion-card-content>
       <h3>{{ answer?.user }}</h3>
       <p>{{ answer?.text }}</p>
-      <ion-button color="danger" fill="clear" (click)="delete(i)">
+     <ion-button
+      *ngIf="answer?.userId === communityService.getCurrentUserId() || (!answer?.userId && answer?.user === communityService.getCurrentUserName())"
+      color="danger"
+      fill="clear"
+      (click)="delete(i)">
         Löschen
-        <ion-icon slot="start" name="trash">
-        </ion-icon>
-      </ion-button>
+      <ion-icon slot="start" name="trash"></ion-icon>
+     </ion-button>
     </ion-card-content>
   </ion-card>
   <ion-card class="write-card">

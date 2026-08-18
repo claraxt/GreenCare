@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonItem, IonTextarea, IonCard, IonCardContent, IonButtons, IonBackButton, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
+import { SavingProfile } from 'src/app/services/savingProfile';
 
 @Component({
   selector: 'app-question-detail',
@@ -16,6 +17,7 @@ import { CommunityService } from 'src/app/services/community';
 export class QuestionDetailPage implements OnInit {
   alertController = inject(AlertController);
   communityService = inject(CommunityService);
+  savingProfile = inject(SavingProfile);
 
   question: any;
   newAnswer = "";
@@ -25,33 +27,49 @@ export class QuestionDetailPage implements OnInit {
   ) { }
 
   async ngOnInit() {
+
     await this.communityService.loadData();
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    const id = Number(
+      this.route.snapshot.paramMap.get('id')
+    );
+
     this.question = this.communityService.getQuestion(id);
+    console.log('Frage:', this.question);
+    console.log('Profil:', this.savingProfile.greenCare());
   }
 
-  async sendAnswer() {
-    if (this.newAnswer === "") {
-      return
-    } else {
-      this.question.answers.push(
-        {
-          user: "Du",
-          text: this.newAnswer
-        }
-      );
-      await this.communityService.updateQuestion(
-        this.question.id,
-        {
-          answers: this.question.answers
-        }
-      );
-      //altes noch.. this.communityService.saveData();
-      this.newAnswer = "";
+ async sendAnswer() {
+    if (!this.newAnswer.trim()) {
+      return;
     }
+    const profile = this.savingProfile.greenCare();
+     this.question.answers.push({
+    user: this.communityService.getCurrentUserName(),
+    userId: this.communityService.getCurrentUserId(),
+    text: this.newAnswer
+    });
+    await this.communityService.updateQuestion(
+      this.question.id,
+      {
+        answers: this.question.answers
+      }
+    );
+    this.newAnswer = '';
   }
+
+  isMyAnswer(answer: any): boolean {
+    const profile = this.savingProfile.greenCare();
+    return answer?.userId === profile?.userId;
+  }
+
 
   async deleteAnswer(index: number) {
+    const answer = this.question.answers[index];
+    if (!this.isMyAnswer(answer)) {
+      return;
+    }
+
     this.question.answers.splice(index, 1);
     await this.communityService.updateQuestion(
       this.question.id,
@@ -59,22 +77,22 @@ export class QuestionDetailPage implements OnInit {
         answers: this.question.answers
       }
     );
-    //this.communityService.saveData();
+    this.savingProfile.postsDown();
   }
 
-  async delete(index: any) {
+  async delete(index: number) {
+    const answer = this.question.answers[index];
+    if (!this.isMyAnswer(answer)) {
+      return;
+    }
     const alert = await this.alertController.create({
       header: 'Antwort löschen?',
       message: 'Möchtest Du die Antwort wirklich löschen?',
       buttons: [
         {
           text: 'Abbrechen',
-          role: 'cancel',
-          handler: () => {
-            console.log('Alert canceled');
-          },
+          role: 'cancel'
         },
-
         {
           text: 'OK',
           role: 'confirm',

@@ -63,9 +63,7 @@ export class NewQuestionPage implements OnInit {
     };
 
     await this.communityService.addQuestion(newQuestion);
-
     this.saving.postsUp();
-
     this.router.navigate(['/tabs/community']);
   }
 }

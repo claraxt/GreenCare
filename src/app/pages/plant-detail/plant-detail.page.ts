@@ -4,11 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
-
 import { SavingProfile } from 'src/app/services/savingProfile';
 import { TaskCalendarService } from 'src/app/services/taskCalendar';
-
-
 
 @Component({
   selector: 'app-plant-detail',
@@ -23,7 +20,6 @@ export class PlantDetailPage implements OnInit {
   private taskService = inject(TaskCalendarService);
   private exploreService = inject(ExploreService);
 
-
   showDates = [];
   plant: any;
   chosenDate = '';
@@ -32,26 +28,16 @@ export class PlantDetailPage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,) { }
 
-
   async ngOnInit() {
     await this.exploreService.loadPlants();
-
     this.updateShowDates();
-
     const id = Number(this.route.snapshot.paramMap.get('id'));
-
     const allPlants = [
-
       ...this.exploreService.plantsSuggested,
-
       ...this.exploreService.plantsNearby,
-
       ...this.exploreService.plantsNew
-
     ];
-
     this.plant = allPlants.find(p => p.id === id);
-
   }
 
   updateShowDates() {
@@ -61,62 +47,31 @@ export class PlantDetailPage implements OnInit {
       backgroundColor: '#5F7F5A'
     }))
   }
-  /*exploreSave() {
-    return this.exploreService.exploreSave();
-  }*/
+ 
   showOnMap() {
-
     this.router.navigate(
       ['/tabs/map'],
       {
         queryParams: {
-
           lat: this.plant.latitude,
-
           lng: this.plant.longitude
-
         }
-
       }
-
     );
-
   }
+
   onWillDismiss(event: any) {
     console.log(event);
   }
 
   cancel() {
-
     this.modal.dismiss(null, 'cancel');
   }
-
-
-  /* og async confirm() {
-    if (this.chosenDate === '') {
-      return
-    } else
-      await this.helping();
-
-    this.taskService.add(
-      this.chosenDate,
-      this.plant.description,
-      this.plant.name,
-      this.plant.text,
-      this.plant.id,
-
-    );
-    //this.exploreService.addMapMarker(this.plant);
-
-    //this.modal.dismiss(null, 'confirm');
-    this.showOnMap();
-  }*/
 
   async confirm() {
     if (this.chosenDate === '') {
       return;
     }
-
     // Kalender-Eintrag IMMER anlegen
     this.taskService.add(
       this.chosenDate,
@@ -131,135 +86,20 @@ export class PlantDetailPage implements OnInit {
 
     this.showOnMap();
   }
-  /* helping() {
-    if (this.plant.peopleNeeded > 0) {
-      this.plant.peopleNeeded--;
-      this.saving.iHelpUp();
-    }
-  }*/
-
-  /* stopHelping() {
-     this.plant.peopleNeeded++;
-     this.saving.iHelpDown();
-   }*/
-
-
-  /*async helping() {
-    if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
-      this.plant.peopleNeeded--;
-      this.plant.isHelping = true;
-      await this.exploreService.savePlants();
-      this.saving.iHelpUp();
-    }
-  }*/
-
-  /* async helping() {
-     if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
- 
-       this.plant.peopleNeeded--;
-       this.plant.isHelping = true;
- 
-       try {
-         await this.exploreService.changePeopleNeeded(
-           this.plant,
-           -1
-         );
- 
-         this.saving.iHelpUp();
- 
-       } catch (error) {
-         console.error('Fehler bei peopleNeeded:', error);
-       }
-     }
-   }*/
-  /*async helping() {
-    if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
-
-      await this.exploreService.changePeopleNeeded(
-        this.plant,
-        -1
-      );
-
-      this.plant.peopleNeeded--;
-      this.plant.isHelping = true;
-
-      this.saving.iHelpUp();
-    }
-  }*/
 
   async helping() {
     if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
-
       await this.exploreService.changePeopleNeeded(this.plant, -1);
-
       this.plant.peopleNeeded--;
       this.plant.isHelping = true;
-
       this.saving.iHelpUp();
     }
   }
 
-  /* async stopHelping() {
-     const task = this.taskService.task.find(
-       (t: any) => t.id === this.plant.id
-     );
- 
-     if (task) {
-       await this.taskService.delete(task);
- 
- 
-     }
- 
-     this.plant = [
-       ...this.exploreService.plantsSuggested,
-       ...this.exploreService.plantsNearby,
-       ...this.exploreService.plantsNew
-     ].find(p => p.id === this.plant.id);
-   }*/
-
-  /*async stopHelping() {
-
-    const task = this.taskService.task.find(
-      (t: any) => t.id === this.plant.id
-    );
-
-    if (task) {
-      await this.taskService.delete(task);
-    }
-
-    await this.exploreService.changePeopleNeeded(
-      this.plant,
-      1
-    );
-
-    this.plant.peopleNeeded++;
-    this.plant.isHelping = false;
-  }*/
-  /*async stopHelping() {
-
-    const task = this.taskService.task.find(
-      (t: any) => t.id === this.plant.id
-    );
-
-    if (task) {
-      await this.taskService.delete(task);
-    }
-
-    await this.exploreService.changePeopleNeeded(
-      this.plant,
-      1
-    );
-
-    this.plant.peopleNeeded++;
-    this.plant.isHelping = false;
-  }*/
-
   async stopHelping() {
-
     const task = this.taskService.task.find(
       (t: any) => t.id === this.plant.id
     );
-
     if (task) {
       await this.taskService.delete(task);
     }
@@ -268,6 +108,4 @@ export class PlantDetailPage implements OnInit {
   addFavorite() {
     this.exploreService.addFavorite(this.plant);
   }
-
-
 }

@@ -18,7 +18,6 @@ export class QuestionDetailPage implements OnInit {
   alertController = inject(AlertController);
   communityService = inject(CommunityService);
   savingProfile = inject(SavingProfile);
-
   question: any;
   newAnswer = "";
 

@@ -1,15 +1,7 @@
 import { Injectable, effect, signal, inject } from '@angular/core';
 import { SavingProfile } from './savingProfile';
 import { Preferences } from '@capacitor/preferences';
-import {
-  Firestore,
-  collection,
-  collectionData,
-  doc,
-  updateDoc,
-  setDoc,
-  increment
-} from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, updateDoc, setDoc, increment} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -18,34 +10,27 @@ import {
 export class ExploreService {
   savingProfile = inject(SavingProfile)
   private firestore = inject(Firestore);
-
   private plantsCollection = collection(
     this.firestore,
     'plants'
   );
 
   constructor() {
-    //this.loadPlants();
-    //extra
+    
     collectionData(this.plantsCollection, {
       idField: 'firebaseId'
     }).subscribe(data => {
 
       for (const plant of data) {
-
         const id = plant['id'];
-
         const found =
           this.plantsSuggested.find(p => p.id === id) ||
           this.plantsNearby.find(p => p.id === id) ||
           this.plantsNew.find(p => p.id === id);
-
         if (found) {
           found.peopleNeeded = plant['peopleNeeded'];
         }
-
       }
-
     });
   }
 
@@ -59,8 +44,6 @@ export class ExploreService {
       this.savingProfile.locationUp();
     }
   }
-
-
 
   plantsSuggested = [
     {
@@ -293,26 +276,12 @@ export class ExploreService {
     }
   }
 
-  /*async changePeopleNeeded(plant: any, amount: number) {
-
-    const plantRef = doc(
-      this.firestore,
-      'plants',
-      String(plant.id)
-    );
-
-    await updateDoc(plantRef, {
-      peopleNeeded: increment(amount)
-    });
-  }*/
   async changePeopleNeeded(plant: any, amount: number) {
-
     const plantRef = doc(
       this.firestore,
       'plants',
       String(plant.id)
     );
-
     await setDoc(
       plantRef,
       {

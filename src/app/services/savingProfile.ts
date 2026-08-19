@@ -10,12 +10,10 @@ export class SavingProfile {
 
     if (saved) {
       const profile = JSON.parse(saved);
-
       // Falls ein altes Profil noch keine userId hat
       if (!profile.userId) {
         profile.userId = crypto.randomUUID();
       }
-
       this.greenCare.set(profile);
     }
 

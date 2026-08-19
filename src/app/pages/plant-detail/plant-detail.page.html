@@ -1,87 +1,50 @@
 <ion-header>
-
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/explore"></ion-back-button>
     </ion-buttons>
-
     <ion-title>Pflanze</ion-title>
-
   </ion-toolbar>
-
 </ion-header>
 
-
 <ion-content>
-
   <div class="plant-image">
-
     <img [src]="plant?.image">
-
   </div>
-
   <div class="content">
-
     <h1>{{plant?.name}}</h1>
-
     <p class="description">
       {{plant?.description}}
     </p>
-
     <p class="distance">
       {{plant?.distance}}
     </p>
-
     <div class="section">
-
       <h2> Aufgabe</h2>
-
       <p>{{plant?.task}}</p>
-
       <p>Noch {{plant?.peopleNeeded}} Helfer benötigt.</p>
-
     </div>
-
-
     <div class="section">
-
       <h2> Pflege</h2>
-
       <p><strong>Wasser:</strong> {{plant?.watering}}</p>
-
       <p><strong>Standort:</strong> {{plant?.sunlight}}</p>
-
       <p><strong>Pflanzenarten:</strong> {{plant?.flowers}}</p>
-
       <p><strong>Schwierigkeitsgrad:</strong> {{plant?.difficulty}}</p>
-
     </div>
-
     <div class="section">
-
       <h2>ℹ Beschreibung</h2>
-
       <p>{{plant?.text}}</p>
-
     </div>
-
     <ion-button expand="block" (click)="addFavorite()">
       <ion-icon slot="start" name="heart"></ion-icon>
       zu Favoriten hinzufügen
     </ion-button>
-
     <ng-container *ngIf="!plant?.isHelping">
       <ion-button id="calendar-modal" expand="block">
-
         Mithelfen
-
       </ion-button>
-
-
       <ion-modal trigger="calendar-modal" (willDismiss)="onWillDismiss($event)">
         <ng-template>
-
           <ion-header>
             <ion-toolbar>
               <ion-title>Wähle den Tag</ion-title>
@@ -91,39 +54,25 @@
             <ion-card>
               <ion-card-content>
                 <ion-datetime [(ngModel)]="chosenDate" [highlightedDates]="showDates">
-
                   <span slot="title">
                     Wähle einen Tag
                   </span>
-
                 </ion-datetime>
               </ion-card-content>
             </ion-card>
-
             <ion-toolbar>
               <ion-button color="danger" slot="start" fill="clear" (click)="cancel()">Abbrechen</ion-button>
               <ion-button color="success" slot="end" fill="clear" (click)="confirm()"
                 [strong]="true">Bestätigen</ion-button>
             </ion-toolbar>
           </ion-content>
-
         </ng-template>
-
-
       </ion-modal>
     </ng-container>
-
-
     <ion-button expand="block" (click)="showOnMap()">
-
       Auf Karte anzeigen
-
     </ion-button>
-
     <ion-button *ngIf="plant?.isHelping" expand="block" color="danger" (click)="stopHelping()">
-
       Hilfe zurückziehen
-
     </ion-button>
-
   </div>

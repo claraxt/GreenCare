@@ -57,11 +57,9 @@ export class CommunityPage implements OnInit {
   newPost() {
     this.router.navigate(['/new-question']);
   }
-
   newTip() {
     this.router.navigate(['/new-tip']);
   }
-
   openQuestion(id: number) {
     this.router.navigate(['/question', id]);
   }
@@ -90,7 +88,6 @@ export class CommunityPage implements OnInit {
             console.log('Alert canceled');
           },
         },
-
         {
           text: 'OK',
           role: 'confirm',
@@ -132,7 +129,6 @@ export class CommunityPage implements OnInit {
             console.log('Alert canceled');
           },
         },
-
         {
           text: 'OK',
           role: 'confirm',

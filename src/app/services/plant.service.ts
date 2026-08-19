@@ -6,21 +6,13 @@ import { CapacitorHttp } from '@capacitor/core';
 })
 
 export class PlantService {
-
   ngOnInit() { }
 
   async plantInfo() {
     console.log("1: Fetch startet");
-    /*const response = await fetch(
-      'https://trefle.io/api/v1/plants?token=usr-GJSaXOZN2GKx0_2WU8kKKYdPlh1iiDo88UruQsE248g'
-    );*/
     const response = await CapacitorHttp.get({
       url: 'https://trefle.io/api/v1/plants?token=usr-GJSaXOZN2GKx0_2WU8kKKYdPlh1iiDo88UruQsE248g'
     });
-    /* console.log("2: Antwort bekommen");
-     const data = await response.json();
-     console.log("3: Daten", data);
-     return data.data;*/
     return response.data.data;
   }
 

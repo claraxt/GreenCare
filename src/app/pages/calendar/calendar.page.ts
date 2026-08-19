@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonDatetime, IonCardHeader, IonCardTitle, IonList, IonItem, IonItemOption, IonItemSliding, IonLabel, IonItemOptions, IonButton, IonRow, IonIcon } from '@ionic/angular/standalone';
 import { TaskCalendarService } from 'src/app/services/taskCalendar';
 
-
-
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.page.html',
@@ -16,24 +14,18 @@ import { TaskCalendarService } from 'src/app/services/taskCalendar';
 export class CalendarPage implements OnInit {
   taskService = inject(TaskCalendarService);
   private alertController = inject(AlertController);
-
-
   date = new Date().toISOString();
   description = '';
   name = '';
   text = '';
-
-
   showDates: any[] = [];
 
   ngOnInit() {
-
     this.updateShowDates();
   }
   ionViewWillEnter() {
     this.updateShowDates();
   }
-
   updateShowDates() {
     this.showDates = this.taskService.task.map((task: any) => ({
       date: task.date.substring(0, 10),
@@ -60,7 +52,6 @@ export class CalendarPage implements OnInit {
           handler: async () => {
             await this.taskService.delete(task);
             this.updateShowDates();
-
           },
         },
       ],
@@ -68,5 +59,4 @@ export class CalendarPage implements OnInit {
 
     await alert.present();
   }
-
 }

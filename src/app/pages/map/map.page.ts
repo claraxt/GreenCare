@@ -21,10 +21,7 @@ export class MapPage implements OnInit, AfterViewInit {
   exploreService = inject(ExploreService);
   taskService = inject(TaskCalendarService);
 
-
-
   map: any;
-
 
   myLocation = L.icon({
     iconUrl: 'assets/leaflet/myLocation.png',
@@ -47,33 +44,25 @@ export class MapPage implements OnInit, AfterViewInit {
     popupAnchor: [-3, -76],
   });
 
-
   userMarker: L.Marker | null = null;
   plantMarker: L.Marker | null = null;
   taskMarker: { id: number, marker: L.Marker }[] = [];
-
   circle: L.Circle | null = null;
-
   targetLat = 0;
   targetLng = 0;
 
   ngOnInit() {
-
     this.route.queryParams.subscribe(params => {
 
       if (params['lat'] && params['lng']) {
-
         this.targetLat = Number(params['lat']);
         this.targetLng = Number(params['lng']);
 
         if (this.map) {
           this.showPlantMarker();
         }
-
       }
-
     });
-
   }
 
   async ngAfterViewInit() {
@@ -100,36 +89,26 @@ export class MapPage implements OnInit, AfterViewInit {
     const lng = pos.coords.longitude;
 
     this.map = L.map('map').setView([lat, lng], 16);
-
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
 
     const mapContainer = document.getElementById('map');
-
     if (mapContainer) {
       const resizeObserver = new ResizeObserver(() => {
         this.map.invalidateSize();
-
       });
-
       resizeObserver.observe(mapContainer);
-
     }
-
-
-
 
     // Eigener Standort
     this.userMarker = L.marker([lat, lng],
       {
         icon: this.myLocation
       }).addTo(this.map);
-
     this.circle = L.circle([lat, lng], {
       radius: pos.coords.accuracy
     }).addTo(this.map);
-
     this.showTaskMarker();
 
     setTimeout(() => {
@@ -137,54 +116,38 @@ export class MapPage implements OnInit, AfterViewInit {
     }, 100);
 
     navigator.geolocation.watchPosition(
-
       (pos) => this.updatePosition(pos),
       (err) => console.log(err)
-
     );
-
   }
 
   updatePosition(pos: GeolocationPosition) {
-
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
     const accuracy = pos.coords.accuracy;
 
     if (this.userMarker) {
-
       this.userMarker.setLatLng([lat, lng]);
-
     }
 
     if (this.circle) {
-
       this.circle.setLatLng([lat, lng]);
       this.circle.setRadius(accuracy);
-
     }
-
 
     if (this.targetLat === 0) {
-
       this.map.panTo([lat, lng]);
-
     }
-
   }
 
   showPlantMarker() {
-
     if (!this.map || this.targetLat === 0) {
       return;
     }
-
     // alten Pflanzenmarker entfernen idk ob wir sammeln wollen oder nah?? bräuchten vermutlcih iene netfern option
     if (this.plantMarker) {
       this.map.removeLayer(this.plantMarker);
     }
-
-
     // neue makrierung
     this.plantMarker = L.marker([
       this.targetLat,
@@ -197,7 +160,6 @@ export class MapPage implements OnInit, AfterViewInit {
       .bindPopup("Pflegeort")
       .openPopup();
 
-
     // navigieren zu pflwgenort
     this.map.flyTo(
       [
@@ -206,8 +168,8 @@ export class MapPage implements OnInit, AfterViewInit {
       ],
       17
     );
-
   }
+
   ionViewWillEnter() {
     if (this.map) {
       this.showTaskMarker();
@@ -215,21 +177,15 @@ export class MapPage implements OnInit, AfterViewInit {
   }
 
   showTaskMarker() {
-
-
     this.taskService.task.map((t: any) => t.id)
-
     this.exploreService.plantsSuggested.map(p => p.id)
     this.exploreService.plantsNearby.map(p => p.id)
     this.exploreService.plantsNew.map(p => p.id)
-
-
     this.taskMarker.forEach(item => {
       this.map.removeLayer(item.marker);
     });
 
     this.taskMarker = [];
-
     this.taskService.task.forEach((task: any) => {
 
       const plant = [
@@ -237,7 +193,6 @@ export class MapPage implements OnInit, AfterViewInit {
         ...this.exploreService.plantsNearby,
         ...this.exploreService.plantsNew
       ].find(p => p.id === task.id);
-
       if (plant) {
         if (
           plant.latitude === this.targetLat &&
@@ -258,23 +213,17 @@ export class MapPage implements OnInit, AfterViewInit {
           })
           .addTo(this.map)
           .bindPopup(plant.name);
-
         this.taskMarker.push({
           id: plant.id,
           marker
         });
 
       } else {
-
         console.warn(
           'KEINE PFLANZE FÜR TASK GEFUNDEN:',
           task.id
         );
-
       }
     });
-
-
   }
-
 }

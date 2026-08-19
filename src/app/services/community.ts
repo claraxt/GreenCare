@@ -43,7 +43,6 @@ export class CommunityService {
     });
   }
 
-
   getCurrentUserName(): string {
     return this.saving.greenCare().name || 'Name';
   }
@@ -56,22 +55,18 @@ export class CommunityService {
     if (!post) {
       return false;
     }
-
     if (post.userId) {
       return post.userId === this.getCurrentUserId();
     }
     return post.user === this.getCurrentUserName();
   }
 
-
   async addQuestion(question: any) {
-
     const questionWithUser = {
       ...question,
       user: this.getCurrentUserName(),
       userId: this.getCurrentUserId()
     };
-
     await addDoc(
       this.questionsCollection,
       questionWithUser
@@ -85,15 +80,12 @@ export class CommunityService {
   }
 
   async deleteQuestion(id: number) {
-
     const question = this.questions.find(
       question => question.id === id
     );
-
     if (!question?.firebaseId) {
       return;
     }
-
     if (!this.isOwnPost(question)) {
       console.log('Diese Frage gehört nicht dem aktuellen Benutzer.');
       return;
@@ -106,20 +98,16 @@ export class CommunityService {
         question.firebaseId
       )
     );
-
     this.saving.postsDown();
   }
 
   async updateQuestion(id: number, data: any) {
-
     const question = this.questions.find(
       question => question.id === id
     );
-
     if (!question?.firebaseId) {
       return;
     }
-
     await updateDoc(
       doc(
         this.firestore,
@@ -130,15 +118,12 @@ export class CommunityService {
     );
   }
 
-
   async addTip(tip: any) {
-
     const tipWithUser = {
       ...tip,
       user: this.getCurrentUserName(),
       userId: this.getCurrentUserId()
     };
-
     await addDoc(
       this.tipsCollection,
       tipWithUser
@@ -152,11 +137,9 @@ export class CommunityService {
   }
 
   async deleteTip(id: number) {
-
     const tip = this.tips.find(
       tip => tip.id === id
     );
-
     if (!tip?.firebaseId) {
       return;
     }
@@ -186,7 +169,6 @@ export class CommunityService {
       key: 'questions',
       value: JSON.stringify(this.questions)
     });
-
     await Preferences.set({
       key: 'tips',
       value: JSON.stringify(this.tips)

@@ -68,17 +68,15 @@
             {{ disease }}
           </li>
         </ul>
-
+        
         <h2>Schädlinge</h2>
         <ul>
           <li *ngFor="let pest of plant.optional?.pests">
             {{ pest }}
           </li>
         </ul>
-
         <h2>Pflegehinweise</h2>
         <p>{{ plant.optional?.care_instructions }}</p>
-
         <h2>Sicherheit</h2>
         <p><b>Giftigkeit:</b> {{ plant.optional?.toxicity_level }}</p>
         <p><b>Essbar:</b> {{ plant.optional?.edibility }}</p>

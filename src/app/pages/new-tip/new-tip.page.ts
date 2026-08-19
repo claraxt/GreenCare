@@ -52,6 +52,7 @@ export class NewTipPage implements OnInit {
     } else {
       const newTip = {
         id: Date.now(),
+        user: this.saving.greenCare().name,
         image: this.selectedImage,
         title: this.title,
         description: this.description,

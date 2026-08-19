@@ -53,6 +53,7 @@ export class NewQuestionPage implements OnInit {
 
     const newQuestion = {
       id: Date.now(),
+      user: this.saving.greenCare().name,
       image: this.selectedImage,
       title: this.title,
       description: this.description,

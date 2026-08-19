@@ -45,8 +45,7 @@ export class QuestionDetailPage implements OnInit {
     }
     const profile = this.savingProfile.greenCare();
      this.question.answers.push({
-    user: this.communityService.getCurrentUserName(),
-    userId: this.communityService.getCurrentUserId(),
+    user: profile?.name,    userId: this.communityService.getCurrentUserId(),
     text: this.newAnswer
     });
     await this.communityService.updateQuestion(
@@ -65,20 +64,21 @@ export class QuestionDetailPage implements OnInit {
 
 
   async deleteAnswer(index: number) {
-    const answer = this.question.answers[index];
-    if (!this.isMyAnswer(answer)) {
-      return;
-    }
-
-    this.question.answers.splice(index, 1);
-    await this.communityService.updateQuestion(
-      this.question.id,
-      {
-        answers: this.question.answers
-      }
-    );
-    this.savingProfile.postsDown();
+  const answer = this.question.answers[index];
+  if (!answer) {
+    return;
   }
+  if (answer.user !== this.savingProfile.greenCare().name) {
+    return;
+  }
+  this.question.answers.splice(index, 1);
+  await this.communityService.updateQuestion(
+    this.question.id,
+    {
+      answers: this.question.answers
+    }
+  );
+}
 
   async delete(index: number) {
     const answer = this.question.answers[index];

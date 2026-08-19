@@ -66,10 +66,17 @@ export class CommunityPage implements OnInit {
     this.router.navigate(['/question', id]);
   }
 
-  deleteQuestion(id: number) {
-    this.communityService.deleteQuestion(id);
-    this.posts = this.communityService.questions;
+ deleteQuestion(id: number) {
+  const question = this.communityService.getQuestion(id);
+  if (!question) {
+    return;
   }
+  if (question.user !== this.savingProfile.greenCare().name) {
+    return;
+  }
+  this.communityService.deleteQuestion(id);
+  this.posts = this.communityService.questions;
+}
 
   async deleteQ(id: any) {
     const alert = await this.alertController.create({
@@ -101,10 +108,17 @@ export class CommunityPage implements OnInit {
     this.router.navigate(['/tip', id]);
   }
 
-  deleteTip(id: number) {
-    this.communityService.deleteTip(id);
-    this.posts = this.communityService.tips;
+ deleteTip(id: number) {
+  const tip = this.communityService.getTip(id);
+  if (!tip) {
+    return;
   }
+  if (tip.user !== this.savingProfile.greenCare().name) {
+    return;
+  }
+  this.communityService.deleteTip(id);
+  this.posts = this.communityService.tips;
+}
 
   async deleteT(id: any) {
     const alert = await this.alertController.create({

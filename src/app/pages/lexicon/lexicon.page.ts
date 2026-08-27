@@ -13,7 +13,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 
 export class LexiconPage implements OnInit {
 
-  constructor() { }
+  //um Lexikon anzuzeigen
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

@@ -21,9 +21,11 @@ export class CalendarPage implements OnInit {
   showDates: any[] = [];
 
   ngOnInit() {
+    //einmal autom. aufrufen
     this.updateShowDates();
   }
   ionViewWillEnter() {
+    //damit updates von explore sofort übernommen werden wenn auf calendar gewechselt
     this.updateShowDates();
   }
   updateShowDates() {

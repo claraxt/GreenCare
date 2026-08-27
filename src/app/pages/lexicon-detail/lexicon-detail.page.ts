@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonCard, IonCardContent } from '@ionic/angular/standalone';
@@ -15,19 +15,19 @@ import { PlantService } from 'src/app/services/plant.service';
 
 export class LexiconDetailPage implements OnInit {
   plant: any;
-
-  constructor(
-    private route: ActivatedRoute,
-    private plantService: PlantService
-  ) { }
+  private route = inject(ActivatedRoute);
+  private plantService = inject(PlantService);
 
   async ngOnInit() {
+    // Pflanzen aufrufen
     const id = Number(this.route.snapshot.paramMap.get('id'));
     const plants = await this.plantService.getAllPlants();
 
     this.plant = plants.find(
       (p: any) => p.id === id
     );
+
+    //wenn keine Pflanze dann beenden
     if (!this.plant) {
       return;
     }

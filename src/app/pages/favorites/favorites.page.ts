@@ -18,9 +18,7 @@ export class FavoritesPage implements OnInit {
   savingProfile = inject(SavingProfile);
   private alertController = inject(AlertController);
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() { }
 
   async delete(plant: any) {
     const alert = await this.alertController.create({

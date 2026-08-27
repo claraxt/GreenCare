@@ -23,6 +23,14 @@ export class MapPage implements OnInit, AfterViewInit {
 
   map: any;
 
+  userMarker: L.Marker | null = null;
+  plantMarker: L.Marker | null = null;
+  taskMarker: { id: number, marker: L.Marker }[] = [];
+  circle: L.Circle | null = null;
+  targetLat = 0;
+  targetLng = 0;
+
+  //verschiedene Marker
   myLocation = L.icon({
     iconUrl: 'assets/leaflet/myLocation.png',
     iconSize: [38, 95],
@@ -44,12 +52,6 @@ export class MapPage implements OnInit, AfterViewInit {
     popupAnchor: [-3, -76],
   });
 
-  userMarker: L.Marker | null = null;
-  plantMarker: L.Marker | null = null;
-  taskMarker: { id: number, marker: L.Marker }[] = [];
-  circle: L.Circle | null = null;
-  targetLat = 0;
-  targetLng = 0;
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -69,6 +71,7 @@ export class MapPage implements OnInit, AfterViewInit {
 
     await this.exploreService.loadPlants();
 
+    //abfrage vom Standort
     navigator.geolocation.getCurrentPosition(
       (pos) => this.showMap(pos),
       (err) => {
@@ -88,11 +91,13 @@ export class MapPage implements OnInit, AfterViewInit {
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
 
+    //karte erstellen
     this.map = L.map('map').setView([lat, lng], 16);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
 
+    //rendert map neu wenn in anderen Tabs etwas geändert wurde
     const mapContainer = document.getElementById('map');
     if (mapContainer) {
       const resizeObserver = new ResizeObserver(() => {
@@ -121,6 +126,7 @@ export class MapPage implements OnInit, AfterViewInit {
     );
   }
 
+  //aktualisiert Position bei Änderung
   updatePosition(pos: GeolocationPosition) {
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
@@ -144,7 +150,7 @@ export class MapPage implements OnInit, AfterViewInit {
     if (!this.map || this.targetLat === 0) {
       return;
     }
-    // alten Pflanzenmarker entfernen idk ob wir sammeln wollen oder nah?? bräuchten vermutlcih iene netfern option
+    // alten Pflanzenmarker entfernen
     if (this.plantMarker) {
       this.map.removeLayer(this.plantMarker);
     }
@@ -160,7 +166,7 @@ export class MapPage implements OnInit, AfterViewInit {
       .bindPopup("Pflegeort")
       .openPopup();
 
-    // navigieren zu pflwgenort
+    // navigieren zum pflwgeort
     this.map.flyTo(
       [
         this.targetLat,
@@ -220,7 +226,7 @@ export class MapPage implements OnInit, AfterViewInit {
 
       } else {
         console.warn(
-          'KEINE PFLANZE FÜR TASK GEFUNDEN:',
+          'KEINE PFLANZE FÜR DIE TASK GEFUNDEN:',
           task.id
         );
       }

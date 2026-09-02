@@ -71,12 +71,14 @@ export class SavingProfile {
     this.persist();
   }
 
+  //zähler hoch wenn man task annimmt
   iHelpUp() {
     this.greenCare.update(profile => ({
       ...profile,
       iHelp: profile.iHelp + 1
     }));
   }
+
 
   iHelpDown() {
     this.greenCare.update(profile => ({
@@ -85,6 +87,7 @@ export class SavingProfile {
     }));
   }
 
+  //für fragen und tipps zusammen
   postsUp() {
     this.greenCare.update(profile => ({
       ...profile,
@@ -99,6 +102,7 @@ export class SavingProfile {
     }));
   }
 
+  //zählt favourites
   locationUp() {
     this.greenCare.update(profile => ({
       ...profile,

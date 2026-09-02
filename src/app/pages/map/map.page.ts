@@ -23,8 +23,10 @@ export class MapPage implements OnInit, AfterViewInit {
 
   map: any;
 
+  //da anfangs keine marker existieren null
   userMarker: L.Marker | null = null;
   plantMarker: L.Marker | null = null;
+  //um mehrere zu sammeln als
   taskMarker: { id: number, marker: L.Marker }[] = [];
   circle: L.Circle | null = null;
   targetLat = 0;
@@ -76,7 +78,12 @@ export class MapPage implements OnInit, AfterViewInit {
       (pos) => this.showMap(pos),
       (err) => {
         console.log('Geolocation Error:', err);
-        alert(`${err.code}: ${err.message}`);
+
+        if (err.code === 1) {
+          alert('Bitte Standortfreigabe erlauben');
+        } else {
+          alert('Kein Zugriff auf den Standort möglich.');
+        }
       },
       {
         enableHighAccuracy: false,
@@ -90,8 +97,9 @@ export class MapPage implements OnInit, AfterViewInit {
 
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
+    const accuracy = pos.coords.accuracy;
 
-    //karte erstellen
+    //karte erstellen und user pos zeigen
     this.map = L.map('map').setView([lat, lng], 16);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
@@ -111,18 +119,27 @@ export class MapPage implements OnInit, AfterViewInit {
       {
         icon: this.myLocation
       }).addTo(this.map);
+
     this.circle = L.circle([lat, lng], {
       radius: pos.coords.accuracy
     }).addTo(this.map);
+
     this.showTaskMarker();
 
-    setTimeout(() => {
+    /*setTimeout(() => {
       this.showPlantMarker();
-    }, 100);
+    }, 100);*/
 
     navigator.geolocation.watchPosition(
       (pos) => this.updatePosition(pos),
-      (err) => console.log(err)
+      (err) => {
+        console.log('Geolocation Error:', err);
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 60000
+      }
     );
   }
 
@@ -181,8 +198,7 @@ export class MapPage implements OnInit, AfterViewInit {
       this.showTaskMarker();
     }
   }
-
-  showTaskMarker() {
+  /*showTaskMarker() {
     this.taskService.task.map((t: any) => t.id)
     this.exploreService.plantsSuggested.map(p => p.id)
     this.exploreService.plantsNearby.map(p => p.id)
@@ -229,6 +245,57 @@ export class MapPage implements OnInit, AfterViewInit {
           'KEINE PFLANZE FÜR DIE TASK GEFUNDEN:',
           task.id
         );
+      }
+    });
+  }*/
+  showTaskMarker() {
+    this.taskService.task.map((t: any) => t.id)
+    this.exploreService.plantsSuggested.map(p => p.id)
+    this.exploreService.plantsNearby.map(p => p.id)
+    this.exploreService.plantsNew.map(p => p.id)
+    // task marker jeweils entfernen und dann neu setzenn damit keine Dopplung entsteht
+    this.taskMarker.forEach(item => {
+      this.map.removeLayer(item.marker);
+    });
+
+    this.taskMarker = [];
+
+    const plants = [
+      ...this.exploreService.plantsSuggested,
+      ...this.exploreService.plantsNearby,
+      ...this.exploreService.plantsNew
+    ];
+
+    // passende pflanze für task filtern
+    this.taskService.task.forEach((task: any) => {
+      const plant = plants.find(p => p.id === task.id);
+
+      //nur eine Art von marker an einer stelle..
+      if (plant) {
+        if (
+          //position darauf prüfen ob sie bereits belegt ist
+          plant.latitude === this.targetLat &&
+          plant.longitude === this.targetLng
+        ) {
+          //alte markierung wegmachen
+          if (this.plantMarker) {
+            this.map.removeLayer(this.plantMarker);
+            this.plantMarker = null;
+          }
+        }
+
+        // Task Marker erstellen
+        const marker = L.marker(
+          [plant.latitude, plant.longitude],
+          { icon: this.myTask }
+        )
+          .addTo(this.map)
+          .bindPopup(plant.name);
+
+        this.taskMarker.push({
+          id: plant.id,
+          marker: marker
+        });
       }
     });
   }

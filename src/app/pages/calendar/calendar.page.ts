@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AlertController, IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonDatetime, IonCardHeader, IonCardTitle, IonList, IonItem, IonItemOption, IonItemSliding, IonLabel, IonItemOptions, IonButton, IonRow, IonIcon } from '@ionic/angular/standalone';
+import { AlertController, IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonDatetime, IonCardHeader, IonCardTitle, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { TaskCalendarService } from 'src/app/services/taskCalendar';
 
 @Component({

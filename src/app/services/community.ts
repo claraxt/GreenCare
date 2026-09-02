@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData, addDoc, deleteDoc, doc, updateDoc} from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, addDoc, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
 import { Preferences } from '@capacitor/preferences';
 import { SavingProfile } from './savingProfile';
+import { AlertController } from '@ionic/angular/standalone';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ export class CommunityService {
 
   private firestore = inject(Firestore);
   private saving = inject(SavingProfile);
+  private alertController = inject(AlertController);
 
   private questionsCollection = collection(
     this.firestore,
@@ -51,6 +53,7 @@ export class CommunityService {
     return this.saving.greenCare().userId;
   }
 
+
   isOwnPost(post: any): boolean {
     if (!post) {
       return false;
@@ -87,7 +90,7 @@ export class CommunityService {
       return;
     }
     if (!this.isOwnPost(question)) {
-      console.log('Diese Frage gehört nicht dem aktuellen Benutzer.');
+      console.log('Das ist nicht dein Beitrag.');
       return;
     }
 
@@ -146,7 +149,7 @@ export class CommunityService {
 
     // Nur eigenen Tipp löschen
     if (!this.isOwnPost(tip)) {
-      console.log('Dieser Tipp gehört nicht dem aktuellen Benutzer.');
+      console.log('Das ist nicht dein Beitrag.');
       return;
     }
 

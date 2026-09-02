@@ -19,25 +19,42 @@ export class PlantDetailPage implements OnInit {
   private saving = inject(SavingProfile);
   private taskService = inject(TaskCalendarService);
   private exploreService = inject(ExploreService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
-  showDates = [];
+  showDates: {
+    date: string;
+    textColor: string;
+    backgroundColor: string;
+  }[] = [];
+  //showDates = [];
   plant: any;
   chosenDate = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,) { }
 
   async ngOnInit() {
     await this.exploreService.loadPlants();
+
     this.updateShowDates();
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    const id = Number(
+      this.route.snapshot.paramMap.get('id')
+    );
+
     const allPlants = [
       ...this.exploreService.plantsSuggested,
       ...this.exploreService.plantsNearby,
       ...this.exploreService.plantsNew
     ];
-    this.plant = allPlants.find(p => p.id === id);
+
+    this.plant = allPlants.find(
+      (p: any) => p.id === id
+    );
+
+    if (this.plant) {
+      this.plant.isHelping =
+        this.taskService.taskCheck(this.plant.id);
+    }
   }
 
   updateShowDates() {
@@ -47,7 +64,7 @@ export class PlantDetailPage implements OnInit {
       backgroundColor: '#5F7F5A'
     }))
   }
- 
+
   showOnMap() {
     this.router.navigate(
       ['/tabs/map'],
@@ -68,12 +85,23 @@ export class PlantDetailPage implements OnInit {
     this.modal.dismiss(null, 'cancel');
   }
 
+
   async confirm() {
-    if (this.chosenDate === '') {
+
+    if (!this.plant || this.chosenDate === '') {
       return;
     }
-    // Kalender-Eintrag IMMER anlegen
-    this.taskService.add(
+
+    if (this.taskService.taskCheck(this.plant.id)) {
+      return;
+    }
+
+    if (this.plant.peopleNeeded <= 0) {
+      return;
+    }
+
+    //kalender eintrag anlegen mit den infos
+    const added = this.taskService.add(
       this.chosenDate,
       this.plant.description,
       this.plant.name,
@@ -81,28 +109,50 @@ export class PlantDetailPage implements OnInit {
       this.plant.id
     );
 
-    // peopleNeeded danach ändern
+    // Falls nicht angelegt wurde
+    if (!added) {
+      return;
+    }
+
     await this.helping();
 
     this.showOnMap();
   }
 
+
   async helping() {
-    if (!this.plant.isHelping && this.plant.peopleNeeded > 0) {
-      await this.exploreService.changePeopleNeeded(this.plant, -1);
-      this.plant.peopleNeeded--;
-      this.plant.isHelping = true;
-      this.saving.iHelpUp();
+
+    if (!this.plant) {
+      return;
     }
+
+    if (this.plant.peopleNeeded <= 0) {
+      return;
+    }
+
+    await this.exploreService.changePeopleNeeded(
+      this.plant,
+      -1
+    );
+
+    this.plant.peopleNeeded--;
+    this.plant.isHelping = true;
+
+    this.saving.iHelpUp();
   }
 
   async stopHelping() {
     const task = this.taskService.task.find(
       (t: any) => t.id === this.plant.id
     );
-    if (task) {
-      await this.taskService.delete(task);
+
+    if (!task) {
+      return;
     }
+
+    await this.taskService.delete(task);
+
+    this.plant.isHelping = false;
   }
 
   addFavorite() {

@@ -1,7 +1,7 @@
 import { Injectable, effect, signal, inject } from '@angular/core';
 import { SavingProfile } from './savingProfile';
 import { Preferences } from '@capacitor/preferences';
-import { Firestore, collection, collectionData, doc, updateDoc, setDoc, increment} from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, updateDoc, setDoc, increment } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class ExploreService {
   );
 
   constructor() {
-    
+
     collectionData(this.plantsCollection, {
       idField: 'firebaseId'
     }).subscribe(data => {
@@ -33,7 +33,38 @@ export class ExploreService {
       }
     });
   }
+  async resetFirebase() {
+    const plants = [
+      { id: 1, peopleNeeded: 2 },
+      { id: 2, peopleNeeded: 4 },
+      { id: 3, peopleNeeded: 6 },
+      { id: 4, peopleNeeded: 2 },
+      { id: 5, peopleNeeded: 2 },
+      { id: 6, peopleNeeded: 1 },
+      { id: 7, peopleNeeded: 1 },
+      { id: 8, peopleNeeded: 1 },
+      { id: 9, peopleNeeded: 4 }
+    ];
 
+    for (const plant of plants) {
+      const plantRef = doc(
+        this.firestore,
+        'plants',
+        String(plant.id)
+      );
+
+      await setDoc(
+        plantRef,
+        {
+          id: plant.id,
+          peopleNeeded: plant.peopleNeeded
+        },
+        { merge: true }
+      );
+    }
+
+    console.log('Firebase wurde zurückgesetzt');
+  }
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
 
   addFavorite(plant: any) {
@@ -52,7 +83,7 @@ export class ExploreService {
       description: 'Blumenbeet am Weg',
       distance: '800 m',
       peopleNeeded: 2,
-      isHelping: false,
+      //isHelping: false,
       task: 'Gießen',
       image: 'assets/Fotos/park.jpeg',
 
@@ -72,7 +103,7 @@ export class ExploreService {
       description: 'Rosenbeet',
       distance: '1,2 km',
       peopleNeeded: 4,
-      isHelping: false,
+      //isHelping: false,
       task: 'Unkraut entfernen, Gießen, schneiden',
       image: 'assets/Fotos/friedhof.jpeg',
 
@@ -92,7 +123,7 @@ export class ExploreService {
       description: 'Parkbeete',
       distance: '1,9 km',
       peopleNeeded: 6,
-      isHelping: false,
+      //isHelping: false,
       task: 'Unkraut entfernen, Gießen',
       image: 'assets/Fotos/stadtpark.jpeg',
 
@@ -112,7 +143,7 @@ export class ExploreService {
       description: 'Blumen an der Rasenfläche',
       distance: '2,0 m',
       peopleNeeded: 2,
-      isHelping: false,
+      //isHelping: false,
       task: 'Unkrauft entfernen',
       image: 'assets/Fotos/freibad.jpeg',
 
@@ -134,7 +165,7 @@ export class ExploreService {
       description: 'Blumenkübel',
       distance: '200 m',
       peopleNeeded: 2,
-      isHelping: false,
+      //isHelping: false,
       task: 'Bewässern, Düngen',
       image: 'assets/Fotos/marktplatz.jpeg',
 
@@ -154,7 +185,7 @@ export class ExploreService {
       description: 'Wildblumenbeet',
       distance: '450 m',
       peopleNeeded: 1,
-      isHelping: false,
+      //isHelping: false,
       task: 'Unkrauft entfernen',
       image: 'assets/Fotos/schulhof.jpeg',
 
@@ -174,7 +205,7 @@ export class ExploreService {
       description: 'Blumenbeet am Eingang',
       distance: '500 m',
       peopleNeeded: 1,
-      isHelping: false,
+      //isHelping: false,
       task: 'Gießen',
       image: 'assets/Fotos/krankenhaus.jpeg',
 
@@ -196,7 +227,7 @@ export class ExploreService {
       description: 'Blumen am Eingang',
       distance: '1,9 km',
       peopleNeeded: 1,
-      isHelping: false,
+      //isHelping: false,
       task: 'Gießen',
       image: 'assets/Fotos/bahnhof.jpeg',
 
@@ -216,7 +247,7 @@ export class ExploreService {
       description: 'mehrere Beete an dem Platz',
       distance: '2,1 km',
       peopleNeeded: 4,
-      isHelping: false,
+      //isHelping: false,
       task: 'Pflege der Beete',
       image: 'assets/Fotos/kirchplatz.jpeg',
 
@@ -282,12 +313,9 @@ export class ExploreService {
       'plants',
       String(plant.id)
     );
-    await setDoc(
-      plantRef,
-      {
-        id: plant.id,
-        peopleNeeded: plant.peopleNeeded + amount
-      }
-    );
+
+    await updateDoc(plantRef, {
+      peopleNeeded: increment(amount)
+    });
   }
 }

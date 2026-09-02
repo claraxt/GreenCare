@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './explore.page.html',
   styleUrls: ['./explore.page.scss'],
   standalone: true,
-  imports: [ IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, CommonModule, FormsModule ]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonSegment, IonSegmentButton, IonCard, IonCardContent, CommonModule, FormsModule]
 })
 
 export class ExplorePage implements OnInit {
@@ -19,17 +19,19 @@ export class ExplorePage implements OnInit {
   exploreService = inject(ExploreService);
 
   plants: any[] = [];
-  
+
   async ngOnInit() {
     await this.exploreService.loadPlants();
     this.refreshPlants();
   }
 
   async ionViewWillEnter() {
+    //this.exploreService.resetFirebase();
     await this.exploreService.loadPlants();
     this.refreshPlants();
   }
 
+  //jenachdem welches segment man offen hat wird andere Liste gezeigt
   refreshPlants() {
     if (this.selectedSegment === 'vorgeschlagen') {
       this.plants = [...this.exploreService.plantsSuggested];

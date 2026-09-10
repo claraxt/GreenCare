@@ -14,7 +14,8 @@ import { TaskCalendarService } from 'src/app/services/taskCalendar';
 export class CalendarPage implements OnInit {
   taskService = inject(TaskCalendarService);
   private alertController = inject(AlertController);
-  date = new Date().toISOString();
+
+  date = new Date().toLocaleString('sv-SE').replace(' ', 'T');
   description = '';
   name = '';
   text = '';

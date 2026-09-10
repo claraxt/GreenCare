@@ -1,5 +1,5 @@
 
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, effect } from '@angular/core';
 import { ExploreService } from './explore';
 import { SavingProfile } from './savingProfile';
 
@@ -20,6 +20,9 @@ export class TaskCalendarService {
         if (savedTasks) {
             this.task = JSON.parse(savedTasks);
         }
+        effect(() => {
+            this.persist();
+        });
     }
 
     persist() {
@@ -33,14 +36,7 @@ export class TaskCalendarService {
         );
     }
 
-    add(
-        date: string,
-        description: string,
-        name: string,
-        text: string,
-        id: number
-    ): boolean {
-
+    add(date: string, description: string, name: string, text: string, id: number): boolean {
         // wenn existent nicht adden
         if (this.taskCheck(id)) {
             return false;

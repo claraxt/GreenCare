@@ -65,6 +65,7 @@ export class ExploreService {
 
     console.log('Firebase wurde zurückgesetzt');
   }
+
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
 
   addFavorite(plant: any) {

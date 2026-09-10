@@ -27,7 +27,7 @@ export class PlantDetailPage implements OnInit {
     textColor: string;
     backgroundColor: string;
   }[] = [];
-  //showDates = [];
+
   plant: any;
   chosenDate = '';
 

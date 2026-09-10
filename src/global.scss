@@ -50,6 +50,7 @@ ion-title {
 ion-segment {
   --background: transparent;
 }
+
 ion-segment-button {
   --color: #777;
   --color-checked: var(--green-dark);
@@ -82,14 +83,17 @@ h1 {
   font-family: "Cormorant Garamond", serif;
   color: var(--green-dark);
 }
+
 h2 {
   font-family: "Cormorant Garamond", serif;
   color: var(--green-dark);
 }
+
 h3 {
   font-family: "Cormorant Garamond", serif;
   color: var(--green-dark);
 }
+
 p {
   color: var(--text-light);
   font-family: "Poppins";
@@ -106,6 +110,7 @@ ion-tab-bar {
   border-top: 1px solid #ece7df;
   height: 70px;
 }
+
 ion-tab-button {
   --color: #888;
   --color-selected: var(--green-dark);
@@ -122,38 +127,69 @@ img {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #C8D4B0;
   border-radius: 10px;
 }
+
 ion-datetime {
   max-width: 80%;
   min-width: 350px;
   border-radius: 16px;
 }
+
 ion-datetime {
   --background: #ECE6D8;
   --wheel-highlight-background: #2F4B33;
   --wheel-highlight-border-radius: 48px;
-  --wheel-fade-background: #2F4B33;
+  //--wheel-fade-background: #2F4B33;
   border-radius: 16px;
 }
+
+ion-datetime::part(wheel-item active) {
+  color: white;
+}
+
+
+
 ion-datetime::part(datetime-header) {
   background-color: #2F4B33;
 }
+
 ion-datetime::part(time-button) {
   background: #ECE6D8;
   color: #2F4B33;
   border-radius: 12px;
 }
+
+
 ion-datetime::part(calendar-day active) {
   background-color: #2F4B33;
+  color: #F6F2E8;
+  border: 2px solid #2F4B33;
+  border-radius: 50%;
   outline: none;
   box-shadow: none;
 }
-.sendAnswer{
-    color: #F6F2E8;
+
+ion-datetime::part(calendar-day today) {
+  color: #aa9a67;
+  border: 2px solid #aa9a67;
+  border-radius: 50%;
 }
-.newAnswer{
-    color:#F6F2E8;
+
+
+
+ion-datetime::part(month-year-button) {
+  color: #2F4B33;
+}
+
+
+.sendAnswer {
+  color: #F6F2E8;
+}
+
+.newAnswer {
+  color: #F6F2E8;
 }

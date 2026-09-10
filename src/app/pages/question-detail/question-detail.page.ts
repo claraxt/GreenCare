@@ -38,14 +38,14 @@ export class QuestionDetailPage implements OnInit {
     console.log('Profil:', this.savingProfile.greenCare());
   }
 
- async sendAnswer() {
+  async sendAnswer() {
     if (!this.newAnswer.trim()) {
       return;
     }
     const profile = this.savingProfile.greenCare();
-     this.question.answers.push({
-    user: profile?.name,    userId: this.communityService.getCurrentUserId(),
-    text: this.newAnswer
+    this.question.answers.push({
+      user: profile?.name, userId: this.communityService.getCurrentUserId(),
+      text: this.newAnswer
     });
     await this.communityService.updateQuestion(
       this.question.id,
@@ -63,21 +63,21 @@ export class QuestionDetailPage implements OnInit {
 
 
   async deleteAnswer(index: number) {
-  const answer = this.question.answers[index];
-  if (!answer) {
-    return;
-  }
-  if (answer.user !== this.savingProfile.greenCare().name) {
-    return;
-  }
-  this.question.answers.splice(index, 1);
-  await this.communityService.updateQuestion(
-    this.question.id,
-    {
-      answers: this.question.answers
+    const answer = this.question.answers[index];
+    if (!answer) {
+      return;
     }
-  );
-}
+    if (answer.user !== this.savingProfile.greenCare().name) {
+      return;
+    }
+    this.question.answers.splice(index, 1);
+    await this.communityService.updateQuestion(
+      this.question.id,
+      {
+        answers: this.question.answers
+      }
+    );
+  }
 
   async delete(index: number) {
     const answer = this.question.answers[index];

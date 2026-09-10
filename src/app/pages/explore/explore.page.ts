@@ -26,7 +26,6 @@ export class ExplorePage implements OnInit {
   }
 
   async ionViewWillEnter() {
-    //this.exploreService.resetFirebase();
     await this.exploreService.loadPlants();
     this.refreshPlants();
   }

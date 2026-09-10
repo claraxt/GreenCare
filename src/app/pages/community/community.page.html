@@ -37,18 +37,20 @@
           <ion-icon slot="start" name="chatbubble"></ion-icon>
           {{post.answers.length}} Antworten
         </ion-button>
-        <ion-button *ngIf="selectedSegment === 'fragen' && post.user === savingProfile.greenCare().name" fill="clear"  color="danger" (click)="deleteQ(post.id)">
-           Löschen
+        <ion-button *ngIf="selectedSegment === 'fragen' && post.user === savingProfile.greenCare().name" fill="clear"
+          color="danger" (click)="deleteQ(post.id)">
+          Löschen
           <ion-icon slot="start" name="trash"></ion-icon>
         </ion-button>
         <ion-button *ngIf="selectedSegment === 'tipps'" fill="clear" (click)="openTip(post.id)">
           <ion-icon name="heart-outline"></ion-icon>
           {{ post.likes }} Likes
         </ion-button>
-       <ion-button *ngIf="selectedSegment === 'tipps' && post.user === savingProfile.greenCare().name" fill="clear" color="danger" (click)="deleteT(post.id)">
+        <ion-button *ngIf="selectedSegment === 'tipps' && post.user === savingProfile.greenCare().name" fill="clear"
+          color="danger" (click)="deleteT(post.id)">
           Löschen
-        <ion-icon slot="start" name="trash"></ion-icon>
-       </ion-button>
+          <ion-icon slot="start" name="trash"></ion-icon>
+        </ion-button>
       </ion-card-content>
     </ion-card>
   </ng-container>
@@ -56,7 +58,7 @@
     <ion-card *ngFor="let plant of plants" (click)="openLexicon(plant.id)">
       <ion-card-content>
         <img [src]="plant.image_url">
-         <h2>{{ plant.common_name }}</h2>
+        <h2>{{ plant.common_name }}</h2>
         <p><i>{{ plant.scientific_name }}</i></p>
       </ion-card-content>
     </ion-card>

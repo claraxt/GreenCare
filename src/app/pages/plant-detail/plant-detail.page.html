@@ -35,12 +35,10 @@
       <h2>ℹ Beschreibung</h2>
       <p>{{plant?.text}}</p>
     </div>
-    <ion-button expand="block" (click)="addFavorite()" >
-     <ion-icon
-       slot="start"
-       [name]="plant?.isFavorite ? 'heart' : 'heart-outline'">
-    </ion-icon>
-       {{ plant?.isFavorite ? 'Aus Favoriten entfernen' : 'Zu Favoriten hinzufügen' }}
+    <ion-button expand="block" (click)="addFavorite()">
+      <ion-icon slot="start" [name]="plant?.isFavorite ? 'heart' : 'heart-outline'">
+      </ion-icon>
+      {{ plant?.isFavorite ? 'Aus Favoriten entfernen' : 'Zu Favoriten hinzufügen' }}
     </ion-button>
     <ng-container *ngIf="!plant?.isHelping">
       <ion-button id="calendar-modal" expand="block">

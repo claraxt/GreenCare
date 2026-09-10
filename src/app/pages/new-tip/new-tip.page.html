@@ -14,7 +14,6 @@
       Foto hinzufügen
     </ion-button>
     <img *ngIf="selectedImage" [src]="selectedImage" class="preview-image">
-    <!--<input #fileInput type="file" accept="image/*" hidden (change)="imageSelected($event)">-->
     <ion-item class="input-box">
       <ion-input label="Titel" labelPlacement="stacked" placeholder="Gib einen Titel ein" [(ngModel)]="title">
       </ion-input>
@@ -23,5 +22,4 @@
       Tipp veröffentlichen
     </ion-button>
   </div>
-  <!--<input type="file" hidden>-->
 </ion-content>

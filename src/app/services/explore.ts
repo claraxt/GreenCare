@@ -33,38 +33,6 @@ export class ExploreService {
       }
     });
   }
-  async resetFirebase() {
-    const plants = [
-      { id: 1, peopleNeeded: 2 },
-      { id: 2, peopleNeeded: 4 },
-      { id: 3, peopleNeeded: 6 },
-      { id: 4, peopleNeeded: 2 },
-      { id: 5, peopleNeeded: 2 },
-      { id: 6, peopleNeeded: 1 },
-      { id: 7, peopleNeeded: 1 },
-      { id: 8, peopleNeeded: 1 },
-      { id: 9, peopleNeeded: 4 }
-    ];
-
-    for (const plant of plants) {
-      const plantRef = doc(
-        this.firestore,
-        'plants',
-        String(plant.id)
-      );
-
-      await setDoc(
-        plantRef,
-        {
-          id: plant.id,
-          peopleNeeded: plant.peopleNeeded
-        },
-        { merge: true }
-      );
-    }
-
-    console.log('Firebase wurde zurückgesetzt');
-  }
 
   favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '[]');
 

@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonButtons, IonBackButton, IonItem } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { CommunityService } from 'src/app/services/community';
 import { SavingProfile } from 'src/app/services/savingProfile';
+import { Camera, CameraResultType } from '@capacitor/camera';
+
 
 @Component({
   selector: 'app-new-tip',
@@ -19,8 +21,6 @@ export class NewTipPage implements OnInit {
   title = "";
   description = "";
 
-  @ViewChild('fileInput')
-  fileInput!: ElementRef;
   private saving = inject(SavingProfile);
   public communityService = inject(CommunityService);
 
@@ -30,20 +30,14 @@ export class NewTipPage implements OnInit {
 
   ngOnInit() { }
 
-  selectImage() {
-    this.fileInput.nativeElement.click();
-  }
-
-  imageSelected(event: any) {
-    const file = event.target.files[0];
-    if (!file) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.selectedImage = reader.result as string;
-    };
-    reader.readAsDataURL(file);
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 70,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl
+    });
+    this.selectedImage = image.dataUrl!;
+    console.log(this.selectedImage);
   }
 
   async publishTip() {

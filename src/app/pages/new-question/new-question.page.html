@@ -6,45 +6,27 @@
     <ion-title>Frage hinzufügen</ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content>
   <div class="content">
     <h2>Stelle eine Frage</h2>
-    <ion-button
-    expand="block"
-      (click)="selectImage()">
+    <ion-button expand="block" (click)="takePicture()">
       Foto hinzufügen
     </ion-button>
-    <img
-     *ngIf="selectedImage"
-     [src]="selectedImage"
-     class="preview-image">
-     <input
-     #fileInput
-      type="file"
-      accept="image/*"
-      hidden
-      (change)="imageSelected($event)">
+    <img *ngIf="selectedImage" [src]="selectedImage" class="preview-image">
+
     <ion-item class="input-box">
-      <ion-input
-        label="Titel"
-        labelPlacement="stacked"
-        placeholder="Gib einen Titel ein"
-        [(ngModel)]="title">
+      <ion-input label="Titel" labelPlacement="stacked" placeholder="Gib einen Titel ein" [(ngModel)]="title">
       </ion-input>
     </ion-item>
     <ion-item class="input-box">
-      <ion-textarea
-        label="Beschreibung"
-        labelPlacement="stacked"
-        placeholder="Beschreibe dein Problem..."
-        rows="6"
+      <ion-textarea label="Beschreibung" labelPlacement="stacked" placeholder="Beschreibe dein Problem..." rows="6"
         [(ngModel)]="description">
       </ion-textarea>
     </ion-item>
-    <ion-button expand="block"(click)="publishQuestion()">
+    <ion-button expand="block" (click)="publishQuestion()">
       Frage veröffentlichen
     </ion-button>
   </div>
-  <input type="file" hidden>
+
 </ion-content>

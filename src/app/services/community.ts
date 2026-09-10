@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
 import { Preferences } from '@capacitor/preferences';
 import { SavingProfile } from './savingProfile';
-import { AlertController } from '@ionic/angular/standalone';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +10,6 @@ export class CommunityService {
 
   private firestore = inject(Firestore);
   private saving = inject(SavingProfile);
-  private alertController = inject(AlertController);
 
   private questionsCollection = collection(
     this.firestore,

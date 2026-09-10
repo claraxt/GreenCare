@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AlertController, IonContent, IonHeader, IonList, IonTitle, IonToolbar, IonItem, IonAvatar, IonLabel, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonText, IonIcon, IonCol, IonGrid, IonRow, IonTabButton, IonAccordion, IonAccordionGroup, IonButton, IonButtons, IonInput, IonModal, IonTabBar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonList, IonTitle, IonToolbar, IonItem, IonAvatar, IonLabel, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonText, IonIcon, IonCol, IonGrid, IonRow, IonTabButton, IonAccordion, IonAccordionGroup, IonButton, IonButtons, IonInput, IonModal, IonTabBar } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { SavingProfile } from 'src/app/services/savingProfile';
@@ -21,11 +21,11 @@ export class ProfilePage implements OnInit {
   private greenCareService = inject(SavingProfile);
   exploreService = inject(ExploreService)
 
-  constructor() {}
+  constructor() { }
 
   favorites = this.exploreService.favorites;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   name: string = '';
   description: string = '';
@@ -76,7 +76,7 @@ export class ProfilePage implements OnInit {
 
   async takePicture() {
     const image = await Camera.getPhoto({
-      quality: 90,
+      quality: 70,
       allowEditing: false,
       resultType: CameraResultType.DataUrl
     });

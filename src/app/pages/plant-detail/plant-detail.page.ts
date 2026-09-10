@@ -57,7 +57,7 @@ export class PlantDetailPage implements OnInit {
     }
     if (this.plant) {
       this.plant.isFavorite = this.exploreService.favorites.some(
-       favorite => favorite.id === this.plant.id);
+        favorite => favorite.id === this.plant.id);
     }
   }
 
@@ -159,21 +159,39 @@ export class PlantDetailPage implements OnInit {
     this.plant.isHelping = false;
   }
 
+  /*addFavorite() {
+    if (!this.plant) {
+      return;
+    }
+
+    const exists = this.exploreService.favorites.some(
+      favorite => favorite.id === this.plant.id
+    );
+
+    if (!exists) {
+      this.exploreService.addFavorite(this.plant);
+      this.plant.isFavorite = true;
+    } else {
+      this.plant.isFavorite = false;
+      this.exploreService.delete(this.plant);
+    }
+  }*/
   addFavorite() {
-  if (!this.plant) {
-    return;
-  }
+    if (!this.plant) {
+      return;
+    }
 
-  const exists = this.exploreService.favorites.some(
-    favorite => favorite.id === this.plant.id
-  );
+    const exists = this.exploreService.favorites.some(
+      favorite => favorite.id === this.plant.id
+    );
 
-  if (!exists) {
-    this.exploreService.addFavorite(this.plant);
-    this.plant.isFavorite = true;
-  } else {
-    this.plant.isFavorite = false;
-    this.exploreService.delete(this.plant);
-  }
+    if (!exists) {
+      this.exploreService.addFavorite(this.plant);
+      this.plant.isFavorite = true;
+    } else {
+      this.plant.isFavorite = false;
+      this.exploreService.delete(this.plant);
+      this.saving.locationDown();
+    }
   }
 }

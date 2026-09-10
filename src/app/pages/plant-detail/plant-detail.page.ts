@@ -55,6 +55,10 @@ export class PlantDetailPage implements OnInit {
       this.plant.isHelping =
         this.taskService.taskCheck(this.plant.id);
     }
+    if (this.plant) {
+      this.plant.isFavorite = this.exploreService.favorites.some(
+       favorite => favorite.id === this.plant.id);
+    }
   }
 
   updateShowDates() {
@@ -156,6 +160,20 @@ export class PlantDetailPage implements OnInit {
   }
 
   addFavorite() {
+  if (!this.plant) {
+    return;
+  }
+
+  const exists = this.exploreService.favorites.some(
+    favorite => favorite.id === this.plant.id
+  );
+
+  if (!exists) {
     this.exploreService.addFavorite(this.plant);
+    this.plant.isFavorite = true;
+  } else {
+    this.plant.isFavorite = false;
+    this.exploreService.delete(this.plant);
+  }
   }
 }

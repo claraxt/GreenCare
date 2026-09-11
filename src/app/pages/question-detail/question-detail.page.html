@@ -7,36 +7,58 @@
 </ion-header>
 
 <ion-content>
+
   <ion-card class="question-card">
-    <img [src]="question?.image" class="question-image">
     <ion-card-content>
+
+      <img [src]="question?.image" class="question-image">
+
       <h1>
         {{question?.title}}
       </h1>
+
       <p>
         {{question?.description}}
       </p>
+
     </ion-card-content>
   </ion-card>
+
   <h2 class="answer-title">
     Antworten
   </h2>
+
   <ion-card *ngFor="let answer of question?.answers; let i = index">
+
     <ion-card-content>
+
       <h3>{{ answer?.user }}</h3>
+
       <p>{{ answer?.text }}</p>
+
       <ion-button *ngIf="answer?.user === savingProfile.greenCare().name" color="danger" fill="clear"
         (click)="delete(i)">
         Löschen
         <ion-icon slot="start" name="trash"></ion-icon>
       </ion-button>
+
     </ion-card-content>
+
   </ion-card>
+
   <ion-card class="write-card">
-    <ion-textarea [(ngModel)]="newAnswer" placeholder="Antwort schreiben..." autoGrow="true">
-    </ion-textarea>
-    <ion-button expand="block" (click)="sendAnswer()">
-      Antwort senden
-    </ion-button>
+
+    <ion-card-content>
+
+      <ion-textarea [(ngModel)]="newAnswer" placeholder="Antwort schreiben..." autoGrow="true">
+      </ion-textarea>
+
+      <ion-button expand="block" (click)="sendAnswer()">
+        Antwort senden
+      </ion-button>
+
+    </ion-card-content>
+
   </ion-card>
+
 </ion-content>

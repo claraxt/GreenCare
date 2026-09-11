@@ -10,8 +10,13 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
+
       <div *ngIf="plant">
-        <img [src]="plant.image_url">
+
+        <div class="plant-image">
+          <img [src]="plant.image_url">
+        </div>
+
         <h1>{{ plant.common_name }}</h1>
         <p>{{ plant.scientific_name }}</p>
 
@@ -75,12 +80,16 @@
             {{ pest }}
           </li>
         </ul>
+
         <h1>Pflegehinweise</h1>
         <p>{{ plant.optional?.care_instructions }}</p>
+
         <h1>Sicherheit</h1>
         <p><b>Giftigkeit:</b> {{ plant.optional?.toxicity_level }}</p>
         <p><b>Essbar:</b> {{ plant.optional?.edibility }}</p>
+
       </div>
+
     </ion-card-content>
   </ion-card>
 </ion-content>

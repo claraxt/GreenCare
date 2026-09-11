@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent, IonButton, IonIcon, AlertController } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent, IonButton, IonIcon, AlertController, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { CommunityService } from 'src/app/services/community';
 import { PlantService } from 'src/app/services/plant.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { SavingProfile } from 'src/app/services/savingProfile';
   templateUrl: './community.page.html',
   styleUrls: ['./community.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent, IonButton, IonIcon, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent, IonButton, IonIcon, IonGrid, IonRow, IonCol, CommonModule, FormsModule]
 })
 
 export class CommunityPage implements OnInit {

@@ -50,3 +50,11 @@ p {
 ion-card ion-button {
   margin: 2px 8px 6px;
 }
+
+.plant-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 20px 0;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon } from '@ionic/angular/standalone';
+import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon, IonCol, IonGrid, IonRow } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 import { SavingProfile } from 'src/app/services/savingProfile';
@@ -12,7 +12,7 @@ import { TaskCalendarService } from 'src/app/services/taskCalendar';
   templateUrl: './plant-detail.page.html',
   styleUrls: ['./plant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon]
+  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon, IonCol, IonGrid, IonRow]
 })
 export class PlantDetailPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
@@ -159,23 +159,6 @@ export class PlantDetailPage implements OnInit {
     this.plant.isHelping = false;
   }
 
-  /*addFavorite() {
-    if (!this.plant) {
-      return;
-    }
-
-    const exists = this.exploreService.favorites.some(
-      favorite => favorite.id === this.plant.id
-    );
-
-    if (!exists) {
-      this.exploreService.addFavorite(this.plant);
-      this.plant.isFavorite = true;
-    } else {
-      this.plant.isFavorite = false;
-      this.exploreService.delete(this.plant);
-    }
-  }*/
   addFavorite() {
     if (!this.plant) {
       return;

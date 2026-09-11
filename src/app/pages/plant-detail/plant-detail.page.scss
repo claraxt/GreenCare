@@ -2,12 +2,6 @@ ion-content {
   --background: #F6F2E8;
 }
 
-ion-card-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .plant-image {
   width: 100%;
   height: 45vh;
@@ -18,13 +12,12 @@ ion-card-content {
 
 .plant-image img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  max-height: 60vh;
+
+  object-fit: cover;
+  border-radius: 18px;
 }
 
-.content {
-  padding: 24px;
-}
 
 h1 {
   font-size: 36px;

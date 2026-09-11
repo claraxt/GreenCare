@@ -126,9 +126,7 @@ export class MapPage implements OnInit, AfterViewInit {
 
     this.showTaskMarker();
 
-    /*setTimeout(() => {
-      this.showPlantMarker();
-    }, 100);*/
+
 
     navigator.geolocation.watchPosition(
       (pos) => this.updatePosition(pos),
@@ -198,56 +196,7 @@ export class MapPage implements OnInit, AfterViewInit {
       this.showTaskMarker();
     }
   }
-  /*showTaskMarker() {
-    this.taskService.task.map((t: any) => t.id)
-    this.exploreService.plantsSuggested.map(p => p.id)
-    this.exploreService.plantsNearby.map(p => p.id)
-    this.exploreService.plantsNew.map(p => p.id)
-    this.taskMarker.forEach(item => {
-      this.map.removeLayer(item.marker);
-    });
 
-    this.taskMarker = [];
-    this.taskService.task.forEach((task: any) => {
-
-      const plant = [
-        ...this.exploreService.plantsSuggested,
-        ...this.exploreService.plantsNearby,
-        ...this.exploreService.plantsNew
-      ].find(p => p.id === task.id);
-      if (plant) {
-        if (
-          plant.latitude === this.targetLat &&
-          plant.longitude === this.targetLng
-        ) {
-          if (this.plantMarker) {
-            this.map.removeLayer(this.plantMarker);
-            this.plantMarker = null;
-          }
-        }
-
-        const marker = L.marker([
-          plant.latitude,
-          plant.longitude
-        ],
-          {
-            icon: this.myTask
-          })
-          .addTo(this.map)
-          .bindPopup(plant.name);
-        this.taskMarker.push({
-          id: plant.id,
-          marker
-        });
-
-      } else {
-        console.warn(
-          'KEINE PFLANZE FÜR DIE TASK GEFUNDEN:',
-          task.id
-        );
-      }
-    });
-  }*/
   showTaskMarker() {
     this.taskService.task.map((t: any) => t.id)
     this.exploreService.plantsSuggested.map(p => p.id)

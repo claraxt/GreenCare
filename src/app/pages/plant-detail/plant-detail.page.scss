@@ -4,15 +4,20 @@ ion-content {
 
 .plant-image {
   width: 100%;
-  overflow: hidden;
+  aspect-ratio: 16 / 9;
 }
 
 .plant-image img {
-  display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 14px;
+}
+
+.calendar-card ion-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

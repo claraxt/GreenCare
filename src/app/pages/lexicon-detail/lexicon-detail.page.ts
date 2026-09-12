@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonCard, IonCardContent } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonCard, IonCardContent, IonRow, IonCol } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { PlantService } from 'src/app/services/plant.service';
 
@@ -10,7 +10,7 @@ import { PlantService } from 'src/app/services/plant.service';
   templateUrl: './lexicon-detail.page.html',
   styleUrls: ['./lexicon-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonCard, IonCardContent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonCard, IonCardContent, IonRow, IonCol]
 })
 
 export class LexiconDetailPage implements OnInit {

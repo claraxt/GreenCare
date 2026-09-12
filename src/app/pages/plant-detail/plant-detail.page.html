@@ -13,96 +13,106 @@
 
       <div *ngIf="plant">
 
-        <div class="plant-image">
-          <img [src]="plant.image">
-        </div>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" size-md="8" size-lg="6">
+            <div class="plant-image">
+              <img [src]="plant.image">
+            </div>
+          </ion-col>
+        </ion-row>
 
-        <h1>{{ plant.name }}</h1>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" size-md="8" size-lg="6">
 
-        <p>{{ plant.description }}</p>
-        <p>{{ plant.distance }}</p>
+            <h1>{{ plant.name }}</h1>
 
-        <h1>Aufgabe</h1>
-        <p>{{ plant.task }}</p>
-        <p>Noch {{ plant.peopleNeeded }} Helfer benötigt.</p>
+            <p>{{ plant.description }}</p>
+            <p>{{ plant.distance }}</p>
 
-        <h1>Pflege</h1>
-        <p><b>Wasser:</b> {{ plant.watering }}</p>
-        <p><b>Standort:</b> {{ plant.sunlight }}</p>
-        <p><b>Pflanzenarten:</b> {{ plant.flowers }}</p>
-        <p><b>Schwierigkeitsgrad:</b> {{ plant.difficulty }}</p>
+            <h1>Aufgabe</h1>
+            <p>{{ plant.task }}</p>
+            <p>Noch {{ plant.peopleNeeded }} Helfer benötigt.</p>
 
-        <h1>Beschreibung</h1>
-        <p>{{ plant.text }}</p>
+            <h1>Pflege</h1>
+            <p><b>Wasser:</b> {{ plant.watering }}</p>
+            <p><b>Standort:</b> {{ plant.sunlight }}</p>
+            <p><b>Pflanzenarten:</b> {{ plant.flowers }}</p>
+            <p><b>Schwierigkeitsgrad:</b> {{ plant.difficulty }}</p>
 
-        <ion-button expand="block" (click)="addFavorite()">
-          <ion-icon slot="start" [name]="plant.isFavorite ? 'heart' : 'heart-outline'">
-          </ion-icon>
+            <h1>Beschreibung</h1>
+            <p>{{ plant.text }}</p>
 
-          {{ plant.isFavorite
-          ? 'Aus Favoriten entfernen'
-          : 'Zu Favoriten hinzufügen' }}
-        </ion-button>
+            <ion-button expand="block" (click)="addFavorite()">
+              <ion-icon slot="start" [name]="plant.isFavorite ? 'heart' : 'heart-outline'">
+              </ion-icon>
 
-        <ng-container *ngIf="!plant.isHelping">
+              {{ plant.isFavorite
+              ? 'Aus Favoriten entfernen'
+              : 'Zu Favoriten hinzufügen' }}
+            </ion-button>
 
-          <ion-button id="calendar-modal" expand="block">
-            Mithelfen
-          </ion-button>
+            <ng-container *ngIf="!plant.isHelping">
 
-          <ion-modal trigger="calendar-modal" (willDismiss)="onWillDismiss($event)">
+              <ion-button id="calendar-modal" expand="block">
+                Mithelfen
+              </ion-button>
 
-            <ng-template>
+              <ion-modal trigger="calendar-modal" (willDismiss)="onWillDismiss($event)">
 
-              <ion-header>
-                <ion-toolbar>
-                  <ion-title>Wähle den Tag</ion-title>
-                </ion-toolbar>
-              </ion-header>
+                <ng-template>
 
-              <ion-content>
+                  <ion-header>
+                    <ion-toolbar>
+                      <ion-title>Wähle den Tag</ion-title>
+                    </ion-toolbar>
+                  </ion-header>
 
-                <ion-card>
-                  <ion-card-content>
+                  <ion-content>
 
-                    <ion-datetime [(ngModel)]="chosenDate" [highlightedDates]="showDates">
+                    <ion-card class="calendar-card">
+                      <ion-card-content>
 
-                      <span slot="title">
-                        Wähle einen Tag
-                      </span>
+                        <ion-datetime [(ngModel)]="chosenDate" [highlightedDates]="showDates">
 
-                    </ion-datetime>
+                          <span slot="title">
+                            Wähle einen Tag
+                          </span>
 
-                  </ion-card-content>
-                </ion-card>
+                        </ion-datetime>
 
-                <ion-toolbar>
+                      </ion-card-content>
+                    </ion-card>
 
-                  <ion-button color="danger" slot="start" fill="clear" (click)="cancel()">
-                    Abbrechen
-                  </ion-button>
+                    <ion-toolbar>
 
-                  <ion-button color="success" slot="end" fill="clear" (click)="confirm()" [strong]="true">
-                    Bestätigen
-                  </ion-button>
+                      <ion-button color="danger" slot="start" fill="clear" (click)="cancel()">
+                        Abbrechen
+                      </ion-button>
 
-                </ion-toolbar>
+                      <ion-button color="success" slot="end" fill="clear" (click)="confirm()" [strong]="true">
+                        Bestätigen
+                      </ion-button>
 
-              </ion-content>
+                    </ion-toolbar>
 
-            </ng-template>
+                  </ion-content>
 
-          </ion-modal>
+                </ng-template>
 
-        </ng-container>
+              </ion-modal>
 
-        <ion-button expand="block" (click)="showOnMap()">
-          Auf Karte anzeigen
-        </ion-button>
+            </ng-container>
 
-        <ion-button *ngIf="plant.isHelping" expand="block" color="danger" (click)="stopHelping()">
-          Hilfe zurückziehen
-        </ion-button>
+            <ion-button expand="block" (click)="showOnMap()">
+              Auf Karte anzeigen
+            </ion-button>
+
+            <ion-button *ngIf="plant.isHelping" expand="block" color="danger" (click)="stopHelping()">
+              Hilfe zurückziehen
+            </ion-button>
+
+          </ion-col>
+        </ion-row>
 
       </div>
 

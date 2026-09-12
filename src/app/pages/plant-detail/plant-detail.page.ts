@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon, IonCol, IonGrid, IonRow } from '@ionic/angular/standalone';
+import { AlertController, IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon, IonRow, IonCol } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreService } from '../../services/explore';
 import { SavingProfile } from 'src/app/services/savingProfile';
@@ -12,7 +12,7 @@ import { TaskCalendarService } from 'src/app/services/taskCalendar';
   templateUrl: './plant-detail.page.html',
   styleUrls: ['./plant-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon, IonCol, IonGrid, IonRow]
+  imports: [IonContent, IonHeader, IonButton, IonTitle, IonToolbar, IonButtons, IonBackButton, CommonModule, FormsModule, IonModal, IonDatetime, IonCard, IonCardContent, IonIcon, IonRow, IonCol]
 })
 export class PlantDetailPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
